@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Spill ODE — Results</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌊</div>
+      <div>
+        <div class="sidebar-title">Oil Spill ODE</div>
+        <div class="sidebar-subtitle">CE 122 · Summer 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="index.html"><span class="nav-icon">🏠</span> Home</a>
+    <a href="problem-definition.html"><span class="nav-icon">🌊</span> Problem Definition</a>
+    <a href="ode-model.html"><span class="nav-icon">📐</span> ODE Model</a>
+    <a href="analytical-solution.html"><span class="nav-icon">🔢</span> Analytical Solution</a>
+    <a href="numerical-methods.html"><span class="nav-icon">🧪</span> Numerical Methods</a>
+    <a href="results.html" class="active"><span class="nav-icon">📈</span> Results</a>
+    <a href="parameter-sensitivity.html"><span class="nav-icon">📊</span> Parameter Sensitivity</a>
+    <a href="literature-review.html"><span class="nav-icon">📚</span> Literature Review</a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <h1 class="page-title" style="margin-bottom:0;">Results &amp; Visualizations</h1>
+      <span class="badge" style="margin-top:6px;">Pending MATLAB Output</span>
+    </div>
+    <p class="lead" style="margin-top:14px;">
+      The outputs of the simulation. Visualizing the state variables over a 7-day (168 hour) timeframe
+      provides insight into how quickly a spill degrades and becomes unmanageable.
+    </p>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Slick Area vs. Time</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"Shows the rapid initial spreading phase tapering off into a slower viscous phase. [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Fraction Evaporated vs. Time</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"Illustrates the exponential decay of lighter hydrocarbon mass over the first 48 hours. [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Water Incorporation vs. Time</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"Emulsification curve approaching the maximum saturation limit (C_s). [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Viscosity Change vs. Time</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"The compounding effect of evaporation and emulsification on the slick's thickness. [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Analytical vs. Numerical</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"Overlay of the simplified steady-state derivation vs. the full RK4 transient solution. [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed" style="display:flex;flex-direction:column;">
+      <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="card-title">Solver Comparison (Euler vs RK4)</div>
+        <span style="font-size:16px;">📈</span>
+      </div>
+      <div class="card-body" style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="placeholder-box tall">[Insert Plot Image Here]</div>
+        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--muted);">
+          <span style="font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px;">Interpretation:</span>
+          <em>"Error accumulation in the Forward Euler method compared to the ode45 baseline. [Add engineering analysis later]"</em>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
