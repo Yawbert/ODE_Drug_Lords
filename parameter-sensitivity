@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Spill ODE — Parameter Sensitivity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌊</div>
+      <div>
+        <div class="sidebar-title">Oil Spill ODE</div>
+        <div class="sidebar-subtitle">CE 122 · Summer 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="index.html"><span class="nav-icon">🏠</span> Home</a>
+    <a href="problem-definition.html"><span class="nav-icon">🌊</span> Problem Definition</a>
+    <a href="ode-model.html"><span class="nav-icon">📐</span> ODE Model</a>
+    <a href="analytical-solution.html"><span class="nav-icon">🔢</span> Analytical Solution</a>
+    <a href="numerical-methods.html"><span class="nav-icon">🧪</span> Numerical Methods</a>
+    <a href="results.html"><span class="nav-icon">📈</span> Results</a>
+    <a href="parameter-sensitivity.html" class="active"><span class="nav-icon">📊</span> Parameter Sensitivity</a>
+    <a href="literature-review.html"><span class="nav-icon">📚</span> Literature Review</a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1 class="page-title">Parameter Sensitivity</h1>
+    <p class="lead">
+      Environmental conditions are rarely static or precisely known. A robust engineering model
+      requires sensitivity analysis to understand which input parameters dominate the system's behavior.
+    </p>
+  </div>
+
+  <p style="font-size:14px;color:#374151;line-height:1.75;margin-bottom:12px;">
+    We perturb the key independent variables by ±20% from their baseline values and measure the
+    resulting change in the final state variables at t = 168 hours. The parameters of highest interest are:
+  </p>
+  <ul style="font-size:14px;color:#374151;line-height:2;padding-left:22px;margin-bottom:36px;">
+    <li><strong>Wind Speed (W)</strong> — directly drives evaporation mass transfer and wave-induced emulsification.</li>
+    <li><strong>Temperature (T)</strong> — strongly dictates the evaporation rate.</li>
+    <li><strong>Initial Volume (V_s)</strong> — dictates slick thickness and total spreading area.</li>
+    <li><strong>Oil Density (ρ_o)</strong> — influences gravity-driven spreading.</li>
+  </ul>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+    <h2 class="section-title" style="margin:0;">Sensitivity Matrix</h2>
+    <span class="badge">Placeholder Table</span>
+  </div>
+
+  <div class="table-wrap" style="margin-bottom:40px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter Perturbed</th>
+          <th>Δ Area (%)</th>
+          <th>Δ Evap Fraction (%)</th>
+          <th>Δ Viscosity (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">Wind Speed (+20%)</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+        </tr>
+        <tr>
+          <td class="strong">Temperature (+20%)</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+        </tr>
+        <tr>
+          <td class="strong">Initial Vol (+20%)</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+          <td>[TBD]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">Sensitivity Curves</h2>
+  <div class="grid-2">
+
+    <div class="card dashed">
+      <div class="card-header">
+        <div class="card-title">📊 Evaporation vs Temperature</div>
+      </div>
+      <div class="card-body">
+        <div class="placeholder-box" style="min-height:180px;">
+          [Plot: F_E curve family for T = 5°C, 15°C, 25°C]
+        </div>
+      </div>
+    </div>
+
+    <div class="card dashed">
+      <div class="card-header">
+        <div class="card-title">📊 Emulsification vs Wind Speed</div>
+      </div>
+      <div class="card-body">
+        <div class="placeholder-box" style="min-height:180px;">
+          [Plot: Y curve family for W = 2, 5, 10 m/s]
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
