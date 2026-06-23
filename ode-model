@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Spill ODE — ODE Model</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌊</div>
+      <div>
+        <div class="sidebar-title">Oil Spill ODE</div>
+        <div class="sidebar-subtitle">CE 122 · Summer 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="index.html"><span class="nav-icon">🏠</span> Home</a>
+    <a href="problem-definition.html"><span class="nav-icon">🌊</span> Problem Definition</a>
+    <a href="ode-model.html" class="active"><span class="nav-icon">📐</span> ODE Model</a>
+    <a href="analytical-solution.html"><span class="nav-icon">🔢</span> Analytical Solution</a>
+    <a href="numerical-methods.html"><span class="nav-icon">🧪</span> Numerical Methods</a>
+    <a href="results.html"><span class="nav-icon">📈</span> Results</a>
+    <a href="parameter-sensitivity.html"><span class="nav-icon">📊</span> Parameter Sensitivity</a>
+    <a href="literature-review.html"><span class="nav-icon">📚</span> Literature Review</a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1 class="page-title">ODE Model Formulation</h1>
+    <p class="lead">
+      The core of the simulation is a system of coupled, non-linear Ordinary Differential Equations.
+      Because these equations are tightly coupled (e.g., evaporation depends on area, area depends on
+      volume, viscosity depends on evaporation), they must be solved simultaneously.
+    </p>
+  </div>
+
+  <div class="info-box">
+    <strong>Note on Solvers:</strong> This system is stiff and highly coupled. In our numerical methods,
+    we primarily rely on a 4th-order Runge-Kutta (RK4) implementation and MATLAB's adaptive
+    <code>ode45</code> to maintain stability.
+  </div>
+
+  <div class="stack">
+
+    <!-- Equation 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Spreading Rate (dA/dt)</div>
+        <div class="card-desc">Governs the rate of change of the slick area over time. Derived from Fay's spreading theory for the gravity-viscous phase.</div>
+      </div>
+      <div class="card-body grid-2">
+        <div>
+          <div class="code-block green">dA/dt = K_s * A^(1/3) * (V_s/A)^(4/3) * (v_w/A)^(1/3)</div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:600;margin-bottom:8px;color:#374151;">Variables Legend:</p>
+          <ul class="legend">
+            <li><span class="var">A</span>= Slick area (m²)</li>
+            <li><span class="var">K_s</span>= Spreading constant</li>
+            <li><span class="var">V_s</span>= Volume of the spill (m³)</li>
+            <li><span class="var">v_w</span>= Kinematic viscosity of water</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equation 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Evaporation Fraction (dF_E/dt)</div>
+        <div class="card-desc">Models the mass fraction of oil that has evaporated. Highly dependent on temperature and wind speed.</div>
+      </div>
+      <div class="card-body grid-2">
+        <div>
+          <div class="code-block green">dF_E/dt = K_2 * A * (T_c * exp(B(1 - T_o/T)) / h)</div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:600;margin-bottom:8px;color:#374151;">Variables Legend:</p>
+          <ul class="legend">
+            <li><span class="var">F_E</span>= Evaporated fraction (0 to 1)</li>
+            <li><span class="var">K_2</span>= Mass transfer coefficient</li>
+            <li><span class="var">T</span>= Environmental temperature (K)</li>
+            <li><span class="var">T_o</span>= Initial boiling point (K)</li>
+            <li><span class="var">h</span>= Slick thickness (V_s / A)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equation 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Water Incorporation / Emulsification (dY/dt)</div>
+        <div class="card-desc">Models the fractional water content incorporated into the oil slick due to wave action.</div>
+      </div>
+      <div class="card-body grid-2">
+        <div>
+          <div class="code-block green">dY/dt = 2e-6 * (1 + 0.7)^2 * W^2 * (C_s - Y)</div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:600;margin-bottom:8px;color:#374151;">Variables Legend:</p>
+          <ul class="legend">
+            <li><span class="var">Y</span>= Fractional water content</li>
+            <li><span class="var">W</span>= Wind speed (m/s)</li>
+            <li><span class="var">C_s</span>= Maximum water content (~0.7 to 0.8)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equation 4 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Viscosity Change</div>
+        <div class="card-desc">An algebraic relation describing how viscosity increases as lighter fractions evaporate.</div>
+      </div>
+      <div class="card-body grid-2">
+        <div>
+          <div class="code-block green">μ = μ_0 * exp(C_d * F_E)</div>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:600;margin-bottom:8px;color:#374151;">Variables Legend:</p>
+          <ul class="legend">
+            <li><span class="var">μ</span>= Current dynamic viscosity</li>
+            <li><span class="var">μ_0</span>= Initial dynamic viscosity</li>
+            <li><span class="var">C_d</span>= Oil-specific viscosity constant</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
