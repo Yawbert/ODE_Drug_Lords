@@ -9,24 +9,50 @@
 <body>
 
 <nav class="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">🌊</div>
-      <div>
-        <div class="sidebar-title">Oil Spill ODE</div>
-        <div class="sidebar-subtitle">CE 122 · Summer 2026</div>
-      </div>
+  <div class="sidebar-top">
+    <div class="sidebar-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
     </div>
+    <span class="sidebar-name">Oil Spill ODE</span>
   </div>
+  <div class="nav-section-label">Course Project</div>
   <div class="sidebar-nav">
-    <a href="index.html"><span class="nav-icon">🏠</span> Home</a>
-    <a href="problem-definition.html"><span class="nav-icon">🌊</span> Problem Definition</a>
-    <a href="ode-model.html"><span class="nav-icon">📐</span> ODE Model</a>
-    <a href="analytical-solution.html"><span class="nav-icon">🔢</span> Analytical Solution</a>
-    <a href="numerical-methods.html"><span class="nav-icon">🧪</span> Numerical Methods</a>
-    <a href="results.html"><span class="nav-icon">📈</span> Results</a>
-    <a href="parameter-sensitivity.html"><span class="nav-icon">📊</span> Parameter Sensitivity</a>
-    <a href="literature-review.html" class="active"><span class="nav-icon">📚</span> Literature Review</a>
+    <a href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Overview
+    </a>
+    <a href="problem-definition.html">
+      <svg viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+      Problem Definition
+    </a>
+    <a href="ode-model.html">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+      ODE Model
+    </a>
+    <a href="analytical-solution.html">
+      <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="12" y1="10" x2="14" y2="10"/></svg>
+      Analytical Solution
+    </a>
+    <a href="numerical-methods.html">
+      <svg viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M9 3v7L4.5 17A2 2 0 0 0 6.34 20h11.32a2 2 0 0 0 1.84-3L15 10V3"/></svg>
+      Numerical Methods
+    </a>
+    <a href="results.html">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      Results &amp; Visualizations
+    </a>
+    <a href="parameter-sensitivity.html">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Parameter Sensitivity
+    </a>
+    <a href="literature-review.html" class="active">
+      <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Literature Review
+    </a>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-label">CE 122</div>
+    <div class="sidebar-footer-sub">Applied Programming for Engineers<br>Summer 2026</div>
   </div>
 </nav>
 
@@ -45,35 +71,35 @@
       <div class="ref-authors">Sebastiao, P. &amp; Guedes Soares, C. (1995)</div>
       <div class="ref-title">Modeling the Fate of Oil Spills at Sea</div>
       <div class="ref-journal">Spill Science &amp; Technology Bulletin, Vol. 2(2/3), pp. 121–131.</div>
-      <div class="ref-note"><span>Project Note:</span>Primary reference. Provides the core ODE system structure.</div>
+      <div class="ref-note"><strong>Project Note:</strong> Primary reference. Provides the core ODE system structure.</div>
     </div>
 
     <div class="ref-card">
       <div class="ref-authors">Fay, J.A. (1969)</div>
       <div class="ref-title">The Spread of Oil Slicks on a Calm Sea</div>
       <div class="ref-journal">Oil on the Sea, Plenum Press, New York.</div>
-      <div class="ref-note"><span>Project Note:</span>Foundational theory on the gravity-viscous phase of surface spreading.</div>
+      <div class="ref-note"><strong>Project Note:</strong> Foundational theory on the gravity-viscous phase of surface spreading.</div>
     </div>
 
     <div class="ref-card">
       <div class="ref-authors">Mackay, D., Buist, I., Mascarenhas, R., &amp; Paterson, S. (1980)</div>
       <div class="ref-title">A Computational Model for the Behavior of Oil Spills</div>
       <div class="ref-journal">Proc. 3rd Arctic Marine Oilspill Program Technical Seminar.</div>
-      <div class="ref-note"><span>Project Note:</span>Pioneering formulation of the emulsification and water incorporation rates.</div>
+      <div class="ref-note"><strong>Project Note:</strong> Pioneering formulation of the emulsification and water incorporation rates.</div>
     </div>
 
     <div class="ref-card">
       <div class="ref-authors">Stiver, W. &amp; Mackay, D. (1984)</div>
       <div class="ref-title">Evaporation Rate of Spills of Hydrocarbons and Petroleum Mixtures</div>
       <div class="ref-journal">Environmental Science &amp; Technology, Vol. 18, pp. 834–840.</div>
-      <div class="ref-note"><span>Project Note:</span>Empirical derivation of the evaporation fraction equations.</div>
+      <div class="ref-note"><strong>Project Note:</strong> Empirical derivation of the evaporation fraction equations.</div>
     </div>
 
     <div class="ref-card">
       <div class="ref-authors">Delvigne, G.A.L. &amp; Sweeney, C.E. (1988)</div>
       <div class="ref-title">Natural Dispersion of Oil</div>
       <div class="ref-journal">Oil &amp; Chemical Pollution, Vol. 4, pp. 281–310.</div>
-      <div class="ref-note"><span>Project Note:</span>Analysis of wave energy required to entrain oil droplets.</div>
+      <div class="ref-note"><strong>Project Note:</strong> Analysis of wave energy required to entrain oil droplets.</div>
     </div>
 
   </div>
