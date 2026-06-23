@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Spill ODE — Problem Definition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">🌊</div>
+      <div>
+        <div class="sidebar-title">Oil Spill ODE</div>
+        <div class="sidebar-subtitle">CE 122 · Summer 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-nav">
+    <a href="index.html"><span class="nav-icon">🏠</span> Home</a>
+    <a href="problem-definition.html" class="active"><span class="nav-icon">🌊</span> Problem Definition</a>
+    <a href="ode-model.html"><span class="nav-icon">📐</span> ODE Model</a>
+    <a href="analytical-solution.html"><span class="nav-icon">🔢</span> Analytical Solution</a>
+    <a href="numerical-methods.html"><span class="nav-icon">🧪</span> Numerical Methods</a>
+    <a href="results.html"><span class="nav-icon">📈</span> Results</a>
+    <a href="parameter-sensitivity.html"><span class="nav-icon">📊</span> Parameter Sensitivity</a>
+    <a href="literature-review.html"><span class="nav-icon">📚</span> Literature Review</a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1 class="page-title">Problem Definition</h1>
+    <p class="lead">
+      Marine oil spills represent catastrophic environmental and economic hazards.
+      To effectively respond, we must understand and predict how oil behaves once released into the ocean.
+    </p>
+  </div>
+
+  <p style="font-size:14.5px; color:#374151; line-height:1.75; margin-bottom:36px;">
+    The behavior of an oil spill is governed by a complex set of physical and chemical processes
+    collectively known as <strong>weathering</strong>. These processes occur simultaneously and interact
+    with one another, strongly dependent on environmental conditions such as wind speed, sea surface
+    temperature, and wave energy.
+  </p>
+
+  <h2 class="section-title" style="margin-top:0;">Weathering Processes Modeled</h2>
+
+  <div class="stack">
+
+    <div class="process-card">
+      <div class="process-card-header">
+        <div class="process-card-title">Spreading</div>
+      </div>
+      <div class="process-card-body">
+        <p class="process-desc">
+          The initial physical expansion of the oil slick over the water surface, driven by gravity
+          and surface tension, resisted by inertia and viscosity. Dominant in the first few hours.
+        </p>
+        <div class="placeholder-box medium">[Diagram for spreading]</div>
+      </div>
+    </div>
+
+    <div class="process-card">
+      <div class="process-card-header">
+        <div class="process-card-title">Evaporation</div>
+      </div>
+      <div class="process-card-body">
+        <p class="process-desc">
+          The mass transfer of lighter, volatile hydrocarbon fractions into the atmosphere.
+          This drastically alters the volume and properties of the remaining oil.
+        </p>
+        <div class="placeholder-box medium">[Diagram for evaporation]</div>
+      </div>
+    </div>
+
+    <div class="process-card">
+      <div class="process-card-header">
+        <div class="process-card-title">Emulsification (Water Incorporation)</div>
+      </div>
+      <div class="process-card-body">
+        <p class="process-desc">
+          The formation of a "mousse" (water-in-oil emulsion) induced by wave action.
+          This significantly increases the volume and viscosity of the slick.
+        </p>
+        <div class="placeholder-box medium">[Diagram for emulsification]</div>
+      </div>
+    </div>
+
+    <div class="process-card">
+      <div class="process-card-header">
+        <div class="process-card-title">Natural Dispersion</div>
+      </div>
+      <div class="process-card-body">
+        <p class="process-desc">
+          The entrainment of oil droplets into the water column due to breaking waves.
+          Only smaller droplets remain permanently dispersed.
+        </p>
+        <div class="placeholder-box medium">[Diagram for natural dispersion]</div>
+      </div>
+    </div>
+
+    <div class="process-card">
+      <div class="process-card-header">
+        <div class="process-card-title">Viscosity &amp; Density Changes</div>
+      </div>
+      <div class="process-card-body">
+        <p class="process-desc">
+          Consequential changes to the physical properties of the oil as lighter fractions evaporate
+          and water is incorporated, making the slick thicker and heavier.
+        </p>
+        <div class="placeholder-box medium">[Diagram for viscosity changes]</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
