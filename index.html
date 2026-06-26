@@ -664,7 +664,8 @@
           <span class="eq-name">Volume Variation Rate</span>
         </div>
         <p class="eq-desc">The surface oil volume decreases due to two competing processes: evaporation (first term) removes lighter fractions to the atmosphere, while entrainment (second term, −DV) mixes oil into the water column through wave action.</p>
-        <div class="eq-block">dV/dt = −V₀ · (dF<sub>E</sub>/dt) − D·V</div>
+        <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$
+</div>
         <div class="eq-vars">
           <span class="eq-var">V <span>surface volume (m³)</span></span>
           <span class="eq-var">D <span>entrainment fraction per hour</span></span>
@@ -679,7 +680,8 @@
           <span class="eq-name">Emulsification (Water Uptake)</span>
         </div>
         <p class="eq-desc">Water is incorporated into the oil driven by wind energy, forming a stable water-in-oil emulsion called "mousse". The rate depends on wind speed W and slows as the water content Y approaches its maximum C₃ (≈ 0.7 for crude oils). This is the only equation with an exact closed-form analytical solution.</p>
-        <div class="eq-block">dY/dt = 2.0 × 10⁻⁶ · (W + 1)² · ( 1 − Y / C₃ )</div>
+        <div> $$ \frac{dY}{dt} = 2.0 \times 10^{-6} \cdot (W + 1)^2 \cdot \left( 1 - \frac{Y}{C_3} \right) $$
+</div>
         <div class="eq-vars">
           <span class="eq-var">Y <span>fractional water content</span></span>
           <span class="eq-var">W <span>wind speed (m/s)</span></span>
@@ -694,7 +696,8 @@
           <span class="eq-name">Spreading Area</span>
         </div>
         <p class="eq-desc">Based on Fay's gravity-viscous spreading model (modified by Mackay et al., 1980), the slick area grows proportionally to V^(4/3) and inversely to the current area. The constant K₁ can be tuned for calibration. Spreading stops at a specified minimum terminal thickness.</p>
-        <div class="eq-block">dA/dt = K₁ · A⁻¹ · V^(4/3)</div>
+        <<div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$
+</div>
         <div class="eq-vars">
           <span class="eq-var">A <span>slick area (m²)</span></span>
           <span class="eq-var">V <span>current spill volume</span></span>
@@ -709,7 +712,8 @@
           <span class="eq-name">Viscosity Change</span>
         </div>
         <p class="eq-desc">Oil viscosity increases due to two coupled mechanisms: (1) evaporation removes lighter components, concentrating heavier fractions; (2) emulsification incorporates water, with the denominator term (1 − C₃Y)² capturing the nonlinear mousse stabilisation effect.</p>
-        <div class="eq-block">dμ/dt = C₄·μ·(dF<sub>E</sub>/dt) + 2.5·μ / (1 − C₃·Y)² · (dY/dt)</div>
+       <div>$$ \frac{d\mu}{dt} = C_4 \cdot \mu \cdot \left( \frac{dF_E}{dt} \right) + \frac{2.5 \cdot \mu}{(1 - C_3 \cdot Y)^2} \cdot \left( \frac{dY}{dt} \right) $$
+</div>
         <div class="eq-vars">
           <span class="eq-var">μ <span>dynamic viscosity (cP)</span></span>
           <span class="eq-var">C₄ <span>evaporation–viscosity coefficient</span></span>
