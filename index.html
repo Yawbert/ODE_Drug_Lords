@@ -599,10 +599,10 @@
         <div class="stat-number" data-target="6">0</div>
         <div class="stat-label">Oil Properties Tracked</div>
       </div>
-      <div class="stat-item">
+      <!--<div class="stat-item">
         <div class="stat-number" data-target="168">0</div>
         <div class="stat-label">Hours Simulated</div>
-      </div>
+      </div>-->
       <div class="stat-item">
         <div class="stat-number" data-target="1">0</div>
         <div class="stat-label">Reference Papers</div>
@@ -888,7 +888,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
   <div class="container">
     <div class="section-label">Simulation Results</div>
     <h2 class="section-title">Visualisations &amp; <span class="accent">Plots</span></h2>
-    <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods. Upload your figures to the <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--cyan)">images/</code> folder and replace the placeholders below.</p>
+    <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods.</p>
 
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
@@ -942,7 +942,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Viscosity</div>
             <div class="slide-title">Viscosity Growth (μ)</div>
-            <div class="slide-desc">Viscosity increases by several orders of magnitude over 200 h. RK4 with C₄ = 5 shows the best match; ode45 serves as reference benchmark.</div>
+            <div class="slide-desc">As the volatile hydrocarbon fractions evaporate rapidly into the atmosphere, the remaining surface slick experiences a significant increase in heavy-end concentration. This mass-transfer process drives a steep upward trajectory in fluid viscosity, rising from the baseline value (&mu; = 1) to over 6 times its initial resistance over the 10-hour span. The overlapping trajectories of the first-order Euler, fourth-order RK4, and adaptive <code>ode45</code> solvers indicate that this coupled state equation remains highly stable and well-conditioned under the standard environmental parameters provided.</div>
           </div>
         </div>
 
@@ -968,7 +968,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Slick Area</div>
             <div class="slide-title">Spreading Area A(t)</div>
-            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Area is underestimated but tunable via K₁. Shows rapid initial growth that plateaus as slick thins.</div>
+            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins.</div>
           </div>
         </div>
 
@@ -1133,7 +1133,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
         <h3>RK4 significantly outperforms Euler</h3>
         <p>Error analysis confirms O(h⁴) convergence for RK4 vs. O(h) for Euler. In the stiff early-time region (t &lt; 5 h), Euler requires very small step sizes to maintain stability, while RK4 with adaptive stepping maintains accuracy efficiently throughout.</p>
       </div>
-      <div class="conclusion-card reveal">
+      <!--<div class="conclusion-card reveal">
         <h3>Water content and density well predicted</h3>
         <p>The emulsification and density sub-models show good agreement with Buchanan &amp; Hurford (1988) experimental data. The model captures the correct shape and asymptotic behaviour of both curves over the 168-hour simulation window.</p>
       </div>
@@ -1147,7 +1147,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
 <div class="section-divider"></div>
 
