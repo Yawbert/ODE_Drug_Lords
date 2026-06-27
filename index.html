@@ -771,6 +771,54 @@
 
 <div class="section-divider"></div>
 
+  <!-- ANALYTICAL SOLUTION -->
+<section id="analytical">
+  <div class="container">
+    <div class="section-label">Analytical Solution Attempt</div>
+    <h2 class="section-title">Symbolic Analysis with <span class="accent">MATLAB dsolve</span></h2>
+    <p class="section-body">Each ODE was passed individually to MATLAB's symbolic toolbox to determine whether a closed-form analytical solution exists. Equilibrium and steady-state analysis was also performed. The results confirm the necessity of numerical methods.</p>
+
+    <div class="analytical-grid">
+      <div class="analytical-result">
+        <div class="result-status status-implicit">Implicit integral form</div>
+        <div class="result-name">EQ 01 — Evaporation (F<sub>E</sub>)</div>
+        <p class="result-text">dsolve returned an implicit integral expression because the exponential term contains A(t), which is itself governed by a separate nonlinear ODE. Full decoupling is not possible.</p>
+      </div>
+      <div class="analytical-result">
+        <div class="result-status status-partial">Integrating-factor form</div>
+        <div class="result-name">EQ 02 — Volume (V)</div>
+        <p class="result-text">An integrating-factor solution dependent on F<sub>E</sub>(t) was returned. Because F<sub>E</sub>(t) has no closed form, V(t) also cannot be expressed in closed form.</p>
+      </div>
+      <div class="analytical-result">
+        <div class="result-status status-solved">✓ Closed-form solution obtained</div>
+        <div class="result-name">EQ 03 — Water Content (Y)</div>
+        <p class="result-text">Y(t) is the only equation that decouples from the system. dsolve returned an exact closed-form solution.</p>
+      </div>
+      <div class="analytical-result">
+        <div class="result-status status-implicit">Implicit square-root integral</div>
+        <div class="result-name">EQ 04 — Slick Area (A)</div>
+        <p class="result-text">dsolve returned an implicit form involving an integral of V(t). Since V(t) is unknown analytically, A(t) cannot be expressed in closed form either.</p>
+      </div>
+      <div class="analytical-result" style="grid-column: 1 / -1;">
+        <div class="result-status status-partial">Exponential integral — all variables coupled</div>
+        <div class="result-name">EQ 05 — Viscosity (μ)</div>
+        <p class="result-text">dsolve returned an exponential integral expression involving both F<sub>E</sub>(t) and Y(t). Since F<sub>E</sub>(t) has no closed form, μ(t) also cannot be expressed analytically.</p>
+      </div>
+    </div>
+
+    <div class="conclusion-box">
+      <p><strong style="color:var(--cyan)">Key Finding:</strong> A complete analytical solution for the coupled system cannot be obtained. MATLAB's dsolve only returned a closed-form solution for the water-content equation (EQ 03). The remaining equations are returned in implicit or integral form due to the nonlinear coupling between the governing variables. Even at equilibrium (all derivatives set to zero), the resulting algebraic system remains implicitly dependent: F<sub>E</sub> depends on A, A depends on V, and V depends on F<sub>E</sub>. This confirms that numerical methods are the only viable route to a complete solution.</p>
+    </div>
+
+    <!-- <div class="content-placeholder" style="margin-top:2rem;">
+      <strong>Insert MATLAB symbolic output screenshots here (Appendices A, B, C)</strong>
+      <p>dsolve output, equilibrium expressions, simplify() verification</p>
+    </div>
+  </div>
+</section>-->
+
+<div class="section-divider"></div>
+
 <!-- NUMERICAL METHODS -->
 <section id="methods">
   <div class="container">
@@ -857,54 +905,6 @@ x0 = [FE0; V0; Y0; A0; mu0];
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- ANALYTICAL SOLUTION -->
-<section id="analytical">
-  <div class="container">
-    <div class="section-label">Analytical Solution Attempt</div>
-    <h2 class="section-title">Symbolic Analysis with <span class="accent">MATLAB dsolve</span></h2>
-    <p class="section-body">Each ODE was passed individually to MATLAB's symbolic toolbox to determine whether a closed-form analytical solution exists. Equilibrium and steady-state analysis was also performed. The results confirm the necessity of numerical methods.</p>
-
-    <div class="analytical-grid">
-      <div class="analytical-result">
-        <div class="result-status status-implicit">Implicit integral form</div>
-        <div class="result-name">EQ 01 — Evaporation (F<sub>E</sub>)</div>
-        <p class="result-text">dsolve returned an implicit integral expression because the exponential term contains A(t), which is itself governed by a separate nonlinear ODE. Full decoupling is not possible.</p>
-      </div>
-      <div class="analytical-result">
-        <div class="result-status status-partial">Integrating-factor form</div>
-        <div class="result-name">EQ 02 — Volume (V)</div>
-        <p class="result-text">An integrating-factor solution dependent on F<sub>E</sub>(t) was returned. Because F<sub>E</sub>(t) has no closed form, V(t) also cannot be expressed in closed form.</p>
-      </div>
-      <div class="analytical-result">
-        <div class="result-status status-solved">✓ Closed-form solution obtained</div>
-        <div class="result-name">EQ 03 — Water Content (Y)</div>
-        <p class="result-text">Y(t) is the only equation that decouples from the system. dsolve returned an exact closed-form solution.</p>
-      </div>
-      <div class="analytical-result">
-        <div class="result-status status-implicit">Implicit square-root integral</div>
-        <div class="result-name">EQ 04 — Slick Area (A)</div>
-        <p class="result-text">dsolve returned an implicit form involving an integral of V(t). Since V(t) is unknown analytically, A(t) cannot be expressed in closed form either.</p>
-      </div>
-      <div class="analytical-result" style="grid-column: 1 / -1;">
-        <div class="result-status status-partial">Exponential integral — all variables coupled</div>
-        <div class="result-name">EQ 05 — Viscosity (μ)</div>
-        <p class="result-text">dsolve returned an exponential integral expression involving both F<sub>E</sub>(t) and Y(t). Since F<sub>E</sub>(t) has no closed form, μ(t) also cannot be expressed analytically.</p>
-      </div>
-    </div>
-
-    <div class="conclusion-box">
-      <p><strong style="color:var(--cyan)">Key Finding:</strong> A complete analytical solution for the coupled system cannot be obtained. MATLAB's dsolve only returned a closed-form solution for the water-content equation (EQ 03). The remaining equations are returned in implicit or integral form due to the nonlinear coupling between the governing variables. Even at equilibrium (all derivatives set to zero), the resulting algebraic system remains implicitly dependent: F<sub>E</sub> depends on A, A depends on V, and V depends on F<sub>E</sub>. This confirms that numerical methods are the only viable route to a complete solution.</p>
-    </div>
-
-    <!-- <div class="content-placeholder" style="margin-top:2rem;">
-      <strong>Insert MATLAB symbolic output screenshots here (Appendices A, B, C)</strong>
-      <p>dsolve output, equilibrium expressions, simplify() verification</p>
-    </div>
-  </div>
-</section>-->
 
 <div class="section-divider"></div>
 
