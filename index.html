@@ -776,7 +776,7 @@
   <div class="container">
     <div class="section-label">Analytical Solution Attempt</div>
     <h2 class="section-title">Symbolic Analysis with <span class="accent">MATLAB dsolve</span></h2>
-    <p class="section-body">Each ODE was passed individually to MATLAB's symbolic toolbox to determine whether a closed-form analytical solution exists. Equilibrium and steady-state analysis was also performed. The results confirm the necessity of numerical methods.</p>
+    <p class="section-body">Each ODE was passed individually to MATLAB's symbolic toolbox to determine whether a closed-form analytical solution exists. Equilibrium and steady-state analysis was also performed. Only the water content Y ODE yielded an actual closed-form solution. The others gave incomplete onesThe results confirm the necessity of numerical methods.</p>
 
     <div class="analytical-grid">
       <div class="analytical-result">
@@ -915,13 +915,18 @@ x0 = [FE0; V0; Y0; A0; mu0];
     <h2 class="section-title">Visualisations &amp; <span class="accent">Plots</span></h2>
     <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods.</p>
 
+    <div class="scroll-indicator">
+      <span class="scroll-text">Swipe / Scroll right to view more plots</span>
+      <span class="scroll-arrow">&rarr;</span>
+    </div>
+
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
 
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder" id="slide-img-1">
-              <img src="pics/evp_frc.jpeg", alt="Evaporated fraction against time"> 
+              <img src="pics/evp_frc.jpeg" alt="Evaporated fraction against time"> 
             </div>
           </div>
           <div class="slide-info">
@@ -934,7 +939,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
-              <img src="pics/wter.jpeg",alt="emulsification over time">
+              <img src="pics/wter.jpeg" alt="emulsification over time">
             </div>
           </div>
           <div class="slide-info">
@@ -944,29 +949,15 @@ x0 = [FE0; V0; Y0; A0; mu0];
           </div>
         </div>
 
-       <!-- <div class="carousel-slide">
-          <div class="slide-img">
-            <div class="slide-img-placeholder">
-              <div class="ph-wave">〰️</div>
-              <span>Replace with your plot</span>
-            </div>
-          </div>
-          <div class="slide-info">
-            <div class="slide-tag">Density</div>
-            <div class="slide-title">Emulsion Density vs. Time</div>
-            <div class="slide-desc">Good agreement with experimental data. Density increases as evaporation concentrates heavy fractions and water incorporation raises the effective mixture density.</div>
-          </div>
-        </div>-->
-
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
-              <img src="pics/visc.jpeg", alt="viscosity growth">
+              <img src="pics/visc.jpeg" alt="viscosity growth">
             </div>
           </div>
           <div class="slide-info">
             <div class="slide-tag">Viscosity</div>
-            <div class="slide-title">Viscosity Growth (μ)</div>
+            <div class="slide-title">Viscosity Growth (&mu;)</div>
             <div class="slide-desc">As the volatile hydrocarbon fractions evaporate rapidly into the atmosphere, the remaining surface slick experiences a significant increase in heavy-end concentration. This mass-transfer process drives a steep upward trajectory in fluid viscosity, rising from the baseline value (&mu; = 1) to over 6 times its initial resistance over the 10-hour span. The overlapping trajectories of the first-order Euler, fourth-order RK4, and adaptive <code>ode45</code> solvers indicate that this coupled state equation remains highly stable and well-conditioned under the standard environmental parameters provided.</div>
           </div>
         </div>
@@ -974,51 +965,32 @@ x0 = [FE0; V0; Y0; A0; mu0];
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
-              <img src="pics/oil_vol.jpeg", alt="Volume-time graph">
+              <img src="pics/oil_vol.jpeg" alt="Volume-time graph">
             </div>
           </div>
           <div class="slide-info">
             <div class="slide-tag">Volume</div>
             <div class="slide-title">Volume vs. Time</div>
-            <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave volume variation and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.
-</p>.</div>
+            <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave volume variation and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.</div>
           </div>
         </div>
 
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
-              <img src="pics/Screenshot 2026-06-27 015834.png", alt = "Spreading area">
+              <img src="pics/Screenshot 2026-06-27 015834.png" alt="Spreading area">
             </div>
           </div>
           <div class="slide-info">
             <div class="slide-tag">Slick Area</div>
             <div class="slide-title">Spreading Area A(t)</div>
-            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins. Significant difference in numerical integration accuracy likely due to power-law equation ($A^{-1}V^{4/3}$). Since rate of spreading drops as the slick thins, a fixed-step Euler scheme has local truncation error, leding to overshoot.</div>
-          </div>
-        </div>
-
-       <!-- <div class="carousel-slide">
-          <div class="slide-img">
-            <div class="slide-img-placeholder">
-              <div class="ph-wave">〰️</div>
-              <span>Replace with your plot</span>
-            </div>
-          </div>
-          <div class="slide-info">
-            <div class="slide-tag">Animation</div>
-            <div class="slide-title">Oil Slick Spreading Animation</div>
-            <div class="slide-desc">Animated visualisation showing the time evolution of all 5 state variables simultaneously. Produced with MATLAB's animation toolbox.</div>
+            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins. Significant difference in numerical integration accuracy likely due to power-law equation ($A^{-1}V^{4/3}$). Since rate of spreading drops as the slick thins, a fixed-step Euler scheme has local truncation error, leading to overshoot.</div>
           </div>
         </div>
 
       </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="prevBtn">&#8592;</button>
-        <button class="carousel-btn" id="nextBtn">&#8594;</button>
     </div>
-  </div>-->
+  </div>
 </section>
 
 <div class="section-divider"></div>
