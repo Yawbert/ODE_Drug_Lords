@@ -397,10 +397,11 @@
     display: block;
   }
   .slide-img-placeholder {
-    width: 100%; height: 100%; aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #0D2240 0%, #0A1628 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.75rem; color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem;
+width: 100%;
+  height: auto;
+  max-height: 100%; 
+  object-fit: contain; 
+  display: block;
   }
   .ph-wave { font-size: 2rem; opacity: 0.3; }
   .slide-info { padding: 1.25rem; }
@@ -932,7 +933,11 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Evaporation</div>
             <div class="slide-title">Fraction Evaporated vs. Time</div>
-            <div class="slide-desc">Represents the percentage of the spilled oil that has vaporized into the atmosphere as a gas.</div>
+            <div class="slide-desc">
+  Tracks the cumulative mass loss as volatile, low-boiling light-end hydrocarbons ($C_1 - C_{10}$) rapidly escape into the atmospheric boundary layer (causing steep slope near the start). The trajectory exhibits a characteristic logarithmic profile: an aggressive, mass-transfer-limited initial phase where over 25–30% of the initial volume is evacuated within the first 6 to 12 hours, followed by a asymptotic plateau as the remaining slick becomes enriched with non-volatile aromatics, asphaltenes, and resins[cite: 57, 61, 354, 359]. 
+  <br><br>
+  This process is governed by the Stiver & Mackay (1984) analytical approach, where the evaporative rate $\frac{dF_E}{dt}$ is driven by the vapor pressure $P_i$ and the mass-transfer coefficient $K_2$ (modeled via wind speed $W$ and slick area $A$)[cite: 70, 75]. Because evaporation scales directly with the surface-area-to-volume ratio ($A/V_0$), rapid initial gravitational spreading provides a massive surface area that accelerates mass flux[cite: 55, 63, 150]. All three integration solvers (Euler, RK4, and <code>ode45</code>) display robust alignment here because the exponential decay of volatile fractions inherently self-stabilizes the differential equation over time[cite: 151].
+</div>
           </div>
         </div>
 
