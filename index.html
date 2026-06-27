@@ -576,7 +576,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow">CE 122 · Applied Programming for Engineers</div>
     <h1 class="hero-title">Modelling <span>Oil Spills</span><br> Weathering at Sea</h1>
-    <p class="hero-sub">A coupled ODE-based simulation of oil weathering (spreading, evaporation, emulsification, and entrainment) solved numerically using Euler, RK4, and MATLAB's ode45.</p>
+    <p class="hero-sub">A coupled ODE-based simulation of oil weathering (spreading, evaporation, emulsification, and volume variation) solved numerically using Euler, RK4, and MATLAB's ode45.</p>
   </div>
   <div class="scroll-hint">
     <span>scroll</span>
@@ -644,7 +644,7 @@
           <li><span class="process-num">01</span><div><div class="process-name">Spreading</div>Slick expands on the water surface due to gravity and surface tension. Dominant in the early hours after spillage.</div></li>
           <li><span class="process-num">02</span><div><div class="process-name">Evaporation</div>Lighter hydrocarbon fractions volatilise. Primary mass-loss mechanism in the first 24 h, removing 20–40% by mass.</div></li>
           <li><span class="process-num">03</span><div><div class="process-name">Emulsification</div>Water droplets are incorporated into the oil, forming a thick "mousse". Volume can increase 3–4×; viscosity rises dramatically.</div></li>
-          <li><span class="process-num">04</span><div><div class="process-name">Entrainment / Dispersion</div>Breaking waves drive oil droplets into the water column. Reduces surface slick volume, competes with evaporation.</div></li>
+          <li><span class="process-num">04</span><div><div class="process-name">volume variation / Dispersion</div>Breaking waves drive oil droplets into the water column. Reduces surface slick volume, competes with evaporation.</div></li>
           <li><span class="process-num">05</span><div><div class="process-name">Viscosity &amp; Density Change</div>Both increase as a consequence of evaporation and mousse formation, affecting all other processes in return.</div></li>
         </ul>
       </div>
@@ -688,12 +688,12 @@
           <span class="eq-num">EQ 02</span>
           <span class="eq-name">Volume Variation Rate</span>
         </div>
-        <p class="eq-desc">The surface oil volume decreases due to two competing processes: evaporation (first term) removes lighter fractions to the atmosphere, while entrainment (second term, −DV) mixes oil into the water column through wave action.</p>
+        <p class="eq-desc">The surface oil volume decreases due to two competing processes: evaporation (first term) removes lighter fractions to the atmosphere, while volume variation (second term, −DV) mixes oil into the water column through wave action.</p>
         <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$
 </div>
         <div class="eq-vars">
           <span class="eq-var">V <span>surface volume (m³)</span></span>
-          <span class="eq-var">D <span>entrainment fraction per hour</span></span>
+          <span class="eq-var">D <span>volume variation fraction per hour</span></span>
           <span class="eq-var">dF<sub>E</sub>/dt <span>evaporation rate (from EQ 01)</span></span>
         </div>
       </div>
@@ -962,7 +962,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Volume</div>
             <div class="slide-title">Volume vs. Time</div>
-            <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave entrainment and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.
+            <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave volume variation and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.
 </p>.</div>
           </div>
         </div>
@@ -1058,7 +1058,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
             <td class="impact-med">● MEDIUM</td>
           </tr>
           <tr>
-            <td>Entrainment Fraction</td><td>D</td><td>computed</td>
+            <td>volume variation Fraction</td><td>D</td><td>computed</td>
             <td>↓ (less surface area)</td><td>Strong ↓</td><td>Minor</td><td>Minor</td>
             <td class="impact-med">● MEDIUM</td>
           </tr>
@@ -1134,7 +1134,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
         <p>Treating all five processes simultaneously through a shared ODE system captures interdependencies (e.g., evaporation reducing surface area that then feeds back into the spreading rate) that are missed when each process is computed separately.</p>
       </div>
       <div class="conclusion-card reveal">
-        <h3>Analytical solution is not achievable</h3>
+        <h3>Analytical solution is not achievable for all but one of the ODEs </h3>
         <p>MATLAB's dsolve confirmed that only the water-content equation (EQ 03) has a closed-form solution. The remaining four equations cannot be decoupled due to nonlinear coupling, exponential terms, and fractional-power expressions. Numerical methods are essential.</p>
       </div>
       <div class="conclusion-card reveal">
@@ -1151,7 +1151,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
       </div>
       <div class="conclusion-card reveal">
         <h3>Wind speed is the dominant parameter</h3>
-        <p>Sensitivity analysis revealed that wind speed W has the highest impact across all state variables — it drives emulsification, evaporation rate (via mass transfer coefficient K), and entrainment simultaneously. Field measurement accuracy of W is therefore critical for reliable model predictions.</p>
+        <p>Sensitivity analysis revealed that wind speed W has the highest impact across all state variables — it drives emulsification, evaporation rate (via mass transfer coefficient K), and volume variation simultaneously. Field measurement accuracy of W is therefore critical for reliable model predictions.</p>
       </div>
     </div>
   </div>-->
