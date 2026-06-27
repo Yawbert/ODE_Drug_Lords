@@ -1150,22 +1150,18 @@ x0 = [FE0; V0; Y0; A0; mu0];
 
     <div class="conclusions-grid">
       <div class="conclusion-card reveal">
-        <div class="conclusion-icon">⚙️</div>
         <h3>Coupled simulation outperforms isolated models</h3>
         <p>Treating all five processes simultaneously through a shared ODE system captures interdependencies — e.g., evaporation reducing surface area that then feeds back into the spreading rate — that are missed when each process is computed separately.</p>
       </div>
       <div class="conclusion-card reveal">
-        <div class="conclusion-icon">🔢</div>
         <h3>Analytical solution is not achievable</h3>
         <p>MATLAB's dsolve confirmed that only the water-content equation (EQ 03) has a closed-form solution. The remaining four equations cannot be decoupled due to nonlinear coupling, exponential terms, and fractional-power expressions. Numerical methods are essential.</p>
       </div>
       <div class="conclusion-card reveal">
-        <div class="conclusion-icon">📐</div>
         <h3>RK4 significantly outperforms Euler</h3>
         <p>Error analysis confirms O(h⁴) convergence for RK4 vs. O(h) for Euler. In the stiff early-time region (t &lt; 5 h), Euler requires very small step sizes to maintain stability, while RK4 with adaptive stepping maintains accuracy efficiently throughout.</p>
       </div>
       <div class="conclusion-card reveal">
-        <div class="conclusion-icon">💧</div>
         <h3>Water content and density well predicted</h3>
         <p>The emulsification and density sub-models show good agreement with Buchanan &amp; Hurford (1988) experimental data. The model captures the correct shape and asymptotic behaviour of both curves over the 168-hour simulation window.</p>
       </div>
