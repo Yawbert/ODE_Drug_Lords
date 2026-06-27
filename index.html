@@ -1097,7 +1097,52 @@ x0 = [FE0; V0; Y0; A0; mu0];
 </section>
 
 <div class="section-divider"></div>-->
-
+<section id="problem">
+  <div class="container">
+    <div class="section-label">Future Work</div>
+    <h2 class="section-title">Modifications and <span class="accent">Planned</span> Extensions</h2>
+ 
+    
+      <div>
+        <p class="section-body">
+            To further investigate the behaviour of the oil spill model, a set of controlled modifications will be introduced to evaluate how sensitive the system is to key physical and environmental parameters. The baseline model represents a standard marine spill scenario under fixed environmental conditions. In this extended study, selected parameters will be individually varied while all other parameters are held constant. This allows the influence of each parameter to be isolated and clearly observed.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            The first planned modification involves wind speed variation, where the parameter <em>W</em> will be increased and decreased around its baseline value. This adjustment is expected to heavily influence the evaporation trajectory, the surface spreading rate, and the emulsification intensity due to its direct physical effect on transport mechanics and surface wave mixing processes.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            The second extension focuses on temperature variation, adjusting the ambient temperature parameter <em>T</em> to simulate both colder polar climates and warmer tropical environmental conditions. Shifting this thermal boundary will primarily alter the underlying evaporation rate kinetics and will indirectly influence the downstream evolution of fluid viscosity.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            The third modification tests spreading coefficient variation, where the core empirical constant <em>K₁</em> will be altered to examine subtle changes in the spatial growth profile of the oil slick over time. Running these iterations will help assess how strongly the overall dynamic model responds to variations in surface tension driven spreading behaviour.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            The fourth area of evaluation involves the emulsification limiting parameter <em>C₃</em>. By systematically varying the maximum water content limit allowed by the model, the simulation will observe how the final equilibrium state of physical emulsification directly dictates the rapid growth of viscosity and the long term properties of the aging slick.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            The final extension introduces initial condition variation, evaluating different initial spill sizes by altering the baseline values for initial volume <em>V₀</em> and initial surface area <em>A₀</em>. Testing these scaling properties allows the framework to evaluate how the system of equations scales with respect to the initial geometric magnitude of the oil release.
+        </p>
+        <br>
+        
+        <p class="section-body">
+            These specified programmatic modifications will be applied one at a time to ensure that the mathematical effect of each parameter can be independently identified. The resulting changes in the curves for fractional evaporation, surface volume, water content, slick area, and viscosity will then be overlaid and compared against the baseline simulation to determine absolute sensitivity levels and point out the dominant influencing factors governing the ecosystem.
+        </p>
+    </div>
+</section>
+      </div>
+ 
+      
+</section>
 <!-- LITERATURE REVIEW -->
 <section id="literature">
   <div class="container">
