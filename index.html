@@ -955,7 +955,8 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Volume</div>
             <div class="slide-title">Volume vs. Time</div>
-            <div class="slide-desc">Log-log plot of global truncation error for Euler (O(h)) and RK4 (O(h⁴)) confirming theoretical convergence rates and demonstrating RK4's superior accuracy.</div>
+            <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the first three hours highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave entrainment and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.
+</p>.</div>
           </div>
         </div>
 
@@ -968,7 +969,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Slick Area</div>
             <div class="slide-title">Spreading Area A(t)</div>
-            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins.</div>
+            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins. Significant difference in numerical integration accuracy likely due to power-law equation ($A^{-1}V^{4/3}$). Since rate of spreading drops as the slick thins, a fixed-step Euler scheme has local truncation error, leding to overshoot.</div>
           </div>
         </div>
 
