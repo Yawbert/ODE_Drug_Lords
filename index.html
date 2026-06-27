@@ -780,25 +780,52 @@ end
       <div class="method-card rk4">
         <div class="method-tag">Method 02 — Primary</div>
         <div class="method-title">Runge–Kutta (RK4)</div>
-        <p class="method-desc">Fourth-order accuracy by sampling four derivative estimates (k₁–k₄) at each step. Balances accuracy and efficiency; the method used in the Sebastião & Guedes Soares (1995) paper. Adaptive step sizing used: smaller steps early when variation is high, larger steps later.</p>
-        <div class="method-formula">
-          k₁ = h·f(tₙ, yₙ)<br>
-          k₂ = h·f(tₙ + h/2, yₙ + k₁/2)<br>
-          k₃ = h·f(tₙ + h/2, yₙ + k₂/2)<br>
-          k₄ = h·f(tₙ + h, yₙ + k₃)<br>
-          y<sub>n+1</sub> = yₙ + (k₁ + 2k₂ + 2k₃ + k₄) / 6
-        </div>
+        <p class="method-desc">Fourth-order accuracy by sampling four derivative estimates (k₁–k₄) at each step. Balances accuracy and efficiency. Adaptive step sizing used: smaller steps early when variation is high, larger steps later.</p>
+        <div class="code-container" style="border-left: 5px solid #61afef;">
+    <pre><code class="language-matlab">
+% 1. Initial Conditions & Setup
+FE0 = 0; V0 = 1; Y0 = 0; A0 = 1; mu0 = 1;
+x0 = [FE0; V0; Y0; A0; mu0]; 
+dt = 0.25;
+t  = 0:dt:10;
+
+% 2. Setup storage matrix
+xR = zeros(5, length(t));
+xR(:,1) = x0; 
+
+% 3. RK4 Iteration
+for i = 1:length(t)-1
+    k1 = oilspill(t(i), xR(:,i));
+    k2 = oilspill(t(i) + dt/2, xR(:,i) + k1*dt/2);
+    k3 = oilspill(t(i) + dt/2, xR(:,i) + k2*dt/2);
+    k4 = oilspill(t(i) + dt, xR(:,i) + k3*dt);
+    
+    % Weighted average of slopes
+    xR(:,i+1) = xR(:,i) + (dt/6)*(k1 + 2*k2 + 2*k3 + k4);
+end
+    </code></pre>
+</div>
       </div>
 
       <div class="method-card builtin">
         <div class="method-tag">Method 03</div>
         <div class="method-title">MATLAB ode45</div>
         <p class="method-desc">MATLAB's built-in Dormand–Prince adaptive RK(4,5) solver. Uses automatic error control and variable step sizing. Serves as the reference benchmark against which Euler and manual RK4 accuracy is evaluated. Available only in MATLAB environment.</p>
-        <div class="method-formula">
-          [t, y] = ode45(@odefun, tspan, y0, opts)<br><br>
-          opts = odeset('RelTol', 1e-6, ...<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'AbsTol', 1e-9)
-        </div>
+        <div class="code-container" style="border-left: 5px solid #98c379;">
+    <pre><code class="language-matlab">
+% 1. Initial Conditions
+FE0 = 0; V0 = 1; Y0 = 0; A0 = 1; mu0 = 1;
+x0 = [FE0; V0; Y0; A0; mu0]; 
+
+% 2. Solve using ODE45
+% The solver automatically determines the necessary time steps
+% to maintain a set tolerance level.
+[t, x] = ode45(@oilspill, [0 10], x0);
+
+% 3. 'x' now contains the solution trajectory for all 5 variables 
+% across the time vector 't' returned by the solver.
+    </code></pre>
+</div>
       </div>
     </div>
 
