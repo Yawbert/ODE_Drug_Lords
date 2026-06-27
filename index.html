@@ -613,30 +613,25 @@
 </div>
 
 <!-- PROBLEM DEFINITION -->
-<section id="problem"> 
+<section id="problem">
   <div class="container">
     <div class="section-label">Engineering Problem</div>
     <h2 class="section-title">Forecasting the <span class="accent">Fate</span> of Spilled Oil</h2>
-
-<div class="two-col">
-    <div>
+ 
+    <div class="two-col">
+      <div>
         <p class="section-body">When an oil spill occurs at sea, a series of simultaneous, interdependent physical and chemical processes take place. For environmental engineers and marine response teams, accurately forecasting both short-term and long-term behaviour of spilled oil is essential for designing effective clean-up strategies and mitigating ecological damage.</p>
         <br>
-        <p class="section-body">The core engineering challenge is that all physical phenomena occur simultaneously and are <em>nonlinearly coupled</em>: as the slick spreads, evaporation rate changes; as oil evaporates, density and viscosity increase; as viscosity increases, the oil's ability to disperse into the water column decreases. An engineering solution must treat these processes as a coupled system rather than computing each one independently.</p>
+        <p class="section-body">The core engineering challenge is that all physical phenomena occur simultaneously and are <em>nonlinearly coupled</em> — as the slick spreads, evaporation rate changes; as oil evaporates, density and viscosity increase; as viscosity increases, the oil's ability to disperse into the water column decreases. An engineering solution must treat these processes as a coupled system rather than computing each one independently.</p>
         <br>
         <p class="section-body">This project formulates all five governing processes as a system of coupled, nonlinear ordinary differential equations (ODEs), then implements and compares numerical solvers to produce quantitative predictions of the oil's state over time.</p>
-        <br>
-        <div class="content-placeholder" style="margin-top:2rem;">
+ 
+        <div>
           <img src="oil_spill_process.png">
         </div>
       </div>
-    </div>
-    
-    <div>
-        </div>
-</div>
-
-      <div>
+ 
+      <div>        
         <div style="color:var(--muted); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Governing Processes</div>
         <ul class="process-list">
           <li><span class="process-num">01</span><div><div class="process-name">Spreading</div>Slick expands on the water surface due to gravity and surface tension. Dominant in the early hours after spillage.</div></li>
