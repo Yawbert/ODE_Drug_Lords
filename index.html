@@ -411,6 +411,12 @@ width: 100%;
   align-items: center;
   justify-content: center;
 }
+    .slide-img-new-placeholder {
+    width: 100%; height: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #0D2240 0%, #0A1628 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.75rem; color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem;
+  }
   .ph-wave { font-size: 2rem; opacity: 0.3; }
   .slide-info { padding: 1.25rem; }
   .slide-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
@@ -933,7 +939,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
       <div class="carousel-track" id="carouselTrack">
 
         <div class="carousel-slide">
-          <div class="slide-img">
+          <div class="spill ">
             <div class="slide-img-placeholder" id="slide-img-1">
               <img src="pics/evp_frc.jpeg" alt="Evaporated fraction against time"> 
             </div>
@@ -990,7 +996,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
 
         <div class="carousel-slide">
           <div class="slide-img-new">
-            <div class="slide-img-placeholder">
+            <div class="slide-img-new-placeholder">
               <img src="pics/Screenshot 2026-06-27 015834.png" alt="Spreading area">
             </div>
           </div>
