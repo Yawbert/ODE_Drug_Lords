@@ -1136,48 +1136,6 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <p class="paper-desc">The primary reference for this project. Presents a complete coupled ODE system for the five key weathering processes, solved using a fourth-order Runge–Kutta method. Validated against CONCAWE (1983) and Buchanan &amp; Hurford (1988) experimental data. The source of Equations 1–5 used in our model and the inspiration for our numerical implementation strategy.</p>
         </div>
       </div>
-
-      <div class="paper-card reveal">
-        <div class="paper-num">02</div>
-        <div>
-          <div class="paper-authors">D. Mackay, I. Buist, R. Mascarenhas &amp; S. Petersen</div>
-          <div class="paper-title">Oil Spill Processes and Models</div>
-          <div class="paper-journal">Environmental Protection Service Canada, Report EE-8 (1980)</div>
-          <p class="paper-desc">A foundational reference for the spreading (Eq. 3 / EQ 04 in our notation), emulsification (Eq. 11 / EQ 03), and viscosity (Eq. 13 / EQ 05) sub-models. Introduced key constants K₁, C₃, and C₄ used throughout our implementation. Also provides the basis for Fay-type spreading as a differential equation suitable for coupled systems.</p>
-        </div>
-      </div>
-
-      <div class="paper-card reveal">
-        <div class="paper-num">03</div>
-        <div>
-          <div class="paper-authors">W. Stiver &amp; D. Mackay</div>
-          <div class="paper-title">Evaporation Rate of Spills of Hydrocarbons and Petroleum Mixtures</div>
-          <div class="paper-journal">Environmental Science &amp; Technology, 18(11), pp. 834–840 (1984)</div>
-          <p class="paper-desc">Introduced the evaporative exposure method (EQ 01) used in our model to describe evaporation loss as a function of temperature, time, and crude oil distillation constants. The analytical approach avoids the need for individual component vapor pressures, requiring only easily obtainable distillation curve data, making it the preferred choice for our implementation.</p>
-        </div>
-      </div>
-
-      <div class="paper-card reveal">
-        <div class="paper-num">04</div>
-        <div>
-          <div class="paper-authors">I. Buchanan &amp; N. Hurford</div>
-          <div class="paper-title">Methods for Predicting the Physical Changes in Oil Spilt at Sea</div>
-          <div class="paper-journal">Oil &amp; Chemical Pollution, 4(4), pp. 311–328 (1988)</div>
-          <p class="paper-desc">A key validation source: provided experimental measurements for evaporative loss, water content, density, and viscosity over a 7-day period for a 100-tonne Statfjord crude oil spill. Our model was tested against these data points to assess the accuracy of each sub-model and identify systematic over- or under-estimation.</p>
-        </div>
-      </div>
-
-      <div class="paper-card reveal">
-        <div class="paper-num">05</div>
-        <div>
-          <div class="paper-authors">J. A. Fay</div>
-          <div class="paper-title">The Spread of Oil Slicks on a Calm Sea</div>
-          <div class="paper-journal">In: Oil on the Sea, Plenum Press, New York (1969)</div>
-          <p class="paper-desc">The original paper describing the three-phase spreading model — gravity-inertial, gravity-viscous, and tension-viscous — that underpins the spreading ODE (EQ 04). Our model adopts the gravity-viscous regime (phase 2) as modified by Mackay et al. (1980), which is the standard assumption in all major oil spill models when treating spreading as a continuously evolving process.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -1273,8 +1231,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
 
 <!-- FOOTER -->
 <footer>
-  <p>CE 122 Applied Programming for Engineers &nbsp;·&nbsp; <span>ODE-Based Oil Spill Modelling</span> &nbsp;·&nbsp; Hosted on GitHub Pages</p>
-  <p style="margin-top:0.5rem; opacity:0.5;">Based on Sebastião &amp; Guedes Soares (1995) · Spill Science &amp; Technology Bulletin</p>
+  <p><span>Made with love, my blood, sweat and tears</span></p>
 </footer>
 
 <!-- SCRIPTS -->
