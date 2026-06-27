@@ -705,7 +705,7 @@
           <span class="eq-num">EQ 04</span>
           <span class="eq-name">Spreading Area</span>
         </div>
-        <p class="eq-desc">Based on Fay's gravity-viscous spreading model (modified by Mackay et al., 1980), the slick area grows proportionally to V^(4/3) and inversely to the current area. The constant K₁ can be tuned for calibration. Spreading stops at a specified minimum terminal thickness.</p>
+        <p class="eq-desc">The slick area grows proportionally to V^(4/3) and inversely to the current area. The constant K₁ can be tuned for calibration. Spreading stops at a specified minimum terminal thickness.</p>
         <<div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$
 </div>
         <div class="eq-vars">
@@ -971,8 +971,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
-              <div class="ph-wave">〰️</div>
-              <span>Replace with your plot</span>
+              <img src="pics/Screenshot 2026-06-27 015834.png", alt = "Spreading area">
             </div>
           </div>
           <div class="slide-info">
@@ -1001,10 +1000,6 @@ x0 = [FE0; V0; Y0; A0; mu0];
       <div class="carousel-controls">
         <button class="carousel-btn" id="prevBtn">&#8592;</button>
         <button class="carousel-btn" id="nextBtn">&#8594;</button>
-      </div>
-      <div class="upload-note">
-        📁 To add your own plots: place image files in an <code>images/</code> folder next to index.html, then replace the placeholder divs with: <code>&lt;img src="images/your-plot.png" alt="..."&gt;</code>
-      </div>
     </div>
   </div>
 </section>
