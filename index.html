@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <style>
+    .code-container {
+        background: #282c34;
+        color: #abb2bf;
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+        border: 1px solid #3e4451;
+    }
+    .code-title {
+        font-weight: bold;
+        color: #61afef;
+        margin-bottom: 10px;
+        display: block;
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
@@ -738,10 +755,27 @@
       <div class="method-card euler">
         <div class="method-tag">Method 01</div>
         <div class="method-title">Euler Method</div>
-        <p class="method-desc">The simplest first-order explicit scheme. Advances the solution one step using only the derivative at the current point. Fast but accumulates error quickly, especially for stiff systems like ours where variables change rapidly at t = 0.</p>
-        <div class="method-formula">
-          y<sub>n+1</sub> = y<sub>n</sub> + h · f(t<sub>n</sub>, y<sub>n</sub>)
-        </div>
+        <p class="method-desc">The simplest first-order explicit scheme. Advances the solution one step using only the derivative at the current point. Works pretty fast but accumulates error quickly, especially for stiff systems like ours where variables change rapidly at t = 0.</p>
+        <div class="code-container" style="border-left: 5px solid #e5c07b;">
+    <span class="code-title" style="color: #e5c07b;">Euler Method Implementation</span>
+    <pre><code class="language-matlab">
+% 1. Initial Conditions
+FE0 = 0; V0 = 1; Y0 = 0; A0 = 1; mu0 = 1;
+x0 = [FE0; V0; Y0; A0; mu0]; 
+dt = 0.25;
+t  = 0:dt:10;
+
+% 2. Setup storage matrix
+xE = zeros(5, length(t));
+xE(:,1) = x0; % Set the starting point
+
+% 3. Euler Iteration
+for i = 1:length(t)-1
+    dx = oilspill(t(i), xE(:,i));
+    xE(:,i+1) = xE(:,i) + dt*dx;
+end
+    </code></pre>
+</div>
       </div>
 
       <div class="method-card rk4">
