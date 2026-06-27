@@ -393,16 +393,20 @@
     position: relative;
   }
   .slide-img img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: block;
-  }
-  .slide-img-placeholder {
 width: 100%;
   height: auto;
   max-height: 100%; 
   object-fit: contain; 
   display: block;
   }
+.slide-img-placeholder {
+  width: 100%;
+  height: 300px; 
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   .ph-wave { font-size: 2rem; opacity: 0.3; }
   .slide-info { padding: 1.25rem; }
   .slide-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
