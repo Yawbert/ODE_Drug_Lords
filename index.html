@@ -645,19 +645,45 @@ x0=[FE0;V0;Y0;A0;mu0];
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="scroll-hint-h"><span>Scroll horizontally</span><div class="scroll-arrow-h"></div></div>
     <div class="carousel-track" id="resultsTrack">
-      <div class="carousel-slide"><div class="slide-img"><img src="pics/frc.jpeg" alt="Fraction Evaporated over time"></div><div class="slide-info"><div class="slide-tag">Evaporation</div><div class="slide-title">Fraction Evaporated vs. Time</div><div class="slide-desc">This plot illustrates the volume fraction evaporated over time for distinct crude oils, highlighting how chemical composition dictates weathering dynamics. Lighter crude oils like Ekofisk exhibit rapid early-stage mass loss due to a higher concentration of volatile, low-boiling components. But heavier crudes like Tia Juana Pesado experience significantly lower evaporation rates because they consist primarily of heavy, complex hydrocarbons. While the numerical model accurately tracks these composition-driven trends, the authors note it tends to systematically overestimate the total fraction evaporated. This variance stems from potential composition discrepancies between the simulated oil distillation curves and the actual experimental field samples utilized in literature.</div></div></div>
-      <div class="carousel-slide"><div class="slide-img"><img src="pics/wter.jpeg" alt="Emulsification over time"></div><div class="slide-info"><div class="slide-tag">Water Content</div><div class="slide-title">Emulsification Over Time</div><div class="slide-desc">This plot models the water-in-oil emulsification process over time, tracking the non-linear kinetics of fractional water incorporation ($Y$) within the floating slick. Rate of water accumulation is dynamically solved using the differential equation $\frac{dY}{dt} = 2.0 \times 10^{-6}(W+1)^2(1 - \frac{Y}{C_3})$. Simulation highlights sharp, rapid uptake of water droplets during the initial hours of the spill then asymptotically leveling off as it approaches the strict empirical mousse viscosity constant limiting threshold ($C_3 \approx 0.7$). This heavy water entrapment expands the structural volume of the spill by 3 to 4 times and severely drives up its density and viscosity, proving critical for tracking long-term weathering physics.</div>
-      <div class="carousel-slide"><div class="slide-img"><img src="pics/visc.jpeg" alt="Viscosity growth"></div><div class="slide-info"><div class="slide-tag">Viscosity</div><div class="slide-title">Viscosity Growth (μ)</div> <div class="slide-desc">As the volatile hydrocarbon fractions evaporate rapidly into the atmosphere, the remaining surface slick experiences a significant increase in heavy-end concentration. This mass-transfer process drives a steep upward trajectory in fluid viscosity, rising from the baseline value (&mu; = 1) to over 6 times its initial resistance over the 10-hour span. The overlapping trajectories of the first-order Euler, fourth-order RK4, and adaptive <code>ode45</code> solvers indicate that this coupled state equation remains highly stable and well-conditioned under the standard environmental parameters provided.</div>
-</div></div>
-      <div class="carousel-slide"><div class="slide-img"><img src="pics/oil_vol.jpeg" alt="Volume vs time"></div><div class="slide-info"><div class="slide-tag">Volume</div><div class="slide-title">Volume vs. Time</div> <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave volume variation and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.</div>
-</div></div>
-      <div class="carousel-slide"><div class="slide-img"><img src="pics/Screenshot 2026-06-27 015834.png" alt="Spreading area"></div><div class="slide-info"><div class="slide-tag">Slick Area</div><div class="slide-title">Spreading Area A(t)</div><div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins. Significant difference in numerical integration accuracy likely due to power-law equation ($A^{-1}V^{4/3}$). Since rate of spreading drops as the slick thins, a fixed-step Euler scheme has local truncation error, leading to overshoot.</div></div></div>
-    </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="resultsPrev">&#8592;</button>
-      <button class="carousel-btn" id="resultsNext">&#8594;</button>
-    </div>
+      <div class="carousel-slide">
+  <div class="slide-img"><img src="pics/frc.jpeg" alt="Fraction Evaporated over time"></div>
+  <div class="slide-info">
+    <div class="slide-tag">Evaporation</div>
+    <div class="slide-title">Fraction Evaporated vs. Time</div>
+    <div class="slide-desc">This plot illustrates the volume fraction evaporated over time for distinct crude oils, highlighting how chemical composition dictates weathering dynamics. Lighter crude oils like Ekofisk exhibit rapid early-stage mass loss due to a higher concentration of volatile, low-boiling components. But heavier crudes like Tia Juana Pesado experience significantly lower evaporation rates because they consist primarily of heavy, complex hydrocarbons. While the numerical model accurately tracks these composition-driven trends, the authors note it tends to systematically overestimate the total fraction evaporated. This variance stems from potential composition discrepancies between the simulated oil distillation curves and the actual experimental field samples utilized in literature.</div>
   </div>
+</div>
+
+<div class="carousel-slide">
+  <div class="slide-img"><img src="pics/wter.jpeg" alt="Emulsification over time"></div>
+  <div class="slide-info">
+    <div class="slide-tag">Water Content</div>
+    <div class="slide-title">Emulsification Over Time</div>
+    <div class="slide-desc">This plot models the water-in-oil emulsification process over time, tracking the non-linear kinetics of fractional water incorporation ($Y$) within the floating slick. Rate of water accumulation is dynamically solved using the differential equation $\frac{dY}{dt} = 2.0 \times 10^{-6}(W+1)^2(1 - \frac{Y}{C_3})$. Simulation highlights sharp, rapid uptake of water droplets during the initial hours of the spill then asymptotically leveling off as it approaches the strict empirical mousse viscosity constant limiting threshold ($C_3 \approx 0.7$). This heavy water entrapment expands the structural volume of the spill by 3 to 4 times and severely drives up its density and viscosity, proving critical for tracking long-term weathering physics.</div>
+  </div> </div> <div class="carousel-slide">
+  <div class="slide-img"><img src="pics/visc.jpeg" alt="Viscosity growth"></div>
+  <div class="slide-info">
+    <div class="slide-tag">Viscosity</div>
+    <div class="slide-title">Viscosity Growth (&mu;)</div> 
+    <div class="slide-desc">As the volatile hydrocarbon fractions evaporate rapidly into the atmosphere, the remaining surface slick experiences a significant increase in heavy-end concentration. This mass-transfer process drives a steep upward trajectory in fluid viscosity, rising from the baseline value (&mu; = 1) to over 6 times its initial resistance over the 10-hour span. The overlapping trajectories of the first-order Euler, fourth-order RK4, and adaptive <code>ode45</code> solvers indicate that this coupled state equation remains highly stable and well-conditioned under the standard environmental parameters provided.</div>
+  </div> </div>
+
+<div class="carousel-slide">
+  <div class="slide-img"><img src="pics/oil_vol.jpeg" alt="Volume vs time"></div>
+  <div class="slide-info">
+    <div class="slide-tag">Volume</div>
+    <div class="slide-title">Volume vs. Time</div> 
+    <div class="slide-desc">This curve tracks the total physical volume ($m^3$) remaining on the sea surface, showing visible initial decay. The rapid loss in the beginning highlights the dominating effect of volatile evaporation ($dF_E/dt$), while the steady, near-linear decline in the later hours shows the continuous process of natural wave volume variation and vertical dispersion ($D$) into the water column. Because the rate of change is smooth and predictable, all three numerical integration techniques show convergence.</div>
+  </div> </div>
+
+<div class="carousel-slide">
+  <div class="slide-img"><img src="pics/Screenshot 2026-06-27 015834.png" alt="Spreading area"></div>
+  <div class="slide-info">
+    <div class="slide-tag">Slick Area</div>
+    <div class="slide-title">Spreading Area A(t)</div>
+    <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Shows rapid initial growth that plateaus as slick thins. Significant difference in numerical integration accuracy likely due to power-law equation ($A^{-1}V^{4/3}$). Since rate of spreading drops as the slick thins, a fixed-step Euler scheme has local truncation error, leading to overshoot.</div>
+  </div>
+</div>
 </section>
 
 <div class="section-divider"></div>
