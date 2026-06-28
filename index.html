@@ -17,20 +17,22 @@
         margin-bottom: 10px;
         display: block;
     }
-.avatar {
-    background-size: cover;
-    background-position: center;
+
+.team-avatar {
     width: 100px;  
     height: 100px;
     border-radius: 50%; 
+    object-fit: cover; /* Ensures the photo isn't squished or distorted */
+    display: block;
+    margin: 0 auto; /* Centers the image inside the card */
 }
 
-/* Unique Background Images */
-#av1 { background-image: url('pics/gerld.jpeg'); }
-#av2 { background-image: url('pics/new_me_img.jpg'); }
-#av3 { background-image: url('pics/grce.jpg'); }
-#av4 { background-image: url('pics/bokye.jpeg'); }
-#av5 { background-image: url('pics/kwku.jpeg'); } 
+/* Inject the actual profile pictures */
+#av1 { content: url('pics/gerld.jpeg'); }
+#av2 { content: url('pics/new_me_img.jpg'); }
+#av3 { content: url('pics/grce.jpeg'); }
+#av4 { content: url('pics/bokye.jpeg'); }
+#av5 { content: url('pics/kwku.jpeg'); }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -1371,30 +1373,32 @@ x0 = [FE0; V0; Y0; A0; mu0];
     <h2 class="section-title">The <span class="accent">Team</span></h2>
     
 
-    <div class="team-grid" id="teamGrid">
-      <!-- Add team member names below. -->
-      <div class="team-card">
-        <div class="team-avatar" id="av1"></div>
-        <div class="team-name" id="tn1">Gerald Engmann</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" id="av2"></div>
-        <div class="team-name" id="tn2">Nana Yaw Akuamoah</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" id="av3"></div>
-        <div class="team-name" id="tn3">Grace Mbrokoh</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" id="av4"></div>
-        <div class="team-name" id="tn4">Nana Adwoa Boakye</div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" id="av5"></div>
-        <div class="team-name" id="tn5">Kwaku Yeboah-Antwi</div>
-      </div>
-    </div>
+   <div class="team-grid" id="teamGrid">
+  <div class="team-card">
+    <img src="pics/gerld.jpeg" alt="Gerald Engmann" class="team-avatar" id="av1">
+    <div class="team-name" id="tn1">Gerald Engmann</div>
   </div>
+  
+  <div class="team-card">
+    <img src="pics/new_me_img.jpg" alt="Nana Yaw Akuamoah" class="team-avatar" id="av2">
+    <div class="team-name" id="tn2">Nana Yaw Akuamoah</div>
+  </div>
+  
+  <div class="team-card">
+    <img src="pics/bokye.jpeg" alt="Grace Mbrokoh" class="team-avatar" id="av3">
+    <div class="team-name" id="tn3">Grace Mbrokoh</div>
+  </div>
+  
+  <div class="team-card">
+    <img src="pics/bokye.jpeg" alt="Nana Adwoa Boakye" class="team-avatar" id="av4">
+    <div class="team-name" id="tn4">Nana Adwoa Boakye</div>
+  </div>
+  
+  <div class="team-card">
+    <img src="pics/kwku.jpeg" alt="Kwaku Yeboah-Antwi" class="team-avatar" id="av5">
+    <div class="team-name" id="tn5">Kwaku Yeboah-Antwi</div>
+  </div>
+</div>
 </section>
 
 <!-- FOOTER -->
