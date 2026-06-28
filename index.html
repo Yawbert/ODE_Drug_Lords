@@ -695,7 +695,7 @@ width: 100%;
     <div class="equations-grid">
        <div class="eq-card">
         <div class="eq-header">
-          <span class="eq-name">author's Modification</span>
+          <span class="eq-name">Author's Modification</span>
         </div>
         <p class="eq-desc">The authors adapted existing oil spill models by taking equations from previous studies and rewriting them so they could work together in one coupled numerical system.</p><p class="eq-desc"> For spreading, they used a Fay-type spreading model, which was later modified by researchers such as Wang, Lehr, Mackay, Reed, and Spaulding, and expressed it in a differential form suitable for numerical simulation.</p>
 
@@ -711,7 +711,7 @@ width: 100%;
           <span class="eq-num">EQ 01</span>
           <span class="eq-name">Evaporation Rate</span>
         </div>
-        <p class="eq-desc">Describes how the fraction of oil evaporated (F<sub>E</sub>) changes over time. Evaporation is fastest initially and slows as heavier components remain. Wind speed, temperature, slick area, and crude oil composition all drive the rate.</p>
+        <p class="eq-desc">This equation describes how the fraction of oil evaporated (FE) changes over time in an oil spill. The rate (d FE /dt) depends on environmental conditions and oil properties: higher temperature (T) increases evaporation through the exponential term (exp (A - BT)), while wind and mixing effects are represented by the mass transfer coefficient (K). The spill surface area (A) and initial volume (V0) control how much oil is exposed and available to evaporate. The constants (T0, TG, A, and B), derived from distillation data, describe how the crude oil composition changes during evaporation. The term (T0+TG FE) shows that as more oil evaporates, the remaining oil becomes heavier and evaporates more slowly, meaning evaporation is fast initially but gradually decreases over time.</p>
         <div>$$ \frac{dF_E}{dt} = \left( \frac{K \cdot A}{V_o} \right) \cdot \exp\left( A - \left( \frac{B}{T} \right) \cdot (T_o + T_G \cdot F_E) \right) $$
 </div>
         <div class="eq-vars">
@@ -730,7 +730,7 @@ width: 100%;
           <span class="eq-num">EQ 02</span>
           <span class="eq-name">Volume Variation Rate</span>
         </div>
-        <p class="eq-desc">The surface oil volume decreases due to two competing processes: evaporation (first term) removes lighter fractions to the atmosphere, while volume variation (second term, −DV) mixes oil into the water column through wave action.</p>
+        <p class="eq-desc">The rate of change in oil volume on the sea surface shows that it decreases due to two main processes: evaporation and entrainment. The first term represents the loss of oil as lighter components evaporate into the atmosphere. The second term represents entrainment, where a fraction of the remaining oil is mixed into the water column by waves and turbulence. The equation shows that the oil slick continuously shrinks on the surface due to both evaporation and physical removal into the sea.</p>
         <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$
 </div>
         <div class="eq-vars">
@@ -762,7 +762,7 @@ width: 100%;
           <span class="eq-num">EQ 04</span>
           <span class="eq-name">Spreading Area</span>
         </div>
-        <p class="eq-desc">The slick area grows proportionally to V^(4/3) and inversely to the current area. The constant K₁ can be tuned for calibration. Spreading stops at a specified minimum terminal thickness.</p>
+        <p class="eq-desc">The spreading mechanism describes how an oil slick expands on the sea surface after a spill due to gravity, surface tension, and viscosity, provided the oil’s pour point is below seawater temperature, so it remains liquid. It depends on variables such as spill volume (V), slick area (A), density difference (Δρ), and water viscosity (νw). In Fay’s model, larger spills spread faster at first, but the rate slows as the slick area increases, with wind further enhancing spreading./p>
         <<div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$
 </div>
         <div class="eq-vars">
@@ -778,7 +778,7 @@ width: 100%;
           <span class="eq-num">EQ 05</span>
           <span class="eq-name">Viscosity Change</span>
         </div>
-        <p class="eq-desc">Oil viscosity increases due to two coupled mechanisms: (1) evaporation removes lighter components, concentrating heavier fractions; (2) emulsification incorporates water, with the denominator term (1 − C₃Y)² capturing the nonlinear mousse stabilisation effect.</p>
+        <p class="eq-desc">The ODE describes how the viscosity of spilt oil changes over time due to two coupled processes: evaporation and emulsification. The first term shows that as the fraction evaporated increases, light components are lost, making the oil thicker. The second term represents emulsification, where increasing water content (Y) from wind and waves forms a ‘mousse’ also increasing viscosity but limited by the factor (1−C3Y)2. Overall, the equation shows that viscosity grows over time as both evaporation and water uptake act together, making the oil progressively thicker and harder to disperse.</p>
        <div>$$ \frac{d\mu}{dt} = C_4 \cdot \mu \cdot \left( \frac{dF_E}{dt} \right) + \frac{2.5 \cdot \mu}{(1 - C_3 \cdot Y)^2} \cdot \left( \frac{dY}{dt} \right) $$
 </div>
         <div class="eq-vars">
