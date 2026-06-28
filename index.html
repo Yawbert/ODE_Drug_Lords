@@ -887,9 +887,10 @@ width: 100%;
         <img src="pics/auth_results.jpeg" alt="Author's experimental reference values" class="ref-img">
       </div>
       <div class="ref-text-wrap">
-        <p class="ref-text">The author used these real life values to make his analysis.</p>
+        <p class="ref-text">The author used these real-life values to make his analysis.</p>
+        <p class="ref-subtext">We implemented the MATLAB code below to replicate the results in the original article:</p>
         
-<pre><code class="language-matlab">clc; clear; close all;
+        <pre><code class="language-matlab">clc; clear; close all;
 
 %% =========================================================
 % 1. INITIAL CONDITIONS
@@ -992,7 +993,8 @@ function dx = oilspill(~, x, W)
     dx = [dFE; dV; dY; dA; dmu];
 end</code></pre>
       </div>
-    </div>    
+    </div>
+    
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
  
@@ -1003,7 +1005,7 @@ end</code></pre>
           <div class="slide-info">
             <div class="slide-tag">Evaporation</div>
             <div class="slide-title">Figure 1: Evaporation of Different Crude Oils</div>
-            <div class="slide-desc">The figure shows that different crude oils evaporate at different rates due to differences in their composition. Ekofisk has the highest evaporation, while Tia Juana Pesado has the lowest because it is a heavier crude oil. The predicted trends closely match experimental observations reported in the paper, demonstrating that the model can realistically reproduce the evaporation behaviour of different crude oils.</div>
+            <div class="slide-desc">The figure shows that different crude oils evaporate at different rates due to differences in their composition. Ekofisk has the highest evaporation, while Tia Juana Pesado has the lowest because it is a heavier crude oil. The predicted trends closely match experimental observations reported in the paper, demonstrating that the model can realistically reproduce the evaporation behavior of different crude oils.</div>
           </div>
         </div>
  
@@ -1025,7 +1027,7 @@ end</code></pre>
           <div class="slide-info">
             <div class="slide-tag">Temperature</div>
             <div class="slide-title">Figure 3: Effect of Temperature on Evaporation</div>
-            <div class="slide-desc">The figure shows that evaporation increases as temperature rises. Higher temperatures increase the volatility of the oil, resulting in greater evaporation over time. The predicted curves agree with observed physical behaviour and published data, indicating that the model successfully captures the influence of temperature on the evaporation process.</div>
+            <div class="slide-desc">The figure shows that evaporation increases as temperature rises. Higher temperatures increase the volatility of the oil, resulting in greater evaporation over time. The predicted curves agree with observed physical behavior and published data, indicating that the model successfully captures the influence of temperature on the evaporation process.</div>
           </div>
         </div>
  
@@ -1036,7 +1038,7 @@ end</code></pre>
           <div class="slide-info">
             <div class="slide-tag">Volume</div>
             <div class="slide-title">Figure 4: Oil Volume vs. Time</div>
-            <div class="slide-desc">The figure shows a continuous decrease in oil volume due to the combined effects of evaporation and natural dissipation. According to the authors, the model generally overestimates the volume fraction evaporated, particularly for small spills, because it does not explicitly account for processes such as dispersion and emulsification that also contribute to oil loss. Nevertheless, the predicted trend follows the expected physical behaviour of a weathering oil spill.</div>
+            <div class="slide-desc">The figure shows a continuous decrease in oil volume due to the combined effects of evaporation and natural dissipation. According to the authors, the model generally overestimates the volume fraction evaporated, particularly for small spills, because it does not explicitly account for processes such as dispersion and emulsification that also contribute to oil loss. Nevertheless, the predicted trend follows the expected physical behavior of a weathering oil spill.</div>
           </div>
         </div>
  
@@ -1058,7 +1060,7 @@ end</code></pre>
           <div class="slide-info">
             <div class="slide-tag">Area</div>
             <div class="slide-title">Figure 6: Spill Area vs Time</div>
-            <div class="slide-desc">The figure shows that the spill area expands rapidly during the early stages before approaching a nearly constant value. According to the authors, the model underestimates the total slick area compared with field observations, particularly for heavy crude oils. To compensate for this, they introduced the spreading coefficient K1 which can be adjusted to calibrate the predicted spreading behaviour using experimental data.</div>
+            <div class="slide-desc">The figure shows that the spill area expands rapidly during the early stages before approaching a nearly constant value. According to the authors, the model underestimates the total slick area compared with field observations, particularly for heavy crude oils. To compensate for this, they introduced the spreading coefficient K1 which can be adjusted to calibrate the predicted spreading behavior using experimental data.</div>
           </div>
         </div>
  
@@ -1069,7 +1071,7 @@ end</code></pre>
           <div class="slide-info">
             <div class="slide-tag">Viscosity</div>
             <div class="slide-title">Figure 7: Viscosity vs. Time</div>
-            <div class="slide-desc">The figure shows that viscosity increases rapidly during the initial weathering period before gradually stabilising. The authors noted that the model generally overestimates the viscosity because it combines the effects of evaporation and water uptake using an empirical relationship. Despite this limitation, the predicted viscosity trend follows the expected behaviour of weathering crude oil and compares reasonably well with experimental observations after calibration.</div>
+            <div class="slide-desc">The figure shows that viscosity increases rapidly during the initial weathering period before gradually stabilizing. The authors noted that the model generally overestimates the viscosity because it combines the effects of evaporation and water uptake using an empirical relationship. Despite this limitation, the predicted viscosity trend follows the expected behavior of weathering crude oil and compares reasonably well with experimental observations after calibration.</div>
           </div>
         </div>
  
@@ -1082,6 +1084,9 @@ end</code></pre>
     </div>
   </div>
 </section>
+ 
+<div class="section-divider"></div>
+<div class="section-divider"></div>
  
 
 <!-- NUMERICAL METHODS -->
