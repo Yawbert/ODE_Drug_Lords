@@ -373,78 +373,63 @@ footer span{color:var(--cyan);}
     <h2 class="section-title">The Coupled <span class="accent">ODE System</span></h2>
     <p class="section-body">Each process is described by a differential equation. Because the state variables depend on each other, the five equations form a nonlinearly coupled system solved simultaneously at each time step.</p>
     <div class="equations-grid">
-      <div class="eq-card">
-        <div class="eq-header"><span class="eq-name">Author's Modification</span></div>
-        <p class="eq-desc">The authors adapted existing oil spill models by taking equations from previous studies and rewriting them so they could work together in one coupled numerical system.</p><p class="eq-desc"> For spreading, they used a Fay-type spreading model, which was later modified by researchers such as Wang, Lehr, Mackay, Reed, and Spaulding, and expressed it in a differential form suitable for numerical simulation.</p>
 
-<p class="eq-desc">For evaporation, they used the Stiver and Mackay method, which relates evaporation to factors such as wind speed, temperature, slick thickness, and oil properties. This was also rewritten as a differential equation so it could be included in the system.</p><p class="eq-desc"> For emulsification, they applied Mackay’s water incorporation model and converted it into a time-dependent form. Density and viscosity were modelled using empirical relationships that depend on evaporation and water content.</p>
-
-<p class="eq-desc">Overall, the main contribution of the authors was combining these separate models into one coupled system of nonlinear ordinary differential equations, which was then solved using a fourth-order Runge-Kutta method.</p>
-            </div>
+  <div class="eq-card">
+    <div class="eq-header">
+      <span class="eq-num">EQ 01</span>
+      <span class="eq-name">Evaporation Rate</span>
     </div>
-
-
-      <div class="eq-card">
-        <div class="eq-header"><span class="eq-num">EQ 01</span><span class="eq-name">Evaporation Rate</span></div>
-        <p class="eq-desc">This equation describes how the fraction of oil evaporated (FE) changes over time in an oil spill. The rate (d FE /dt) depends on environmental conditions and oil properties: higher temperature (T) increases evaporation through the exponential term (exp (A - BT)), while wind and mixing effects are represented by the mass transfer coefficient (K). The spill surface area (A) and initial volume (V0) control how much oil is exposed and available to evaporate. The constants (T0, TG, A, and B), derived from distillation data, describe how the crude oil composition changes during evaporation. The term (T0+TG FE) shows that as more oil evaporates, the remaining oil becomes heavier and evaporates more slowly, meaning evaporation is fast initially but gradually decreases over time.</p>
-        <div>$$ \frac{dF_E}{dt} = \left( \frac{K \cdot A}{V_o} \right) \cdot \exp\left( A - \left( \frac{B}{T} \right) \cdot (T_o + T_G \cdot F_E) \right) $$
-</div>
-        <div class="eq-vars">
-          <span class="eq-var">F<sub>E</sub> <span>fraction evaporated</span></span>
-          <span class="eq-var">K <span>mass transfer coefficient</span></span>
-          <span class="eq-var">A <span>slick area (m²)</span></span>
-          <span class="eq-var">V₀ <span>initial spill volume</span></span>
-          <span class="eq-var">T₀, T<sub>G</sub>, A, B <span>distillation constants</span></span>
-          <span class="eq-var">T <span>temperature (K)</span></span>
-        </div>
-      </div>
-      <div class="eq-card">
-        <div class="eq-header"><span class="eq-num">EQ 02</span><span class="eq-name">Volume Variation Rate</span></div>
-        <p class="eq-desc">The rate of change in oil volume on the sea surface shows that it decreases due to two main processes: evaporation and entrainment. The first term represents the loss of oil as lighter components evaporate into the atmosphere. The second term represents entrainment, where a fraction of the remaining oil is mixed into the water column by waves and turbulence. The equation shows that the oil slick continuously shrinks on the surface due to both evaporation and physical removal into the sea.</p>
-        <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$
-</div>
-        <div class="eq-vars">
-          <span class="eq-var">V <span>surface volume (m³)</span></span>
-          <span class="eq-var">D <span>volume variation fraction per hour</span></span>
-          <span class="eq-var">dF<sub>E</sub>/dt <span>evaporation rate (from EQ 01)</span></span>
-        </div>
-      </div>
-<div class="eq-card">
-  <div class="eq-header">
-    <span class="eq-num">EQ 03</span>
-    <span class="eq-name">Emulsification Rate</span>
-  </div>
-  <p class="eq-desc">Models the non-linear kinetics of fractional water incorporation over time.</p>
-  <div class="eq-block">
-    $$\frac{dY}{dt} = 2.0 \times 10^{-6}(W+1)^2\left(1 - \frac{Y}{C_3}\right)$$
-  </div>
-      </div>
-      <div class="eq-card">
-        <div class="eq-header"><span class="eq-num">EQ 04</span><span class="eq-name">Spreading Area</span></div>
-        <p class="eq-desc">The spreading mechanism describes how an oil slick expands on the sea surface after a spill due to gravity, surface tension, and viscosity, provided the oil’s pour point is below seawater temperature, so it remains liquid. It depends on variables such as spill volume (V), slick area (A), density difference (Δρ), and water viscosity (νw). In Fay’s model, larger spills spread faster at first, but the rate slows as the slick area increases, with wind further enhancing spreading.</p>
-        <div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$
-</div>
-        <div class="eq-vars">
-          <span class="eq-var">A <span>slick area (m²)</span></span>
-          <span class="eq-var">V <span>current spill volume</span></span>
-          <span class="eq-var">K₁ <span>spreading constant (default 150 s⁻¹)</span></span>
-        </div>
-      </div>
-
-      <div class="eq-card">
-  <div class="eq-header">
-    <span class="eq-num">EQ 05</span>
-    <span class="eq-name">Viscosity Changes (&mu;)</span>
-  </div>
-  <p class="eq-desc">Tracks exponential fluid resistance modifications driven by evaporation losses and heavy water content entrapment.</p>
-  <div class="eq-block">
-    $$\mu = \mu_0 \cdot \exp\left(C_1 \cdot F_E\right) \cdot \exp\left(\frac{C_2 \cdot Y}{1 - C_4 \cdot Y}\right)$$
-  </div>
-</div>>
-
-
+    <p class="eq-desc">Describes the change in the fraction of oil evaporated ($F_E$) over time based on environmental factors like wind and temperature.</p>
+    <div class="eq-block">
+      $$\frac{dF_E}{dt} = \frac{K \cdot A}{V_0} \cdot \exp\left(A_{evap} - \frac{B_{evap}}{T}\right)$$
     </div>
   </div>
+
+  <div class="eq-card">
+    <div class="eq-header">
+      <span class="eq-num">EQ 02</span>
+      <span class="eq-name">Slick Spreading Area</span>
+    </div>
+    <p class="eq-desc">Models the physical expansion rate of the oil slick area ($A$) across the water surface due to gravitational forces.</p>
+    <div class="eq-block">
+      $$\frac{dA}{dt} = K_{spread} \cdot A^{-1} \cdot V^{4/3}$$
+    </div>
+  </div>
+
+  <div class="eq-card">
+    <div class="eq-header">
+      <span class="eq-num">EQ 03</span>
+      <span class="eq-name">Emulsification Rate</span>
+    </div>
+    <p class="eq-desc">Tracks the non-linear kinetics of fractional water incorporation ($Y$) creating a water-in-oil mousse mixture.</p>
+    <div class="eq-block">
+      $$\frac{dY}{dt} = 2.0 \times 10^{-6} \cdot (W + 1)^2 \cdot \left(1 - \frac{Y}{C_3}\right)$$
+    </div>
+  </div>
+
+  <div class="eq-card">
+    <div class="eq-header">
+      <span class="eq-num">EQ 04</span>
+      <span class="eq-name">Natural Volume Dispersion</span>
+    </div>
+    <p class="eq-desc">Accounts for the permanent reduction of surface oil volume ($V$) as waves entrain oil droplets down into the water column.</p>
+    <div class="eq-block">
+      $$\frac{dV}{dt} = -D \cdot A - V \cdot \left(\frac{dF_E}{dt}\right)$$
+    </div>
+  </div>
+
+  <div class="eq-card">
+    <div class="eq-header">
+      <span class="eq-num">EQ 05</span>
+      <span class="eq-name">Viscosity Changes (&mu;)</span>
+    </div>
+    <p class="eq-desc">Calculates exponential adjustments to fluid dynamic viscosity driven simultaneously by structural evaporation and water entrapment.</p>
+    <div class="eq-block">
+      $$\mu = \mu_0 \cdot \exp\left(C_1 \cdot F_E\right) \cdot \exp\left(\frac{C_2 \cdot Y}{1 - C_4 \cdot Y}\right)$$
+    </div>
+  </div>
+
+</div>
 
 </section>
 
