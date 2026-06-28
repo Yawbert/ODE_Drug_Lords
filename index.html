@@ -47,6 +47,85 @@ pre {
 #av3 { content: url('pics/grce.jpg'); }
 #av4 { content: url('pics/bokye.jpeg'); }
 #av5 { content: url('pics/kwku.jpeg'); }
+    /* ==========================================
+   PASTE THIS AT THE BOTTOM OF YOUR STYLE TAG
+   ========================================== */
+
+/* 1. Prevents code blocks from breaking mobile screen width */
+pre, .code-container, .eq-block {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  white-space: pre !important;
+  display: block !important;
+}
+
+/* 2. Forces video to scale down smoothly on phones */
+video {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+}
+
+/* 3. Makes the main text sections switch to 1 column on mobile */
+.two-col {
+  display: grid !important; 
+  grid-template-columns: 1fr !important; 
+  gap: 2rem !important; 
+}
+@media (min-width: 992px) {
+  .two-col { 
+    grid-template-columns: 1fr 1fr !important; 
+    gap: 4rem !important; 
+  }
+}
+
+/* 4. Fixes stats layout: 2 columns on mobile, 4 on desktop */
+.stats-grid { 
+  display: grid !important; 
+  grid-template-columns: repeat(2, 1fr) !important; 
+  gap: 1.5rem !important; 
+}
+@media (min-width: 768px) {
+  .stats-grid { 
+    grid-template-columns: repeat(4, 1fr) !important; 
+  }
+}
+
+/* 5. Fluid team profiles: grid auto-wraps down to a new row on tiny screens */
+.team-grid { 
+  display: grid !important; 
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; 
+  gap: 1.5rem !important; 
+}
+
+/* 6. Fixes results swiping mechanics */
+.carousel-wrap { 
+  width: 100% !important;
+  overflow: hidden !important;
+}
+.carousel-track {
+  display: flex !important; 
+  gap: 1.5rem !important;
+  overflow-x: auto !important; 
+  -webkit-overflow-scrolling: touch !important; 
+  scroll-snap-type: x mandatory !important; 
+}
+.carousel-slide {
+  flex: 0 0 100% !important; /* 1 card on mobile */
+  scroll-snap-align: start !important;
+}
+@media (min-width: 768px) {
+  .carousel-slide { flex: 0 0 calc(50% - 0.75rem) !important; } /* 2 cards on tablet */
+}
+@media (min-width: 1024px) {
+  .carousel-slide { flex: 0 0 calc(33.333% - 1rem) !important; } /* 3 cards on desktop */
+}
+
+/* 7. Hides the desktop menu on small phones so it doesn't overlap your title */
+@media (max-width: 576px) {
+  nav { justify-content: center !important; }
+  .nav-links { display: none !important; } 
+}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
