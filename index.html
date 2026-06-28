@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oil Spill ODE Modelling | CE 122 Applied Programming</title>
 <link rel="icon" type="image/png" href="pics/ChatGPT_Image_Jun_27__2026__11_12_15_AM-removebg-preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -274,6 +274,21 @@ footer span{color:var(--cyan);}
   overflow-y: hidden !important;
   max-width: 100% !important;
   padding-bottom: 4px;
+}
+  /* --- Fixes Empty Space Outskirts When Zooming Out --- */
+.container, 
+main, 
+section > div {
+  width: 92% !important; /* Uses fluid percentages instead of hard pixels */
+  max-width: 1400px !important; /* Lets content expand beautifully on zoom-out */
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Restricts sections from getting completely swallowed by deep backgrounds */
+section {
+  width: 100% !important;
+  clear: both;
 }
 </style>
 </head>
