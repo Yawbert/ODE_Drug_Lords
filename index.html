@@ -900,6 +900,142 @@ width: 100%;
     </div>
   </div>
 </section>-->
+    
+<section id="author">
+  <div class="container">
+    <div class="section-label">Simulation Results</div>
+    <h2 class="section-title">Visualisations &amp; <span class="accent">Plots</span></h2>
+    <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods. Upload your figures to the <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--cyan)">images/</code> folder and replace the placeholders below.</p>
+ 
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carouselTrack">
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder" id="slide-img-1">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Evaporation</div>
+            <div class="slide-title">Fraction Evaporated vs. Time</div>
+            <div class="slide-desc">Comparison of model predictions with CONCAWE (1983) experimental data for different spill volumes. Lighter crudes evaporate faster.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Solver Comparison</div>
+            <div class="slide-title">Euler vs. RK4 vs. ode45</div>
+            <div class="slide-desc">Overlay of all three solver outputs for each state variable, showing accuracy differences and divergence in stiff regions near t = 0.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Water Content</div>
+            <div class="slide-title">Emulsification Over Time</div>
+            <div class="slide-desc">Predicted water content Y(t) for Statfjord crude oil versus experimental points from Buchanan &amp; Hurford (1988). Initial overestimation due to variable wind speed.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Density</div>
+            <div class="slide-title">Emulsion Density vs. Time</div>
+            <div class="slide-desc">Good agreement with experimental data. Density increases as evaporation concentrates heavy fractions and water incorporation raises the effective mixture density.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Viscosity</div>
+            <div class="slide-title">Viscosity Growth (μ)</div>
+            <div class="slide-desc">Viscosity increases by several orders of magnitude over 200 h. RK4 with C₄ = 5 shows the best match; ode45 serves as reference benchmark.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Error Analysis</div>
+            <div class="slide-title">Global Error vs. Step Size</div>
+            <div class="slide-desc">Log-log plot of global truncation error for Euler (O(h)) and RK4 (O(h⁴)) confirming theoretical convergence rates and demonstrating RK4's superior accuracy.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Slick Area</div>
+            <div class="slide-title">Spreading Area A(t)</div>
+            <div class="slide-desc">Predicted slick area compared with Lehr et al. (1984). Area is underestimated but tunable via K₁. Shows rapid initial growth that plateaus as slick thins.</div>
+          </div>
+        </div>
+ 
+        <div class="carousel-slide">
+          <div class="slide-img">
+            <div class="slide-img-placeholder">
+              <div class="ph-wave">〰️</div>
+              <span>Replace with your plot</span>
+            </div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-tag">Animation</div>
+            <div class="slide-title">Oil Slick Spreading Animation</div>
+            <div class="slide-desc">Animated visualisation showing the time evolution of all 5 state variables simultaneously. Produced with MATLAB's animation toolbox.</div>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn">&#8592;</button>
+        <button class="carousel-btn" id="nextBtn">&#8594;</button>
+      </div>
+      <div class="upload-note">
+        📁 To add your own plots: place image files in an <code>images/</code> folder next to index.html, then replace the placeholder divs with: <code>&lt;img src="images/your-plot.png" alt="..."&gt;</code>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="section-divider"></div>
 
 <div class="section-divider"></div>
 
