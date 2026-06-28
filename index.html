@@ -1221,7 +1221,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Evaporation</div>
             <div class="slide-title">Fraction Evaporated vs. Time</div>
-            <div class="slide-desc">Comparison of model predictions with CONCAWE (1983) experimental data for different spill volumes. Lighter crudes evaporate faster.</div>
+            <div class="slide-desc">This plot illustrates the volume fraction evaporated over time for distinct crude oils, highlighting how chemical composition dictates weathering dynamics. Lighter crude oils like Ekofisk exhibit rapid early-stage mass loss due to a higher concentration of volatile, low-boiling components. But heavier crudes like Tia Juana Pesado experience significantly lower evaporation rates because they consist primarily of heavy, complex hydrocarbons. While the numerical model accurately tracks these composition-driven trends, the authors note it tends to systematically overestimate the total fraction evaporated. This variance stems from potential composition discrepancies between the simulated oil distillation curves and the actual experimental field samples utilized in literature.</div>
           </div>
         </div>
 
@@ -1234,10 +1234,7 @@ x0 = [FE0; V0; Y0; A0; mu0];
           <div class="slide-info">
             <div class="slide-tag">Water Content</div>
             <div class="slide-title">Emulsification Over Time</div>
-            <div class="slide-desc">Predicted water content Y(t) for oil spill</div>
-          </div>
-        </div>
-
+            <div class="slide-desc">This plot models the water-in-oil emulsification process over time, tracking the non-linear kinetics of fractional water incorporation ($Y$) within the floating slick. Based on the Mackay formulation, the rate of water accumulation is dynamically solved using the differential equation $\frac{dY}{dt} = 2.0 \times 10^{-6}(W+1)^2(1 - \frac{Y}{C_3})$. The simulation highlights a sharp, rapid uptake of water droplets during the initial hours of the spill due to mixing energy before asymptotically leveling off as it approaches the strict empirical mousse viscosity constant limiting threshold ($C_3 \approx 0.7$). This heavy water entrapment expands the structural volume of the spill by 3 to 4 times and severely drives up its density and viscosity, proving critical for tracking long-term weathering physics.</div>
         <div class="carousel-slide">
           <div class="slide-img">
             <div class="slide-img-placeholder">
