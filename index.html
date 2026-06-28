@@ -881,14 +881,119 @@ width: 100%;
     <div class="section-label">Simulation Results</div>
     <h2 class="section-title"> Author <span class="accent">Results</span> Reproduction</h2>
     <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods.</p>
- <div class="author-reference">
+ 
+    <div class="author-reference">
       <div class="ref-img-wrap">
         <img src="pics/auth_results.jpeg" alt="Author's experimental reference values" class="ref-img">
       </div>
       <div class="ref-text-wrap">
         <p class="ref-text">The author used these real life values to make his analysis.</p>
+        
+        <pre><code class="language-matlab">clc; clear; close all;
+
+%% =========================================================
+% 1. INITIAL CONDITIONS
+% =========================================================
+FE0 = 0;
+V0  = 10000;
+Y0  = 0;
+A0  = 1000;
+mu0 = 0.01;
+
+x0 = [FE0; V0; Y0; A0; mu0];
+
+dt = 1;
+tspan = [0 200];
+tplot = 0:dt:200;
+
+%% =========================================================
+% 2. SINGLE WIND SPEED (m/s)
+% =========================================================
+W = 4.1667;   % constant wind speed
+
+%% =========================================================
+% 3. SOLVE SYSTEM
+% =========================================================
+[tO, xO] = ode45(@(t,x) oilspill(t, x, W), tspan, x0);
+
+% interpolate onto uniform grid
+x_interp = zeros(length(tplot), 5);
+
+for j = 1:5
+    x_interp(:,j) = interp1(tO, xO(:,j), tplot);
+end
+
+%% =========================================================
+% 4. PLOTS FOR ALL 5 VARIABLES
+% =========================================================
+
+T = 273.15 + 15;   % temperature in Kelvin
+
+names = {'Evaporation F_E','Oil Volume V','Water Content Y',...
+         'Spill Area A','Viscosity \mu'};
+
+ylabels = {'F_E','V (m^3)','Y','A (m^2)','\mu (Pa·s)'};
+
+legendText = sprintf('W = %.4f m/s, T = %.2f K (15°C)', W, T);
+
+for var = 1:5
+
+    figure; hold on; grid on;
+
+    plot(tplot, x_interp(:,var), 'LineWidth', 2);
+
+    xlabel('Time (hours)');
+    ylabel(ylabels{var});
+    title([names{var}, ' vs Time']);
+
+    legend(legendText, 'Location','best');
+end
+
+%% =========================================================
+% 5. ODE FUNCTION
+% =========================================================
+function dx = oilspill(~, x, W)
+
+    FE = x(1);
+    V  = x(2);
+    Y  = x(3);
+    A  = x(4);
+    mu = x(5);
+
+    V0c = 10000;
+
+    % Temperature (15°C)
+    T = 273.15 + 15;
+
+    Apar = 2.898;
+    B    = 10.3;
+    T0   = 294;
+    TG   = 636;
+
+    C3 = 0.7;
+    C4 = 0.5;
+    K1 = 150;
+
+    % Mass transfer coefficient
+    K2 = 2.5e-3 * (W * 3.6)^0.78;
+    K  = K2 / (V0c / max(A, 1e-4));
+
+    % Dissipation
+    D = 0.11 * (W + 1)^2 * ...
+        (1 + 50 * mu^0.5 * (V / max(A, 1e-4)) * 20)^-1;
+
+    % ODE SYSTEM
+    dFE = (K * A / Apar) * exp(Apar - (B / T) * (T0 + TG * FE));
+    dV  = -V0c * dFE - D * V;
+    dY  = 2e-6 * 3600 * (W + 1)^2 * (1 - Y / C3);
+    dA  = K1 * (max(A, 1e-4)^(-1)) * (max(V, 0)^(4/3));
+    dmu = C4 * mu * dFE + (2.5 * mu / (1 - C3 * Y)^2) * dY;
+
+    dx = [dFE; dV; dY; dA; dmu];
+end</code></pre>
       </div>
     </div>
+    
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
  
@@ -979,9 +1084,6 @@ width: 100%;
   </div>
 </section>
  
-<div class="section-divider"></div>
-
-<div class="section-divider"></div>
 
 <!-- NUMERICAL METHODS -->
 <section id="methods">
