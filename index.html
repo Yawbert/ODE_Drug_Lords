@@ -205,6 +205,13 @@
     animation: scrollPulse 1.8s infinite;
   }
 
+    .scroll-hor-arrow {
+    width: 48px; height: 1px;
+    background: linear-gradient(to right, var(--cyan), transparent);
+    animation: scrollPulse 1.8s infinite;
+  }
+
+
   /* ── SECTIONS ── */
   section { padding: 6rem 1.5rem; }
   .container { max-width: 1100px; margin: 0 auto; }
@@ -958,10 +965,11 @@ x0 = [FE0; V0; Y0; A0; mu0];
     <h2 class="section-title">Visualisations &amp; <span class="accent">Plots</span></h2>
     <p class="section-body">The model was validated against experimental data from CONCAWE (1983) and Buchanan &amp; Hurford (1988), and solver outputs compared across all three methods for each.</p>
 
-    <div class="scroll-indicator">
-      <span class="scroll-text">Swipe / Scroll right to view more plots</span>
-      <span class="scroll-arrow">&rarr;</span>
-    </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-hor-arrow"></div>
+  </div>
+</section>
 
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
