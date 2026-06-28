@@ -204,6 +204,45 @@
     background: linear-gradient(to bottom, var(--cyan), transparent);
     animation: scrollPulse 1.8s infinite;
   }
+  .scroll-hint-h {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem; /* Pushes it slightly below the carousel */
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fadeUp 1s 0.6s ease both;
+}
+
+/* Horizontal Line Indicator */
+.scroll-arrow-h {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, var(--cyan), transparent);
+  animation: scrollPulseH 1.8s infinite ease-in-out;
+}
+
+/* Horizontal Slide/Pulse Animation */
+@keyframes scrollPulseH {
+  0% {
+    transform: scaleX(0.4);
+    transform-origin: left;
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0.4);
+    transform-origin: right;
+    opacity: 0.3;
+  }
+}
 
 
   /* ── SECTIONS ── */
@@ -962,6 +1001,13 @@ x0 = [FE0; V0; Y0; A0; mu0];
 </section>
 
     <div class="carousel-wrap">
+      </div>
+
+    <div class="scroll-hint-h">
+      <span>Scroll horizontally</span>
+      <div class="scroll-arrow-h"></div>
+    </div>
+  </div> </section>
       <div class="carousel-track" id="carouselTrack">
 
        <div class="carousel-slide">
