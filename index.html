@@ -2,6 +2,20 @@
 <html lang="en">
 <head>
   <style>
+    .ref-text-wrap {
+    flex: 1;
+    min-width: 0; /* CRITICAL: Allows nested pre tags to shrink and scroll instead of breaking flexbox */
+}
+
+pre {
+    background-color: #1e1e1e; /* Dark mode example */
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto; /* Adds a scrollbar for long code lines */
+    max-width: 100%;
+    display: block;
+}
     .code-container {
         background: #282c34;
         color: #abb2bf;
@@ -890,7 +904,7 @@ width: 100%;
         <p class="ref-text">The author used these real-life values to make his analysis.</p>
         <p class="ref-subtext">We implemented the MATLAB code below to replicate the results in the original article:</p>
         
-        <pre><code class="language-matlab">clc; clear; close all;
+<pre><code class="language-matlab">clc; clear; close all;
 
 %% =========================================================
 % 1. INITIAL CONDITIONS
