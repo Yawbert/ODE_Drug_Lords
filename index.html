@@ -275,20 +275,22 @@ footer span{color:var(--cyan);}
   max-width: 100% !important;
   padding-bottom: 4px;
 }
-  /* --- Fixes Empty Space Outskirts When Zooming Out --- */
-.container, 
-main, 
-section > div {
-  width: 92% !important; /* Uses fluid percentages instead of hard pixels */
-  max-width: 1400px !important; /* Lets content expand beautifully on zoom-out */
-  margin: 0 auto !important;
-  box-sizing: border-box !important;
+
+/* --- The True Hybrid Lock --- */
+html, body {
+  width: 100% !important;
+  max-width: 100vw !important; /* Forces the background framework to stay exactly screen-wide */
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  /* Hard block on horizontal page shaking/slipping */
+  overflow-x: hidden !important; 
 }
 
-/* Restricts sections from getting completely swallowed by deep backgrounds */
-section {
-  width: 100% !important;
-  clear: both;
+/* Keeps the internal containers from generating hidden width */
+.container, main, section {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 </style>
 </head>
