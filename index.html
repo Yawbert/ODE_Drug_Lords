@@ -693,6 +693,17 @@ width: 100%;
     <p class="section-body">Each process is described by a differential equation. Because the state variables depend on each other, the five equations form a nonlinearly coupled system solved simultaneously at each time step.</p>
 
     <div class="equations-grid">
+       <div class="eq-card">
+        <div class="eq-header">
+          <span class="eq-name">author's Modification</span>
+        </div>
+        <p class="eq-desc">The authors adapted existing oil spill models by taking equations from previous studies and rewriting them so they could work together in one coupled numerical system.</p><p class="eq-desc"> For spreading, they used a Fay-type spreading model, which was later modified by researchers such as Wang, Lehr, Mackay, Reed, and Spaulding, and expressed it in a differential form suitable for numerical simulation.</p>
+
+<p class="eq-desc">For evaporation, they used the Stiver and Mackay method, which relates evaporation to factors such as wind speed, temperature, slick thickness, and oil properties. This was also rewritten as a differential equation so it could be included in the system.</p><p class="eq-desc"> For emulsification, they applied Mackay’s water incorporation model and converted it into a time-dependent form. Density and viscosity were modelled using empirical relationships that depend on evaporation and water content.</p>
+
+<p class="eq-desc">Overall, the main contribution of the authors was combining these separate models into one coupled system of nonlinear ordinary differential equations, which was then solved using a fourth-order Runge-Kutta method.</p>
+            </div>
+    </div>
 
       <!-- EQ 1 -->
       <div class="eq-card">
@@ -777,16 +788,7 @@ width: 100%;
           <span class="eq-var">dY/dt <span>from EQ 03</span></span>
         </div>
       </div>
- <div class="eq-card">
-        <div class="eq-header">
-          <span class="eq-name">Initial assumptions</span>
-        </div>
-        <p class="eq-desc">The authors adapted existing oil spill models by taking equations from previous studies and rewriting them so they could work together in one coupled numerical system.</p><p class="eq-desc"> For spreading, they used a Fay-type spreading model, which was later modified by researchers such as Wang, Lehr, Mackay, Reed, and Spaulding, and expressed it in a differential form suitable for numerical simulation.</p>
 
-<p class="eq-desc">For evaporation, they used the Stiver and Mackay method, which relates evaporation to factors such as wind speed, temperature, slick thickness, and oil properties. This was also rewritten as a differential equation so it could be included in the system.</p><p class="eq-desc"> For emulsification, they applied Mackay’s water incorporation model and converted it into a time-dependent form. Density and viscosity were modelled using empirical relationships that depend on evaporation and water content.</p>
-
-<p class="eq-desc">Overall, the main contribution of the authors was combining these separate models into one coupled system of nonlinear ordinary differential equations, which was then solved using a fourth-order Runge-Kutta method.</p>
-            </div>
 
     </div>
   </div>
