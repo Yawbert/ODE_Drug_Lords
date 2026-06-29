@@ -364,18 +364,27 @@ html, body {
         <p class="section-body">The core engineering challenge is that all physical phenomena occur simultaneously and are <em>nonlinearly coupled</em>. An engineering solution must treat these processes as a coupled system rather than computing each one independently.</p>
         <br>
         <p class="section-body">This project formulates all five governing processes as a system of coupled, nonlinear ordinary differential equations (ODEs), then implements and compares numerical solvers to produce quantitative predictions of the oil's state over time.</p>
-        <video controls autoplay loop muted playsinline><source src="pics/oil_vid.mp4" type="video/mp4">Your browser does not support video.</video>
-        <p style="color:var(--muted);font-size:.82rem;margin-top:.5rem;font-style:italic;">The oil spill process</p>
       </div>
+      
       <div>
-        <div style="color:var(--muted);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;">Governing Processes</div>
-        <ul class="process-list">
-           <li><span class="process-num">01</span><div><div class="process-name">Spreading</div><p>Spreading is the expansion of the oil slick over the sea surface after the spill. In the early stage, it is mainly controlled by gravity, surface tension, oil volume, density difference between oil and seawater, and viscosity. The article explains that spreading is important because it affects other processes: a larger slick area increases evaporation and influences dispersion.</p></div></li>
-         <li><span class="process-num">02</span><div><div class="process-name">Evaporation</div><p>Evaporation is the loss of lighter hydrocarbon components from the oil into the atmosphere. The article identifies it as one of the most important early mass-loss processes, especially during the first hours to first 24 hours. As lighter fractions evaporate, the remaining oil becomes heavier, denser, and more viscous.</p></div></li>
-          <li><span class="process-num">03</span><div><div class="process-name">Emulsification</div><p>Emulsification occurs when water droplets become mixed into the oil, forming a water-in-oil mixture often called mousse. According to the article, this can greatly increase the volume of the slick and cause a major rise in viscosity. The process depends on oil composition, especially components such as asphaltenes and waxes, as well as environmental mixing.</p></div></li>
-          <li><span class="process-num">04</span><div><div class="process-name">Volume variation / Dispersion</div><p>Entrainment or natural dispersion happens when oil is broken into droplets and mixed into the water column, especially under wind and wave action. This reduces the amount of oil remaining on the surface. The article treats this as important because it competes with evaporation: oil that enters the water column is no longer available to evaporate from the surface slick.</p></div></li>
-           <li><span class="process-num">05</span><div><div class="process-name">Viscosity &amp; Density Change</div><p>Viscosity and density change as the oil weathers. Evaporation removes lighter components, making the oil denser and more viscous, while emulsification adds water and further increases both density and viscosity. These changes matter because thicker, heavier oil spreads less easily, disperses differently, and becomes harder to recover or treat.</p></div></li>
-        </ul>
+        <div style="margin-bottom: 2.5rem;">
+          <video controls autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 8px;">
+            <source src="pics/oil_vid.mp4" type="video/mp4">
+            Your browser does not support video.
+          </video>
+          <p style="color:var(--muted);font-size:.82rem;margin-top:.5rem;font-style:italic;">The oil spill process</p>
+        </div>
+
+        <div>
+          <div style="color:var(--muted);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;">Governing Processes</div>
+          <ul class="process-list">
+             <li><span class="process-num">01</span><div><div class="process-name">Spreading</div><p>Spreading is the expansion of the oil slick over the sea surface after the spill. In the early stage, it is mainly controlled by gravity, surface tension, oil volume, density difference between oil and seawater, and viscosity. The article explains that spreading is important because it affects other processes: a larger slick area increases evaporation and influences dispersion.</p></div></li>
+             <li><span class="process-num">02</span><div><div class="process-name">Evaporation</div><p>Evaporation is the loss of lighter hydrocarbon components from the oil into the atmosphere. The article identifies it as one of the most important early mass-loss processes, especially during the first hours to first 24 hours. As lighter fractions evaporate, the remaining oil becomes heavier, denser, and more viscous.</p></div></li>
+             <li><span class="process-num">03</span><div><div class="process-name">Emulsification</div><p>Emulsification occurs when water droplets become mixed into the oil, forming a water-in-oil mixture often called mousse. According to the article, this can greatly increase the volume of the slick and cause a major rise in viscosity. The process depends on oil composition, especially components such as asphaltenes and waxes, as well as environmental mixing.</p></div></li>
+             <li><span class="process-num">04</span><div><div class="process-name">Volume variation / Dispersion</div><p>Entrainment or natural dispersion happens when oil is broken into droplets and mixed into the water column, especially under wind and wave action. This reduces the amount of oil remaining on the surface. The article treats this as important because it competes with evaporation: oil that enters the water column is no longer available to evaporate from the surface slick.</p></div></li>
+             <li><span class="process-num">05</span><div><div class="process-name">Viscosity &amp; Density Change</div><p>Viscosity and density change as the oil weathers. Evaporation removes lighter components, making the oil denser and more viscous, while emulsification adds water and further increases both density and viscosity. These changes matter because thicker, heavier oil spreads less easily, disperses differently, and becomes harder to recover or treat.</p></div></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
