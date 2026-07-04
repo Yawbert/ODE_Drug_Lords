@@ -540,23 +540,23 @@ html, body {
         <p class="ref-subtext">We implemented the MATLAB code below to replicate the results in the original article:</p>
 <pre>clc; clear; close all;
 
-%% =========================================================
+
 % 1. INITIAL CONDITIONS
-% =========================================================
+
 FE0 = 0;  V0  = 10000;
 Y0  = 0;  A0  = 1000;  mu0 = 0.01;
 x0 = [FE0; V0; Y0; A0; mu0];
 
 dt = 1;  tspan = [0 200];  tplot = 0:dt:200;
 
-%% =========================================================
+
 % 2. SINGLE WIND SPEED (m/s)
-% =========================================================
+
 W = 4.1667;
 
-%% =========================================================
+
 % 3. SOLVE SYSTEM
-% =========================================================
+
 [tO, xO] = ode45(@(t,x) oilspill(t, x, W), tspan, x0);
 
 x_interp = zeros(length(tplot), 5);
@@ -564,9 +564,9 @@ for j = 1:5
     x_interp(:,j) = interp1(tO, xO(:,j), tplot);
 end
 
-%% =========================================================
+
 % 4. PLOTS FOR ALL 5 VARIABLES
-% =========================================================
+
 T = 273.15 + 15;
 names   = {'Evaporation F_E','Oil Volume V','Water Content Y',...
            'Spill Area A','Viscosity \mu'};
@@ -581,9 +581,9 @@ for var = 1:5
     legend(legendText, 'Location','best');
 end
 
-%% =========================================================
+
 % 5. ODE FUNCTION
-% =========================================================
+
 function dx = oilspill(~, x, W)
     FE = x(1); V = x(2); Y = x(3); A = x(4); mu = x(5);
     V0c = 10000;  T = 273.15 + 15;
