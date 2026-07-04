@@ -357,7 +357,9 @@ html, body {
   <div class="container">
     <div class="section-label">Engineering Problem</div>
     <h2 class="section-title">Forecasting the <span class="accent">Fate</span> of Spilled Oil</h2>
-    <div class="two-col">
+    
+    <!-- Changed layout container to a standard block element for single-column vertical flow -->
+    <div class="vertical-flow">
       <div>
         <p class="section-body">When an oil spill occurs at sea, a series of simultaneous, interdependent physical and chemical processes take place. For environmental engineers and marine response teams, accurately forecasting both short-term and long-term behaviour of spilled oil is essential for designing effective clean-up strategies and mitigating ecological damage.</p>
         <br>
@@ -366,25 +368,25 @@ html, body {
         <p class="section-body">This project formulates all five governing processes as a system of coupled, nonlinear ordinary differential equations (ODEs), then implements and compares numerical solvers to produce quantitative predictions of the oil's state over time.</p>
       </div>
       
-      <div>
-        <div style="margin-bottom: 2.5rem;">
-          <video controls autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 8px;">
-            <source src="pics/oil_vid.mp4" type="video/mp4">
-            Your browser does not support video.
-          </video>
-          <p style="color:var(--muted);font-size:.82rem;margin-top:.5rem;font-style:italic;">The oil spill process</p>
-        </div>
+      <!-- Video moved directly under the main forecasting body text -->
+      <div style="margin-top: 2rem; margin-bottom: 2.5rem;">
+        <video controls autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 8px;">
+          <source src="pics/oil_vid.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+        <p style="color:var(--muted);font-size:.82rem;margin-top:.5rem;font-style:italic;">The oil spill process</p>
+      </div>
 
-        <div>
-          <div style="color:var(--muted);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;">Governing Processes</div>
-          <ul class="process-list">
-             <li><span class="process-num">01</span><div><div class="process-name">Spreading</div><p>Spreading is the expansion of the oil slick over the sea surface after the spill. In the early stage, it is mainly controlled by gravity, surface tension, oil volume, density difference between oil and seawater, and viscosity. The article explains that spreading is important because it affects other processes: a larger slick area increases evaporation and influences dispersion.</p></div></li>
-             <li><span class="process-num">02</span><div><div class="process-name">Evaporation</div><p>Evaporation is the loss of lighter hydrocarbon components from the oil into the atmosphere. The article identifies it as one of the most important early mass-loss processes, especially during the first hours to first 24 hours. As lighter fractions evaporate, the remaining oil becomes heavier, denser, and more viscous.</p></div></li>
-             <li><span class="process-num">03</span><div><div class="process-name">Emulsification</div><p>Emulsification occurs when water droplets become mixed into the oil, forming a water-in-oil mixture often called mousse. According to the article, this can greatly increase the volume of the slick and cause a major rise in viscosity. The process depends on oil composition, especially components such as asphaltenes and waxes, as well as environmental mixing.</p></div></li>
-             <li><span class="process-num">04</span><div><div class="process-name">Volume variation / Dispersion</div><p>Entrainment or natural dispersion happens when oil is broken into droplets and mixed into the water column, especially under wind and wave action. This reduces the amount of oil remaining on the surface. The article treats this as important because it competes with evaporation: oil that enters the water column is no longer available to evaporate from the surface slick.</p></div></li>
-             <li><span class="process-num">05</span><div><div class="process-name">Viscosity &amp; Density Change</div><p>Viscosity and density change as the oil weathers. Evaporation removes lighter components, making the oil denser and more viscous, while emulsification adds water and further increases both density and viscosity. These changes matter because thicker, heavier oil spreads less easily, disperses differently, and becomes harder to recover or treat.</p></div></li>
-          </ul>
-        </div>
+      <!-- Governing processes list placed cleanly under the video -->
+      <div style="margin-top: 2rem;">
+        <div style="color:var(--muted);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;">Governing Processes</div>
+        <ul class="process-list">
+           <li><span class="process-num">01</span><div><div class="process-name">Spreading</div><p>Spreading is the expansion of the oil slick over the sea surface after the spill. In the early stage, it is mainly controlled by gravity, surface tension, oil volume, density difference between oil and seawater, and viscosity. The article explains that spreading is important because it affects other processes: a larger slick area increases evaporation and influences dispersion.</p></div></li>
+           <li><span class="process-num">02</span><div><div class="process-name">Evaporation</div><p>Evaporation is the loss of lighter hydrocarbon components from the oil into the atmosphere. The article identifies it as one of the most important early mass-loss processes, especially during the first hours to first 24 hours. As lighter fractions evaporate, the remaining oil becomes heavier, denser, and more viscous.</p></div></li>
+           <li><span class="process-num">03</span><div><div class="process-name">Emulsification</div><p>Emulsification occurs when water droplets become mixed into the oil, forming a water-in-oil mixture often called mousse. According to the article, this can greatly increase the volume of the slick and cause a major rise in viscosity. The process depends on oil composition, especially components such as asphaltenes and waxes, as well as environmental mixing.</p></div></li>
+           <li><span class="process-num">04</span><div><div class="process-name">Volume variation / Dispersion</div><p>Entrainment or natural dispersion happens when oil is broken into droplets and mixed into the water column, especially under wind and wave action. This reduces the amount of oil remaining on the surface. The article treats this as important because it competes with evaporation: oil that enters the water column is no longer available to evaporate from the surface slick.</p></div></li>
+           <li><span class="process-num">05</span><div><div class="process-name">Viscosity &amp; Density Change</div><p>Viscosity and density change as the oil weathers. Evaporation removes lighter components, making the oil denser and more viscous, while emulsification adds water and further increases both density and viscosity. These changes matter because thicker, heavier oil spreads less easily, disperses differently, and becomes harder to recover or treat.</p></div></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -398,17 +400,19 @@ html, body {
     <div class="section-label">Mathematical Model</div>
     <h2 class="section-title">The Coupled <span class="accent">ODE System</span></h2>
     <p class="section-body">Each process is described by a differential equation. Because the state variables depend on each other, the five equations form a nonlinearly coupled system solved simultaneously at each time step.</p>
-    <div class="equations-grid">
+    
+    <!-- Custom styling rule applied locally to enforce a clean single-column layout down the page -->
+    <div class="equations-grid" style="display: flex; flex-direction: column; gap: 2rem;">
 
-  <div class="eq-card">
-    <div class="eq-header">
-      <span class="eq-num">EQ 01</span>
-      <span class="eq-name">Evaporation Rate</span>
-    </div>
-           <p class="eq-desc">This equation describes how the fraction of oil evaporated (FE) changes over time in an oil spill. The rate (d FE /dt) depends on environmental conditions and oil properties: higher temperature (T) increases evaporation through the exponential term (exp (A - BT)), while wind and mixing effects are represented by the mass transfer coefficient (K). The spill surface area (A) and initial volume (V0) control how much oil is exposed and available to evaporate. The constants (T0, TG, A, and B), derived from distillation data, describe how the crude oil composition changes during evaporation. The term (T0+TG FE) shows that as more oil evaporates, the remaining oil becomes heavier and evaporates more slowly, meaning evaporation is fast initially but gradually decreases over time.</p>
-          <div>$$ \frac{dF_E}{dt} = \left( \frac{K \cdot A}{V_o} \right) \cdot \exp\left( A - \left( \frac{B}{T} \right) \cdot (T_o + T_G \cdot F_E) \right) $$
-</div>
-            <div class="eq-vars">
+      <!-- EQ 01 -->
+      <div class="eq-card">
+        <div class="eq-header">
+          <span class="eq-num">EQ 01</span>
+          <span class="eq-name">Evaporation Rate</span>
+        </div>
+        <p class="eq-desc">This equation describes how the fraction of oil evaporated (FE) changes over time in an oil spill. The rate (d FE /dt) depends on environmental conditions and oil properties: higher temperature (T) increases evaporation through the exponential term (exp (A - BT)), while wind and mixing effects are represented by the mass transfer coefficient (K). The spill surface area (A) and initial volume (V0) control how much oil is exposed and available to evaporate. The constants (T0, TG, A, and B), derived from distillation data, describe how the crude oil composition changes during evaporation. The term (T0+TG FE) shows that as more oil evaporates, the remaining oil becomes heavier and evaporates more slowly, meaning evaporation is fast initially but gradually decreases over time.</p>
+        <div>$$ \frac{dF_E}{dt} = \left( \frac{K \cdot A}{V_o} \right) \cdot \exp\left( A - \left( \frac{B}{T} \right) \cdot (T_o + T_G \cdot F_E) \right) $$</div>
+        <div class="eq-vars">
           <span class="eq-var">F<sub>E</sub> <span>fraction evaporated</span></span>
           <span class="eq-var">K <span>mass transfer coefficient</span></span>
           <span class="eq-var">A <span>slick area (m²)</span></span>
@@ -416,16 +420,16 @@ html, body {
           <span class="eq-var">T₀, T<sub>G</sub>, A, B <span>distillation constants</span></span>
           <span class="eq-var">T <span>temperature (K)</span></span>
         </div>
-  </div>
+      </div>
 
+      <!-- EQ 02 -->
       <div class="eq-card">
         <div class="eq-header">
           <span class="eq-num">EQ 02</span>
           <span class="eq-name">Volume Variation Rate</span>
         </div>
         <p class="eq-desc">The rate of change in oil volume on the sea surface shows that it decreases due to two main processes: evaporation and entrainment. The first term represents the loss of oil as lighter components evaporate into the atmosphere. The second term represents entrainment, where a fraction of the remaining oil is mixed into the water column by waves and turbulence. The equation shows that the oil slick continuously shrinks on the surface due to both evaporation and physical removal into the sea.</p>
-        <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$
-</div>
+        <div>$$ \frac{dV}{dt} = -V_0 \cdot \left( \frac{dF_E}{dt} \right) - D \cdot V $$</div>
         <div class="eq-vars">
           <span class="eq-var">V <span>surface volume (m³)</span></span>
           <span class="eq-var">D <span>volume variation fraction per hour</span></span>
@@ -433,14 +437,14 @@ html, body {
         </div>
       </div>
 
-     <div class="eq-card">
+      <!-- EQ 03 -->
+      <div class="eq-card">
         <div class="eq-header">
           <span class="eq-num">EQ 03</span>
           <span class="eq-name">Emulsification (Water Uptake)</span>
         </div>
         <p class="eq-desc">The spreading mechanism describes how an oil slick expands on the sea surface after a spill due to gravity, surface tension, and viscosity, provided the oil’s pour point is below seawater temperature, so it remains liquid. It depends on variables such as spill volume (V), slick area (A), density difference (Δρ), and water viscosity (νw). In Fay’s model, larger spills spread faster at first, but the rate slows as the slick area increases, with wind further enhancing spreading.</p>
-        <div> $$ \frac{dY}{dt} = 2.0 \times 10^{-6} \cdot (W + 1)^2 \cdot \left( 1 - \frac{Y}{C_3} \right) $$
-</div>
+        <div>$$ \frac{dY}{dt} = 2.0 \times 10^{-6} \cdot (W + 1)^2 \cdot \left( 1 - \frac{Y}{C_3} \right) $$</div>
         <div class="eq-vars">
           <span class="eq-var">Y <span>fractional water content</span></span>
           <span class="eq-var">W <span>wind speed (m/s)</span></span>
@@ -448,14 +452,14 @@ html, body {
         </div>
       </div>
 
-     <div class="eq-card">
+      <!-- EQ 04 -->
+      <div class="eq-card">
         <div class="eq-header">
           <span class="eq-num">EQ 04</span>
           <span class="eq-name">Spreading Area</span>
         </div>
         <p class="eq-desc">The spreading mechanism describes how an oil slick expands on the sea surface after a spill due to gravity, surface tension, and viscosity, provided the oil’s pour point is below seawater temperature, so it remains liquid. It depends on variables such as spill volume (V), slick area (A), density difference (Δρ), and water viscosity (νw). In Fay’s model, larger spills spread faster at first, but the rate slows as the slick area increases, with wind further enhancing spreading.</p>
-        <div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$
-</div>
+        <div>$$ \frac{dA}{dt} = K_1 \cdot A^{-1} \cdot V^{4/3} $$</div>
         <div class="eq-vars">
           <span class="eq-var">A <span>slick area (m²)</span></span>
           <span class="eq-var">V <span>current spill volume</span></span>
@@ -463,14 +467,14 @@ html, body {
         </div>
       </div>
 
-     <div class="eq-card">
+      <!-- EQ 05 -->
+      <div class="eq-card">
         <div class="eq-header">
           <span class="eq-num">EQ 05</span>
           <span class="eq-name">Viscosity Change</span>
         </div>
         <p class="eq-desc">The ODE describes how the viscosity of spilt oil changes over time due to two coupled processes: evaporation and emulsification. The first term shows that as the fraction evaporated increases, light components are lost, making the oil thicker. The second term represents emulsification, where increasing water content (Y) from wind and waves forms a ‘mousse’ also increasing viscosity but limited by the factor (1−C3Y)2. Overall, the equation shows that viscosity grows over time as both evaporation and water uptake act together, making the oil progressively thicker and harder to disperse.</p>
-       <div>$$ \frac{d\mu}{dt} = C_4 \cdot \mu \cdot \left( \frac{dF_E}{dt} \right) + \frac{2.5 \cdot \mu}{(1 - C_3 \cdot Y)^2} \cdot \left( \frac{dY}{dt} \right) $$
-</div>
+        <div>$$ \frac{d\mu}{dt} = C_4 \cdot \mu \cdot \left( \frac{dF_E}{dt} \right) + \frac{2.5 \cdot \mu}{(1 - C_3 \cdot Y)^2} \cdot \left( \frac{dY}{dt} \right) $$</div>
         <div class="eq-vars">
           <span class="eq-var">μ <span>dynamic viscosity (cP)</span></span>
           <span class="eq-var">C₄ <span>evaporation–viscosity coefficient</span></span>
@@ -479,8 +483,8 @@ html, body {
         </div>
       </div>
 
-</div>
-
+    </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
