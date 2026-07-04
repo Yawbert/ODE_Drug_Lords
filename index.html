@@ -400,6 +400,17 @@ html, body {
     <div class="section-label">Mathematical Model</div>
     <h2 class="section-title">The Coupled <span class="accent">ODE System</span></h2>
     <p class="section-body">Each process is described by a differential equation. Because the state variables depend on each other, the five equations form a nonlinearly coupled system solved simultaneously at each time step.</p>
+    <p class="section-body">
+  To establish a comprehensive numerical framework, the authors integrated and adapted several established empirical formulations from historical literature, converting them into a nonlinearly coupled system of ordinary differential equations (ODEs). The physical spreading mechanism relies on a classic Fay-type model—subsequently refined by researchers such as Wang, Lehr, Mackay, Reed, and Spaulding—which was converted into a dynamic differential form suitable for continuous simulation.
+</p>
+<br>
+<p class="section-body">
+  Mass loss through evaporation was incorporated using the Stiver and Mackay analytical method, capturing the interdependent effects of wind velocity, ambient temperature, slick thickness, and specific chemical properties in a time-dependent rate equation. Similarly, the emulsification process was modeled by adapting Mackay’s traditional water incorporation framework into a transient differential form. Finally, the progressive evolution of fluid density and dynamic viscosity was governed by empirical relationships linked directly to the real-time state of evaporation and internal water content.
+</p>
+<br>
+<p class="section-body">
+  Based on this unified framework, the governing system of ODEs was formulated as follows:
+</p>
     
     <!-- Custom styling rule applied locally to enforce a clean single-column layout down the page -->
     <div class="equations-grid" style="display: flex; flex-direction: column; gap: 2rem;">
