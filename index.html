@@ -244,37 +244,41 @@ footer span{color:var(--cyan);}
   .author-reference{flex-direction:row;align-items:flex-start;gap:3rem;}
   .ref-img{max-width:480px;flex-shrink:0;}
 }
-  /* Places the two images side-by-side */
+/* Stacks the two images vertically one under the other */
 .slide-images-wrapper {
   display: flex;
-  gap: 15px; /* Adds space between the two images */
+  flex-direction: column; /* This tells them to stack vertically */
+  gap: 25px; /* Adds breathing room between the top and bottom image */
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-/* Ensures both image containers take up exactly 50% of the space */
+/* Allows each image container to take up the full width */
 .slide-images-wrapper .slide-img {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Keeps the images contained inside their halves */
+/* Keeps the images large and responsive */
 .slide-images-wrapper .slide-img img {
   width: 100%;
   height: auto;
   border-radius: 4px;
+  /* Optional: adds a subtle border so white graphs don't blend into the background */
+  border: 1px solid #eee; 
 }
 
-/* Styling for the tiny text labels under the images */
+/* Styling for the text labels under the images */
 .img-label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #555;
-  margin-top: 5px;
+  margin-top: 8px;
   font-style: italic;
   text-align: center;
+  font-weight: bold;
 }
   /* --- Uniform Math Formula Styles --- */
 .eq-block, 
