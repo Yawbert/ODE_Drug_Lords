@@ -244,6 +244,38 @@ footer span{color:var(--cyan);}
   .author-reference{flex-direction:row;align-items:flex-start;gap:3rem;}
   .ref-img{max-width:480px;flex-shrink:0;}
 }
+  /* Places the two images side-by-side */
+.slide-images-wrapper {
+  display: flex;
+  gap: 15px; /* Adds space between the two images */
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Ensures both image containers take up exactly 50% of the space */
+.slide-images-wrapper .slide-img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Keeps the images contained inside their halves */
+.slide-images-wrapper .slide-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Styling for the tiny text labels under the images */
+.img-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 5px;
+  font-style: italic;
+  text-align: center;
+}
   /* --- Uniform Math Formula Styles --- */
 .eq-block, 
 .method-formula {
@@ -619,17 +651,116 @@ end</code></pre>
   </div>
 </section>
 
-    <div class="carousel-wrap">
+    <section>
+  <div class="carousel-wrap">
       <div class="scroll-hint-h"><span>Scroll horizontally</span><div class="scroll-arrow-h"></div></div>
       <div class="carousel-track" id="authorTrack">
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/figone.jpeg" alt="Evaporation of Different Crude Oils"></div><div class="slide-info"><div class="slide-tag">Evaporation</div><div class="slide-title">Figure 1: Evaporation of Different Crude Oils</div><div class="slide-desc">The figure shows that different crude oils evaporate at different rates due to differences in their composition. Ekofisk has the highest evaporation, while Tia Juana Pesado has the lowest because it is a heavier crude oil. The predicted trends closely match experimental observations reported in the paper, demonstrating that the model can realistically reproduce the evaporation behavior of different crude oils.</div></div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig2.jpeg" alt="Effect of Wind Speed on Evaporation"></div><div class="slide-info"><div class="slide-tag">Wind Speed</div><div class="slide-title">Figure 2: Effect of Wind Speed on Evaporation</div><div class="slide-desc">The figure shows that increasing wind speed increases the evaporation fraction, as stronger winds enhance the removal of volatile hydrocarbons from the oil surface. The model predictions follow the same trend observed in experimental data, validating that wind speed is correctly represented as an important factor influencing oil evaporation.</div></div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig3.jpeg" alt="Effect of Temperature on Evaporation"></div><div class="slide-info"><div class="slide-tag">Temperature</div><div class="slide-title">Figure 3: Effect of Temperature on Evaporation</div><div class="slide-desc">Evaporation increases as temperature rises, consistent with the exponential temperature term in EQ 01.</div></div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig4.jpeg" alt="Oil Volume vs Time"></div><div class="slide-info"><div class="slide-tag">Volume</div><div class="slide-title">Figure 4: Oil Volume vs. Time</div><div class="slide-desc">The figure shows a continuous decrease in oil volume due to the combined effects of evaporation and natural dissipation. According to the authors, the model generally overestimates the volume fraction evaporated, particularly for small spills, because it does not explicitly account for processes such as dispersion and emulsification that also contribute to oil loss. Nevertheless, the predicted trend follows the expected physical behavior of a weathering oil spill.</div></div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig5.jpeg" alt="Water Content vs Time"></div><div class="slide-info"><div class="slide-tag">Water Content</div><div class="slide-title">Figure 5: Water Content vs Time</div><div class="slide-desc">The figure shows that the water content increases rapidly before approaching a limiting value of about 0.7. The authors reported that the model produced good agreement with experimental measurements of water incorporation, although it slightly overestimated the initial rate of emulsification. They attributed this to the assumption of a constant wind speed throughout the simulation, whereas wind conditions vary in real sea environments.</div>
-</div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig6.jpeg" alt="Spill Area vs Time"></div><div class="slide-info"><div class="slide-tag">Area</div><div class="slide-title">Figure 6: Spill Area vs Time</div><div class="slide-desc">Slick area expands rapidly early before approaching a nearly constant value. The model underestimates total area for heavy crudes; the spreading coefficient K1 can be adjusted for calibration.</div></div></div>
-        <div class="carousel-slide"><div class="slide-img"><img src="pics/fig7.jpeg" alt="Viscosity vs Time"></div><div class="slide-info"><div class="slide-tag">Viscosity</div><div class="slide-title">Figure 7: Viscosity vs. Time</div><div class="slide-desc">The figure shows that viscosity increases rapidly during the initial weathering period before gradually stabilizing. The authors noted that the model generally overestimates the viscosity because it combines the effects of evaporation and water uptake using an empirical relationship. Despite this limitation, the predicted viscosity trend follows the expected behavior of weathering crude oil and compares reasonably well with experimental observations after calibration.</div></div></div>
+        
+        <!-- SLIDE 1 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/figone.jpeg" alt="Evaporation of Different Crude Oils">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/frac_ev_vol.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Evaporation</div><div class="slide-title">Figure 1: Evaporation of Different Crude Oils</div><div class="slide-desc">The figure shows that different crude oils evaporate at different rates due to differences in their composition. Ekofisk has the highest evaporation, while Tia Juana Pesado has the lowest because it is a heavier crude oil. The predicted trends closely match experimental observations reported in the paper, demonstrating that the model can realistically reproduce the evaporation behavior of different crude oils.</div></div>
+        </div>
+        
+        <!-- SLIDE 2 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig2.jpeg" alt="Effect of Wind Speed on Evaporation">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/frac_ev_vol_2.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Wind Speed</div><div class="slide-title">Figure 2: Effect of Wind Speed on Evaporation</div><div class="slide-desc">The figure shows that increasing wind speed increases the evaporation fraction, as stronger winds enhance the removal of volatile hydrocarbons from the oil surface. The model predictions follow the same trend observed in experimental data, validating that wind speed is correctly represented as an important factor influencing oil evaporation.</div></div>
+        </div>
+        
+        <!-- SLIDE 3 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig3.jpeg" alt="Effect of Temperature on Evaporation">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/temp_fr@c.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Temperature</div><div class="slide-title">Figure 3: Effect of Temperature on Evaporation</div><div class="slide-desc">Evaporation increases as temperature rises, consistent with the exponential temperature term in EQ 01.</div></div>
+        </div>
+        
+        <!-- SLIDE 4 (Commented out) -->
+        <!--<div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig4.jpeg" alt="Oil Volume vs Time">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/original_placeholder.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Volume</div><div class="slide-title">Figure 4: Oil Volume vs. Time</div><div class="slide-desc">The figure shows a continuous decrease in oil volume due to the combined effects of evaporation and natural dissipation. According to the authors, the model generally overestimates the volume fraction evaporated, particularly for small spills, because it does not explicitly account for processes such as dispersion and emulsification that also contribute to oil loss. Nevertheless, the predicted trend follows the expected physical behavior of a weathering oil spill.</div></div>
+        </div>-->
+        
+        <!-- SLIDE 4 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig4.jpeg" alt="Water Content vs Time">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/wtr_content.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Water Content</div><div class="slide-title">Figure 4: Water Content vs Time</div><div class="slide-desc">The figure shows that the water content increases rapidly before approaching a limiting value of about 0.7. The authors reported that the model produced good agreement with experimental measurements of water incorporation, although it slightly overestimated the initial rate of emulsification. They attributed this to the assumption of a constant wind speed throughout the simulation, whereas wind conditions vary in real sea environments.</div></div>
+        </div>
+        
+        <!-- SLIDE 5 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig6.jpeg" alt="Spill Area vs Time">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/@re@.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Area</div><div class="slide-title">Figure 6: Spill Area vs Time</div><div class="slide-desc">Slick area expands rapidly early before approaching a nearly constant value. The model underestimates total area for heavy crudes; the spreading coefficient K1 can be adjusted for calibration.</div></div>
+        </div>
+        
+        <!-- SLIDE 6 -->
+        <div class="carousel-slide">
+          <div class="slide-images-wrapper">
+            <div class="slide-img">
+              <img src="pics/fig7.jpeg" alt="Viscosity vs Time">
+              <span class="img-label">Our Replicated Graph</span>
+            </div>
+            <div class="slide-img">
+              <img src="pics/viscosity.jpeg" alt="Original Paper Screenshot Placeholder">
+              <span class="img-label">Original Paper Graph</span>
+            </div>
+          </div>
+          <div class="slide-info"><div class="slide-tag">Viscosity</div><div class="slide-title">Figure 6: Viscosity vs. Time</div><div class="slide-desc">The figure shows that viscosity increases rapidly during the initial weathering period before gradually stabilizing. The authors noted that the model generally overestimates the viscosity because it combines the effects of evaporation and water uptake using an empirical relationship. Despite this limitation, the predicted viscosity trend follows the expected behavior of weathering crude oil and compares reasonably well with experimental observations after calibration.</div></div>
+        </div>
+        
       </div>
       <div class="carousel-controls">
         <button class="carousel-btn" id="authorPrev">&#8592;</button>
