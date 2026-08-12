@@ -266,7 +266,7 @@ footer span{color:var(--cyan);}
   width: 100%;
   height: auto;
   border-radius: 4px;
-  /* Optional: adds a subtle border so white graphs don't blend into the background */
+ 
   border: 1px solid #eee; 
 }
 
@@ -345,6 +345,7 @@ html, body {
     <li><a href="#methods">Methods</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#error">Error Analysis</a></li>
+    <li><a href="#por">Parameter Sensitivity</a></li>
     <li><a href="#literature">Literature</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
@@ -1004,16 +1005,82 @@ x0=[FE0;V0;Y0;A0;mu0];
 
     </div>
     
-    <!-- Optional: Carousel controls if you want arrows for this slider -->
+
+  </div>
+</section>
+<!-- PARAMETER SENSITIVITY -->
+<section id="por" style="background:var(--navy);">
+  <div class="container">
+    <div class="section-label">System Dynamics</div>
+    <h2 class="section-title">Parameter <span class="accent">Sensitivity</span></h2>
+    <p class="section-body">This section focuses on varying one parameter while the other parameters were kept at or returned to their baseline values[cite: 1]. This made it possible to observe the individual influence of each parameter on oil spill behavior[cite: 1].</p>
+    <br>
+    <p class="section-body">Wind speed was varied at $W = 3$, $5$, and $8$[cite: 1]. The results show that wind has a strong influence on evaporation, oil volume, water content, spill area, and viscosity[cite: 1]. The implication is that wind is one of the most important environmental parameters in oil spill modelling, especially for predicting how quickly the oil weathers and spreads[cite: 1].</p>
+  </div>
+
+  <!-- SENSITIVITY CAROUSEL -->
+  <div class="carousel-wrap" style="padding:0 1.25rem;">
+    <div class="scroll-hint-h"><span>Scroll horizontally</span><div class="scroll-arrow-h"></div></div>
+    <div class="carousel-track" id="sensitivityTrack">
+      
+      <!-- SLIDE 1: Evaporation -->
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="pics/por_one.png" alt="Wind Sensitivity on Evaporation"></div>
+        <div class="slide-info">
+          <div class="slide-tag">Wind Speed</div>
+          <div class="slide-title">Sensitivity on Evaporation</div>
+          <div class="slide-desc">As wind speed increases, the evaporation fraction increases because stronger wind enhances mass transfer from the oil surface to the atmosphere[cite: 1].</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Volume -->
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="pics/por_two.png" alt="Wind Sensitivity on Oil Volume"></div>
+        <div class="slide-info">
+          <div class="slide-tag">Wind Speed</div>
+          <div class="slide-title">Sensitivity on Oil Volume</div>
+          <div class="slide-desc">The increased evaporation caused by stronger winds leads to a faster reduction in overall oil volume over time[cite: 1].</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Water Content -->
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="pics/por_three.png" alt="Wind Sensitivity on Water Content"></div>
+        <div class="slide-info">
+          <div class="slide-tag">Wind Speed</div>
+          <div class="slide-title">Sensitivity on Water Content</div>
+          <div class="slide-desc">Wind increases the water content of the oil because the emulsification term depends on $(W+ 1)^2$[cite: 1]. Higher wind speeds promote faster mixing of water into the oil[cite: 1].</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Spill Area -->
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="pics/por_four.png" alt="Wind Sensitivity on Spill Area"></div>
+        <div class="slide-info">
+          <div class="slide-tag">Wind Speed</div>
+          <div class="slide-title">Sensitivity on Spill Area</div>
+          <div class="slide-desc">The mechanical forcing of higher wind speeds significantly accelerates the expansion of the spill area across the surface[cite: 1].</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: Viscosity -->
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="pics/por_five.png" alt="Wind Sensitivity on Viscosity"></div>
+        <div class="slide-info">
+          <div class="slide-tag">Wind Speed</div>
+          <div class="slide-title">Sensitivity on Viscosity</div>
+          <div class="slide-desc">Because viscosity increases as evaporation and water content increase, higher wind speeds indirectly cause the oil to become significantly thicker and more resistant[cite: 1].</div>
+        </div>
+      </div>
+
+    </div>
+    
     <div class="carousel-controls">
-      <button class="carousel-btn" id="errorPrev">&#8592;</button>
-      <button class="carousel-btn" id="errorNext">&#8594;</button>
+      <button class="carousel-btn" id="sensPrev">&#8592;</button>
+      <button class="carousel-btn" id="sensNext">&#8594;</button>
     </div>
   </div>
 </section>
-<div class="section-divider"></div>
-        </section>
-      
 <div class="section-divider"></div>
 <!-- LITERATURE -->
 <section id="literature" style="background:var(--deep);">
