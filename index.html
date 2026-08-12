@@ -933,9 +933,9 @@ x0=[FE0;V0;Y0;A0;mu0];
   <div class="container">
     <div class="section-label">Numerical Validation</div>
     <h2 class="section-title">Error <span class="accent">Analysis</span></h2>
-    <p class="section-body">Since a complete analytical solution could not be obtained for the coupled nonlinear system, the benchmark for our error analysis was taken as the numerical solution generated using MATLAB’s ode45[cite: 1]. The ode45 algorithm is an adaptive Runge-Kutta method that automatically adjusts its time step to satisfy prescribed error tolerances[cite: 1].</p>
+    <p class="section-body">Since a complete analytical solution could not be obtained for the coupled nonlinear system, the benchmark for our error analysis was taken as the numerical solution generated using MATLAB’s ode45. The ode45 algorithm is an adaptive Runge-Kutta method that automatically adjusts its time step to satisfy prescribed error tolerances.</p>
     <br>
-    <p class="section-body">For each state variable, the absolute numerical error ($E_a$) was computed as the absolute difference between the solution obtained from a numerical method and the corresponding ode45 solution at the same time instant[cite: 1]:</p>
+    <p class="section-body">For each state variable, the absolute numerical error ($E_a$) was computed as the absolute difference between the solution obtained from a numerical method and the corresponding ode45 solution at the same time instant:</p>
     
     <!-- Equation Block -->
     <div class="eq-card" style="margin-top: 1.5rem; max-width: 600px;">
@@ -944,7 +944,7 @@ x0=[FE0;V0;Y0;A0;mu0];
       </div>
     </div>
     <br>
-    <p class="section-body">In all instances, it is clear that the solutions derived from the fourth-order Runge-Kutta method remain in close agreement with the reference solution, with the error remaining almost negligible throughout the simulation[cite: 1]. In contrast, the forward Euler method exhibits noticeably larger errors, particularly during the early stages of the simulation[cite: 1].</p>
+    <p class="section-body">In all instances, it is clear that the solutions derived from the fourth-order Runge-Kutta method remain in close agreement with the reference solution, with the error remaining almost negligible throughout the simulation. In contrast, the forward Euler method exhibits noticeably larger errors, particularly during the early stages of the simulation.</p>
   </div>
 
   <!-- ERROR CAROUSEL -->
@@ -958,7 +958,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Evaporation Fraction Error</div>
-          <div class="slide-desc">The evaporation fraction exhibits comparatively smaller deviations from the reference solution[cite: 1]. The RK4 method consistently provides a closer approximation to the reference solution than the forward Euler method[cite: 1].</div>
+          <div class="slide-desc">The evaporation fraction exhibits comparatively smaller deviations from the reference solution. The RK4 method consistently provides a closer approximation to the reference solution than the forward Euler method.</div>
         </div>
       </div>
 
@@ -968,7 +968,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Oil Volume Error</div>
-          <div class="slide-desc">The largest deviations occur in the spill area and oil volume solutions, where the error increases rapidly before decreasing as the oil spill evolves[cite: 1].</div>
+          <div class="slide-desc">Some of the largest deviations occur in the spill area and oil volume solutions, where the error increases rapidly before decreasing as the oil spill evolves.</div>
         </div>
       </div>
 
@@ -978,7 +978,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Water Content Error</div>
-          <div class="slide-desc">The water-content equation produces the smallest error because it is the only weakly coupled equation within the system, unlike the others[cite: 1].</div>
+          <div class="slide-desc">The water-content equation produces the smallest error because it is the only weakly coupled equation within the system, unlike the others.</div>
         </div>
       </div>
 
@@ -988,7 +988,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Spill Area Error</div>
-          <div class="slide-desc">Alongside oil volume, the forward Euler method exhibits noticeably larger errors for the spill area during the early stages of the simulation[cite: 1].</div>
+          <div class="slide-desc">Alongside oil volume, the forward Euler method exhibits noticeably larger errors for the spill area during the early stages of the simulation.</div>
         </div>
       </div>
 
@@ -998,7 +998,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Viscosity Error</div>
-          <div class="slide-desc">Viscosity exhibits comparatively smaller deviations from the reference solution[cite: 1]. The fourth-order accuracy of the RK4 method substantially reduces truncation error[cite: 1].</div>
+          <div class="slide-desc">Viscosity exhibits comparatively smaller deviations from the reference solution. The fourth-order accuracy of the RK4 method substantially reduces truncation error.</div>
         </div>
       </div>
 
