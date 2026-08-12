@@ -41,7 +41,46 @@ nav.topnav{
   padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);
 }
 .nav-logo{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--cyan);letter-spacing:.05em;white-space:nowrap;}
-.nav-links{display:flex;gap:1.4rem;list-style:none;align-items:center;}
+
+/* --- THE HORIZONTAL SCROLL "BLOWOUT" TRICK --- */
+.nav-links{
+  display:flex;
+  gap:1.4rem;
+  list-style:none;
+  align-items:center;
+  
+  /* Make the container scrollable instead of squishing the text */
+  overflow-x:auto;
+  white-space:nowrap;
+  
+  /* Hide the ugly scrollbars but keep the functionality */
+  scrollbar-width:none; /* Firefox */
+  -ms-overflow-style:none; /* IE and Edge */
+  
+  /* Smooth momentum scrolling for trackpads and touch */
+  -webkit-overflow-scrolling:touch; 
+  scroll-behavior:smooth;
+  
+  /* Protect the logo: forces the links to stop expanding at a certain width */
+  max-width:calc(100vw - 200px); 
+  
+  /* The magic touch: a sleek fade-out gradient on the right edge so text doesn't sharply cut off */
+  -webkit-mask-image:linear-gradient(to right, black 85%, transparent 100%);
+  mask-image:linear-gradient(to right, black 85%, transparent 100%);
+  
+  padding-right:2.5rem; /* Gives the last item breathing room when scrolled all the way */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.nav-links::-webkit-scrollbar {
+  display:none;
+}
+
+/* Force the individual list items to NEVER shrink */
+.nav-links li {
+  flex-shrink:0;
+}
+
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.76rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
 .nav-links a:hover,.nav-links a.active{color:var(--cyan);}
 
@@ -64,7 +103,6 @@ nav.topnav{
 .nav-drawer a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.05);transition:color .2s;}
 .nav-drawer a:last-child{border-bottom:none;}
 .nav-drawer a:hover{color:var(--cyan);}
-
 /* ─── HERO ─── */
 #hero{position:relative;height:100svh;min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center;padding-top:var(--nav-h);}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;}
@@ -1227,7 +1265,7 @@ x0=[FE0;V0;Y0;A0;mu0];
     </div>
   </div>
 </section>
-<div class="section-divider"></div>
+<div class="section-divider"></div> -->
 <!-- LITERATURE -->
 <section id="literature" style="background:var(--deep);">
   <div class="container">
