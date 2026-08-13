@@ -1,2 +1,2 @@
 # ODE_Drug_Lords
-Website for our Differential Euation project
+Website for our Differential Equation project
