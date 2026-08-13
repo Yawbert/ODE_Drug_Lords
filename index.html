@@ -776,9 +776,9 @@ x0=[FE0;V0;Y0;A0;mu0];
   <div class="container">
     <div class="section-label">Numerical Validation</div>
     <h2 class="section-title">Error <span class="accent">Analysis</span></h2>
-    <p class="section-body">Since a complete analytical solution could not be obtained for the coupled nonlinear system, the benchmark for our error analysis was taken as the numerical solution generated using MATLAB’s ode45[cite: 1]. The ode45 algorithm is an adaptive Runge-Kutta method that automatically adjusts its time step to satisfy prescribed error tolerances[cite: 1].</p>
+    <p class="section-body">Since a complete analytical solution could not be obtained for the coupled nonlinear system, the benchmark for our error analysis was taken as the numerical solution generated using MATLAB’s ode45. The ode45 algorithm is an adaptive Runge-Kutta method that automatically adjusts its time step to satisfy prescribed error tolerances.</p>
     <br>
-    <p class="section-body">For each state variable, the absolute numerical error ($E_a$) was computed as the absolute difference between the solution obtained from a numerical method and the corresponding ode45 solution at the same time instant[cite: 1]:</p>
+    <p class="section-body">For each state variable, the absolute numerical error ($E_a$) was computed as the absolute difference between the solution obtained from a numerical method and the corresponding ode45 solution at the same time instant:</p>
     
     <div class="eq-card" style="margin-top: 1.5rem; max-width: 600px;">
       <div class="eq-block" style="margin: 0;">
@@ -786,7 +786,7 @@ x0=[FE0;V0;Y0;A0;mu0];
       </div>
     </div>
     <br>
-    <p class="section-body">In all instances, it is clear that the solutions derived from the fourth-order Runge-Kutta method remain in close agreement with the reference solution, with the error remaining almost negligible throughout the simulation[cite: 1]. In contrast, the forward Euler method exhibits noticeably larger errors, particularly during the early stages of the simulation[cite: 1].</p>
+    <p class="section-body">In all instances, it is clear that the solutions derived from the fourth-order Runge-Kutta method remain in close agreement with the reference solution, with the error remaining almost negligible throughout the simulation. In contrast, the forward Euler method exhibits noticeably larger errors, particularly during the early stages of the simulation.</p>
   </div>
 
   <div class="carousel-wrap" style="padding:0 1.25rem;">
@@ -797,7 +797,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Evaporation Fraction Error</div>
-          <div class="slide-desc">The evaporation fraction exhibits comparatively smaller deviations from the reference solution[cite: 1]. The RK4 method consistently provides a closer approximation to the reference solution than the forward Euler method[cite: 1].</div>
+          <div class="slide-desc">The evaporation fraction exhibits comparatively smaller deviations from the reference solution. The RK4 method consistently provides a closer approximation to the reference solution than the forward Euler method.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -805,7 +805,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Oil Volume Error</div>
-          <div class="slide-desc">The largest deviations occur in the spill area and oil volume solutions, where the error increases rapidly before decreasing as the oil spill evolves[cite: 1].</div>
+          <div class="slide-desc">The largest deviations occur in the spill area and oil volume solutions, where the error increases rapidly before decreasing as the oil spill evolves.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -813,7 +813,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Water Content Error</div>
-          <div class="slide-desc">The water-content equation produces the smallest error because it is the only weakly coupled equation within the system, unlike the others[cite: 1].</div>
+          <div class="slide-desc">The water-content equation produces the smallest error because it is the only weakly coupled equation within the system, unlike the others.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -821,7 +821,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Spill Area Error</div>
-          <div class="slide-desc">Alongside oil volume, the forward Euler method exhibits noticeably larger errors for the spill area during the early stages of the simulation[cite: 1].</div>
+          <div class="slide-desc">Alongside oil volume, the forward Euler method exhibits noticeably larger errors for the spill area during the early stages of the simulation.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -829,7 +829,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Error Analysis</div>
           <div class="slide-title">Viscosity Error</div>
-          <div class="slide-desc">Viscosity exhibits comparatively smaller deviations from the reference solution[cite: 1]. The fourth-order accuracy of the RK4 method substantially reduces truncation error[cite: 1].</div>
+          <div class="slide-desc">Viscosity exhibits comparatively smaller deviations from the reference solution. The fourth-order accuracy of the RK4 method substantially reduces truncation error.</div>
         </div>
       </div>
     </div>
@@ -847,12 +847,12 @@ x0=[FE0;V0;Y0;A0;mu0];
   <div class="container">
     <div class="section-label">System Dynamics</div>
     <h2 class="section-title">Parameter <span class="accent">Sensitivity</span></h2>
-    <p class="section-body">This section focuses on varying one parameter while the other parameters were kept at or returned to their baseline values[cite: 1]. This made it possible to observe the individual influence of each parameter on oil spill behavior[cite: 1].</p>
+    <p class="section-body">This section focuses on varying one parameter while the other parameters were kept at or returned to their baseline values. This made it possible to observe the individual influence of each parameter on oil spill behavior.</p>
   </div>
 
   <div class="container" style="margin-top: 3.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">1. Wind Speed ($W$)</h3>
-    <p class="section-body">Wind speed was varied at $W = 3$, $5$, and $8$[cite: 1]. The results show that wind has a strong influence on evaporation, oil volume, water content, spill area, and viscosity[cite: 1]. The implication is that wind is one of the most important environmental parameters in oil spill modelling, especially for predicting how quickly the oil weathers and spreads[cite: 1].</p>
+    <p class="section-body">Wind speed was varied at $W = 3$, $5$, and $8$. The results show that wind has a strong influence on evaporation, oil volume, water content, spill area, and viscosity. The implication is that wind is one of the most important environmental parameters in oil spill modelling, especially for predicting how quickly the oil weathers and spreads.</p>
   </div>
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="scroll-hint-h"><span>Scroll horizontally</span><div class="scroll-arrow-h"></div></div>
@@ -861,35 +861,35 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-img"><img src="pics/por_one.png" alt="Wind Sensitivity on Evaporation"></div>
         <div class="slide-info">
           <div class="slide-tag">Wind Speed</div><div class="slide-title">Sensitivity on Evaporation</div>
-          <div class="slide-desc">As wind speed increases, the evaporation fraction increases because stronger wind enhances mass transfer from the oil surface to the atmosphere[cite: 1].</div>
+          <div class="slide-desc">As wind speed increases, the evaporation fraction increases because stronger wind enhances mass transfer from the oil surface to the atmosphere.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/por_two.png" alt="Wind Sensitivity on Oil Volume"></div>
         <div class="slide-info">
           <div class="slide-tag">Wind Speed</div><div class="slide-title">Sensitivity on Oil Volume</div>
-          <div class="slide-desc">This leads to a faster reduction in oil volume[cite: 1].</div>
+          <div class="slide-desc">This leads to a faster reduction in oil volume.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/por_three.png" alt="Wind Sensitivity on Water Content"></div>
         <div class="slide-info">
           <div class="slide-tag">Wind Speed</div><div class="slide-title">Sensitivity on Water Content</div>
-          <div class="slide-desc">Wind also increases the water content of the oil because the emulsification term depends on $(W+ 1)^2$[cite: 1]. Therefore, higher wind speeds promote faster mixing of water into the oil[cite: 1].</div>
+          <div class="slide-desc">Wind also increases the water content of the oil because the emulsification term depends on $(W+ 1)^2$. Therefore, higher wind speeds promote faster mixing of water into the oil.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/por_four.png" alt="Wind Sensitivity on Spill Area"></div>
         <div class="slide-info">
           <div class="slide-tag">Wind Speed</div><div class="slide-title">Sensitivity on Spill Area</div>
-          <div class="slide-desc">The physical spreading of the spill area is dramatically increased by the mechanical forcing of higher winds[cite: 1].</div>
+          <div class="slide-desc">The physical spreading of the spill area is dramatically increased by the mechanical forcing of higher winds.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/por_five.png" alt="Wind Sensitivity on Viscosity"></div>
         <div class="slide-info">
           <div class="slide-tag">Wind Speed</div><div class="slide-title">Sensitivity on Viscosity</div>
-          <div class="slide-desc">This affects viscosity, since viscosity increases as evaporation and water content increase[cite: 1].</div>
+          <div class="slide-desc">This affects viscosity, since viscosity increases as evaporation and water content increase.</div>
         </div>
       </div>
     </div>
@@ -901,7 +901,7 @@ x0=[FE0;V0;Y0;A0;mu0];
 
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">2. Temperature ($T$)</h3>
-    <p class="section-body">Temperature was varied at $T = 273.15$ K, $283.15$ K, and $303.15$ K[cite: 1]. The temperature sensitivity plots focused on evaporation fraction and oil volume[cite: 1]. The model shows that higher temperature increases the evaporation rate[cite: 1]. This occurs because the evaporation equation contains a temperature-dependent exponential term[cite: 1].</p>
+    <p class="section-body">Temperature was varied at $T = 273.15$ K, $283.15$ K, and $303.15$ K. The temperature sensitivity plots focused on evaporation fraction and oil volume. The model shows that higher temperature increases the evaporation rate. This occurs because the evaporation equation contains a temperature-dependent exponential term.</p>
   </div>
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="carousel-track" id="sensTempTrack">
@@ -909,14 +909,14 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-img"><img src="pics/sens_temp_evap.png" alt="Temperature Sensitivity on Evaporation"></div>
         <div class="slide-info">
           <div class="slide-tag">Temperature</div><div class="slide-title">Sensitivity on Evaporation</div>
-          <div class="slide-desc">At higher temperatures, lighter oil components evaporate more rapidly, causing the evaporation fraction to rise faster[cite: 1]. At lower temperature, evaporation is slower and the oil remains on the water surface for a longer period[cite: 1].</div>
+          <div class="slide-desc">At higher temperatures, lighter oil components evaporate more rapidly, causing the evaporation fraction to rise faster. At lower temperature, evaporation is slower and the oil remains on the water surface for a longer period.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/sens_temp_vol.png" alt="Temperature Sensitivity on Oil Volume"></div>
         <div class="slide-info">
           <div class="slide-tag">Temperature</div><div class="slide-title">Sensitivity on Oil Volume</div>
-          <div class="slide-desc">As a result, oil volume decreases more quickly[cite: 1]. This means oil spills in warmer environments may lose volatile components faster, while spills in colder environments may persist longer[cite: 1].</div>
+          <div class="slide-desc">As a result, oil volume decreases more quickly. This means oil spills in warmer environments may lose volatile components faster, while spills in colder environments may persist longer.</div>
         </div>
       </div>
     </div>
@@ -928,7 +928,7 @@ x0=[FE0;V0;Y0;A0;mu0];
 
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">3. Spreading Coefficient ($K_1$)</h3>
-    <p class="section-body">The parameter $K_1$ was varied at $100$, $150$, and $200$ to study its effect on spill area[cite: 1]. The result shows that increasing $K_1$ increases the rate of spill spreading[cite: 1]. This is expected because the area equation is directly proportional to $K_1$[cite: 1].</p>
+    <p class="section-body">The parameter $K_1$ was varied at $100$, $150$, and $200$ to study its effect on spill area. The result shows that increasing $K_1$ increases the rate of spill spreading. This is expected because the area equation is directly proportional to $K_1$.</p>
   </div>
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="carousel-track" id="sensK1Track">
@@ -936,7 +936,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-img"><img src="pics/sens_k1_area.png" alt="K1 Sensitivity on Spill Area"></div>
         <div class="slide-info">
           <div class="slide-tag">Spreading Constant</div><div class="slide-title">Sensitivity on Spill Area</div>
-          <div class="slide-desc">The direct proportionality dictates that larger assigned coefficients will inherently yield a much wider eventual dispersion area[cite: 1].</div>
+          <div class="slide-desc">The direct proportionality dictates that larger assigned coefficients will inherently yield a much wider eventual dispersion area.</div>
         </div>
       </div>
     </div>
@@ -944,7 +944,7 @@ x0=[FE0;V0;Y0;A0;mu0];
 
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">4. Water Content Coefficient ($C_3$)</h3>
-    <p class="section-body">The parameter $C_3$ was varied using values $0.5$, $0.7$, and $0.8$[cite: 1]. This parameter controls the limiting behavior of water uptake in the oil[cite: 1]. The results show that higher $C_3$ allows greater water content to develop before the emulsification term slows down[cite: 1].</p>
+    <p class="section-body">The parameter $C_3$ was varied using values $0.5$, $0.7$, and $0.8$. This parameter controls the limiting behavior of water uptake in the oil. The results show that higher $C_3$ allows greater water content to develop before the emulsification term slows down.</p>
   </div>
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="carousel-track" id="sensC3Track">
@@ -952,14 +952,14 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-img"><img src="pics/sens_c3_water.png" alt="C3 Sensitivity on Water Content"></div>
         <div class="slide-info">
           <div class="slide-tag">Mousse Limit</div><div class="slide-title">Sensitivity on Water Content</div>
-          <div class="slide-desc">A larger $C_3$ generally permits more water incorporation, increasing emulsion formation and causing the oil to become more viscous[cite: 1].</div>
+          <div class="slide-desc">A larger $C_3$ generally permits more water incorporation, increasing emulsion formation and causing the oil to become more viscous.</div>
         </div>
       </div>
       <div class="carousel-slide">
         <div class="slide-img"><img src="pics/sens_c3_visc.png" alt="C3 Sensitivity on Viscosity"></div>
         <div class="slide-info">
           <div class="slide-tag">Mousse Limit</div><div class="slide-title">Sensitivity on Viscosity</div>
-          <div class="slide-desc">Since viscosity depends partly on water content, changes in $C_3$ also affect viscosity[cite: 1]. This is important because highly emulsified oil is more difficult to disperse, recover, or clean from the water surface[cite: 1].</div>
+          <div class="slide-desc">Since viscosity depends partly on water content, changes in $C_3$ also affect viscosity. This is important because highly emulsified oil is more difficult to disperse, recover, or clean from the water surface.</div>
         </div>
       </div>
     </div>
@@ -971,7 +971,7 @@ x0=[FE0;V0;Y0;A0;mu0];
 
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">5. Viscosity Coefficient ($C_4$)</h3>
-    <p class="section-body">The parameter $C_4$ was varied at $0.3$, $0.5$, and $1.0$ to examine its effect on viscosity[cite: 1]. The result shows that viscosity is highly sensitive to $C_4$[cite: 1]. This is because $C_4$ directly controls the contribution of evaporation to viscosity increase[cite: 1].</p>
+    <p class="section-body">The parameter $C_4$ was varied at $0.3$, $0.5$, and $1.0$ to examine its effect on viscosity. The result shows that viscosity is highly sensitive to $C_4$. This is because $C_4$ directly controls the contribution of evaporation to viscosity increase.</p>
   </div>
   <div class="carousel-wrap" style="padding:0 1.25rem;">
     <div class="carousel-track" id="sensC4Track">
@@ -979,7 +979,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-img"><img src="pics/sens_c4_visc.png" alt="C4 Sensitivity on Viscosity"></div>
         <div class="slide-info">
           <div class="slide-tag">Evap-Viscosity Limit</div><div class="slide-title">Sensitivity on Viscosity</div>
-          <div class="slide-desc">When $C_4$ is increased, viscosity rises more rapidly[cite: 1]. This implies that oils with stronger viscosity response to weathering will become thicker and more resistant to natural dispersion or mechanical recovery[cite: 1]. Therefore, accurate estimation of $C_4$ is important when modelling oil weathering[cite: 1].</div>
+          <div class="slide-desc">When $C_4$ is increased, viscosity rises more rapidly. This implies that oils with stronger viscosity response to weathering will become thicker and more resistant to natural dispersion or mechanical recovery. Therefore, accurate estimation of $C_4$ is important when modelling oil weathering.</div>
         </div>
       </div>
     </div>
@@ -993,7 +993,7 @@ x0=[FE0;V0;Y0;A0;mu0];
   <div class="container">
     <div class="section-label">Data Visualizations</div>
     <h2 class="section-title">Time-Series <span class="accent">Plots</span></h2>
-    <p class="section-body">To support our numerical simulation results, several visualization techniques were implemented in MATLAB[cite: 1]. The primary visualization involved plotting the evolution of the five state variables of the oil spill model against time[cite: 1].</p>
+    <p class="section-body">To support our numerical simulation results, several visualization techniques were implemented in MATLAB. The primary visualization involved plotting the evolution of the five state variables of the oil spill model against time.</p>
   </div>
 
   <div class="carousel-wrap" style="padding:0 1.25rem; margin-top: 2rem;">
@@ -1004,7 +1004,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Spill Area</div>
           <div class="slide-title">Area Growth Over Time</div>
-          <div class="slide-desc">Spill area expands rapidly at first, then slows as oil volume drops[cite: 1].</div>
+          <div class="slide-desc">Spill area expands rapidly at first, then slows as oil volume drops.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -1012,7 +1012,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Evaporation</div>
           <div class="slide-title">Evaporation Over Time</div>
-          <div class="slide-desc">Evaporation starts quickly with lighter hydrocarbons, then slows as they diminish[cite: 1].</div>
+          <div class="slide-desc">Evaporation starts quickly with lighter hydrocarbons, then slows as they diminish.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -1020,7 +1020,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Volume</div>
           <div class="slide-title">Remaining Surface Volume</div>
-          <div class="slide-desc">Oil volume decreases steadily due to evaporation and weathering[cite: 1].</div>
+          <div class="slide-desc">Oil volume decreases steadily due to evaporation and weathering.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -1028,7 +1028,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Water Content</div>
           <div class="slide-title">Emulsification Process</div>
-          <div class="slide-desc">Water content rises through emulsification until saturation[cite: 1].</div>
+          <div class="slide-desc">Water content rises through emulsification until saturation.</div>
         </div>
       </div>
       <div class="carousel-slide">
@@ -1036,7 +1036,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="slide-info">
           <div class="slide-tag">Viscosity</div>
           <div class="slide-title">Viscosity Over Time</div>
-          <div class="slide-desc">Viscosity increases as lighter components evaporate and water mixes in[cite: 1].</div>
+          <div class="slide-desc">Viscosity increases as lighter components evaporate and water mixes in.</div>
         </div>
       </div>
     </div>
@@ -1065,28 +1065,28 @@ x0=[FE0;V0;Y0;A0;mu0];
 
       <div>
         <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:.65rem;color:var(--white);">Autonomous Oil Recovery Skimmer</h3>
-        <p class="section-body">Our engineering adaptation focuses on using this oceanic oil spill ODE model to envision a mechanical framework for an Oil Recovery Skimmer that can run autonomously[cite: 1]. While the research predicts oil slick behaviour theoretically, our engineering adaptation connects its theory to physical applications, to design the practical physical pumping and containment mechanism of the Mechanical Oil Skimmer, to extract these oil slicks from the ocean’s surface[cite: 1].</p>
+        <p class="section-body">Our engineering adaptation focuses on using this oceanic oil spill ODE model to envision a mechanical framework for an Oil Recovery Skimmer that can run autonomously. While the research predicts oil slick behaviour theoretically, our engineering adaptation connects its theory to physical applications, to design the practical physical pumping and containment mechanism of the Mechanical Oil Skimmer, to extract these oil slicks from the ocean’s surface.</p>
         <br>
-        <p class="section-body">The changing viscosity ($\mu$) and oil volume ($V$) will dictate the physical load limits, required suction force, and material requirements needed to make this Skimmer[cite: 1]. To fit into real-world applications, the theoretical model must be adapted to empirical constraints:</p>
+        <p class="section-body">The changing viscosity ($\mu$) and oil volume ($V$) will dictate the physical load limits, required suction force, and material requirements needed to make this Skimmer. To fit into real-world applications, the theoretical model must be adapted to empirical constraints:</p>
         <ul class="process-list" style="margin-top: 1rem;">
-          <li><span class="process-num">01</span><div><div class="process-name">Confined Area</div><p>The unbounded Oil Slick Area ($A$) must be modified to represent the confined zone that the mechanical skimmer can capture at a time[cite: 1].</p></div></li>
-          <li><span class="process-num">02</span><div><div class="process-name">Empirical Calibration</div><p>Generalised constraints for emulsification and evaporation are replaced with local raw experimental data from a physical wave tank, feeding into the MATLAB script to calibrate the exact viscosity curve[cite: 1].</p></div></li>
-          <li><span class="process-num">03</span><div><div class="process-name">Hardware Design</div><p>Physical load parameters, specifically the peak viscosity ($\mu_{max}$), determine the design of functional parts (e.g., impeller) and the pump motor’s torque required to prevent mechanical failure when processing thick oil mousse[cite: 1].</p></div></li>
+          <li><span class="process-num">01</span><div><div class="process-name">Confined Area</div><p>The unbounded Oil Slick Area ($A$) must be modified to represent the confined zone that the mechanical skimmer can capture at a time.</p></div></li>
+          <li><span class="process-num">02</span><div><div class="process-name">Empirical Calibration</div><p>Generalised constraints for emulsification and evaporation are replaced with local raw experimental data from a physical wave tank, feeding into the MATLAB script to calibrate the exact viscosity curve.</p></div></li>
+      <li><span class="process-num">03</span><div><div class="process-name">Hardware Design</div><p>Physical load parameters, specifically the peak viscosity ($\mu_{max}$), determine the design of functional parts (e.g., impeller) and the pump motor’s torque required to prevent mechanical failure when processing thick oil mousse.</p></div></li>
         </ul>
       </div>
     </div>
 
     <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 3rem;">
         <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">System Feasibility & Failure Modes</h3>
-        <p class="section-body">This Mechanical Skimmer must also be evaluated for feasibility and considered for possible failures[cite: 1]:</p>
+        <p class="section-body">This Mechanical Skimmer must also be evaluated for feasibility and considered for possible failures:</p>
         <div class="two-col" style="margin-top: 1.5rem; gap: 2rem;">
             <div>
                 <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Computational Power</h4>
-                <p class="section-body" style="font-size: 0.9rem;">The RK4 solver constantly recalculates the fluid’s changing viscosity, which requires onboard computational power[cite: 1]. At the same time, the processing speed of the skimmer’s internal controller and mechanical response time of the dynamic pump also need computational power[cite: 1]. There would be a trade-off in processing power to accommodate them all, which must be considered when selecting computational capacity for the mechanical skimmer[cite: 1].</p>
+                <p class="section-body" style="font-size: 0.9rem;">The RK4 solver constantly recalculates the fluid’s changing viscosity, which requires onboard computational power. At the same time, the processing speed of the skimmer’s internal controller and mechanical response time of the dynamic pump also need computational power. There would be a trade-off in processing power to accommodate them all, which must be considered when selecting computational capacity for the mechanical skimmer.</p>
             </div>
             <div>
                 <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Unpredictable Temperatures</h4>
-                <p class="section-body" style="font-size: 0.9rem;">The model assumes the oil remains above the pour point, staying liquid[cite: 1]. If utilized in a low-temperature environment, viscosity may spike beyond predictions, potentially stalling the mechanical pump because of the oil’s state[cite: 1]. A thermal sensor loop which overrides the predicted parameters when ambient temperature drops too quickly can be incorporated into the design to handle this low-temperature environment problem[cite: 1].</p>
+                <p class="section-body" style="font-size: 0.9rem;">The model assumes the oil remains above the pour point, staying liquid. If utilized in a low-temperature environment, viscosity may spike beyond predictions, potentially stalling the mechanical pump because of the oil’s state. A thermal sensor loop which overrides the predicted parameters when ambient temperature drops too quickly can be incorporated into the design to handle this low-temperature environment problem.</p>
             </div>
         </div>
     </div>
