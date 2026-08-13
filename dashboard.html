@@ -1,0 +1,874 @@
+clear; clc; close all;
+% SECTION 0: EXECUTION FLAGS & INITIAL PARAMETERS
+RUN_STATIC_PLOTS = true;
+RUN_ANIMATION = true;
+RUN_WATERFALL = true;
+OPEN_DASHBOARD = true;
+% SECTION 1: SYMBOLIC ANALYSIS & EQUATION VERIFICATION
+%Defining symbolic variables
+syms Y(t) u(t) A(t) V(t) F_E(t) t
+syms K_A V_o B T T_o T_G D C_3 K_1 C_4 W
+%Governing Symbolic Differential Equations
+dFEdt = (K_A/V_o) * exp(A - (B/T)) * (T_o + T_G*F_E);
+eq1 = diff(F_E, t, 1) == dFEdt;
+dVdt = -V_o * (dFEdt) - D*V;
+eq2 = diff(V, t, 1) == dVdt;
+dYdt = (2*10^-6) * ((W+1)^2) * (1 - (Y/C_3));
+eq3 = diff(Y, t, 1) == dYdt;
+dAdt = K_1 * (A^(-1)) * (V)^(4/3);
+eq4 = diff(A, t, 1) == dAdt;
+dudt = (C_4 * u * dFEdt) + dYdt * ((2.5 * u) / (1 - C_3 * Y)^2);
+eq5 = diff(u, t, 1) == dudt;
+%Attempting analytical solutions
+a_eq1 = dsolve(eq1)
+a_eq2 = dsolve(eq2)
+a_eq3 = dsolve(eq3)
+a_eq4 = dsolve(eq4)
+a_eq5 = dsolve(eq5)
+%Equilibrium Steady State Analysis (Setting derivatives to zero)
+eq1_ss = dFEdt == 0
+eq2_ss = dVdt == 0
+eq3_ss = dYdt == 0
+eq4_ss = dAdt == 0
+eq5_ss = dudt == 0
+%Equation Simplifications
+s_eq1 = simplify(eq1)
+s_eq2 = simplify(eq2)
+s_eq3 = simplify(eq3)
+s_eq4 = simplify(eq4)
+s_eq5 = simplify(eq5)
+1
+%Symbolic Verification of Emulsification Equation (Equation 3)
+disp(' ')
+disp('========== Verification of Equation (3) ==========')
+lhs_eq3 = diff(a_eq3, t);
+rhs_eq3 = (2e-6) * (W+1)^2 * (1 - a_eq3/C_3);
+verification = simplify(lhs_eq3 - rhs_eq3);
+disp('Verification residual:')
+disp(verification)
+if isequal(verification, sym(0))
+disp('Equation (3) VERIFIED: Residual = 0')
+else
+disp('Equation (3) NOT VERIFIED')
+end
+% SECTION 2: BASIC PLOTS (STATFJORD OIL MODEL)
+if RUN_STATIC_PLOTS
+V0_b = 120.2;
+T_b = 288.15;
+K1_b = 150;
+K2_b = 0.007;
+T0_b = 301;
+TG_b = 500;
+A_const = 6.3;
+B_const = 10.3;
+S0_b = [0; 1000];
+tspan_b = [0, 168 * 3600];
+[t_b, S_b] = ode45(@(t, S) basic_spill_odes(t, S, V0_b, T_b, K1_b, K2_b,
+T0_b, TG_b, ...
+A_const, B_const), tspan_b, S0_b);
+t_hours_b = t_b / 3600;
+fraction_evap = S_b(:, 1) * 100;
+slick_area = S_b(:, 2);
+figure('Name', 'Spilt Area Growth Over Time');
+plot(t_hours_b, slick_area, 'LineWidth', 2, 'Color', 'r');
+title('Slick Area Growth Over Time');
+xlabel('Time (hours)'); ylabel('Area (m^2)'); grid on;
+figure('Name', 'Oil Evaporation Over Time');
+plot(t_hours_b, fraction_evap, 'LineWidth', 2, 'Color', 'b');
+title('Oil Evaporation Over Time');
+xlabel('Time (hours)'); ylabel('Volume Evaporated (%)'); grid on;
+% Full Basic Plots
+W_b = 4.17;
+mu0_b = 3.64;
+C3_b = 0.7;
+C4_b = 5;
+2
+S0_full = [0; V0_b; 0; 1000; mu0_b];
+[t_f, S_f] = ode45(@(t, S) full_spill_odes(t, S, V0_b, T_b, W_b, K1_b,
+K2_b, C3_b, C4_b, ...
+T0_b, TG_b, A_const, B_const), tspan_b, S0_full);
+t_hours_f = t_f / 3600;
+volume_f = S_f(:, 2);
+water_content = S_f(:, 3) * 100;
+viscosity_f = S_f(:, 5);
+figure('Name', 'Remaining Surface Oil Volume');
+plot(t_hours_f, volume_f, 'LineWidth', 2, 'Color', '#D95319');
+title('Remaining Surface Oil Volume');
+xlabel('Time (hours)'); ylabel('Volume (m^3)'); grid on;
+figure('Name', 'Emulsification (Water Uptake)');
+plot(t_hours_f, water_content, 'LineWidth', 2, 'Color', '#EDB120');
+title('Emulsification (Water Uptake)');
+xlabel('Time (hours)'); ylabel('Water Content (%)'); grid on;
+figure('Name', 'Oil Viscosity Over Time');
+semilogy(t_hours_f, viscosity_f, 'LineWidth', 2, 'Color', '#77AC30');
+title('Oil Viscosity Over Time');
+xlabel('Time (hours)'); ylabel('Viscosity (cP)'); grid on;
+end
+% SECTION 3: NUMERICAL SOLVER COMPARISONS (EULER, RK4, ODE45)
+FE0 = 0;
+V0 = 10000;
+Y0 = 0;
+A0 = 1000;
+mu0 = 0.01;
+x0 = [FE0; V0; Y0; A0; mu0];
+dt = 0.25;
+t = 0:dt:200;
+W = 5;
+%1. ODE45 Solver
+[tO, xO] = ode45(@(time, state) oilspill(time, state, W), [0 200], x0);
+%2. Euler Method
+xE = zeros(5, length(t));
+xE(:,1) = x0;
+for i = 1:length(t)-1
+dx = oilspill(t(i), xE(:,i), W);
+xE(:,i+1) = xE(:,i) + dt*dx;
+end
+%3. RK4 Method
+xR = zeros(5, length(t));
+3
+xR(:,1) = x0;
+for i = 1:length(t)-1
+k1 = oilspill(t(i), xR(:,i), W);
+k2 = oilspill(t(i)+dt/2, xR(:,i)+dt*k1/2, W);
+k3 = oilspill(t(i)+dt/2, xR(:,i)+dt*k2/2, W);
+k4 = oilspill(t(i)+dt, xR(:,i)+dt*k3, W);
+xR(:,i+1) = xR(:,i) + (dt/6)*(k1 + 2*k2 + 2*k3 + k4);
+end
+%Interpolating ODE45 Results to Unified Grid
+FE_O = interp1(tO, xO(:,1), t);
+V_O = interp1(tO, xO(:,2), t);
+Y_O = interp1(tO, xO(:,3), t);
+A_O = interp1(tO, xO(:,4), t);
+MU_O = interp1(tO, xO(:,5), t);
+%4. Solver Comparison & Analytical Plots
+if RUN_STATIC_PLOTS
+C3 = 0.7;
+alpha = 2e-6 * 3600 * (W + 1)^2;
+Y_analytical = C3 * (1 - exp(-(alpha / C3) * t));
+figure('Name', 'Analytical vs Numerical Emulsification', 'NumberTitle',
+'off');
+plot(t, Y_analytical, 'k', 'LineWidth', 2); hold on
+plot(t, xE(3,:), '--r', 'LineWidth', 2);
+plot(t, xR(3,:), '--b', 'LineWidth', 2);
+plot(t, Y_O, 'g', 'LineWidth', 1.2);
+title('Analytical vs Numerical Emulsification')
+xlabel('Time (hours)'); ylabel('Water Content, Y')
+legend('Analytical', 'Euler', 'RK4', 'ODE45', 'Location', 'best')
+grid on; xlim([0 160]); ylim([0 0.8])
+figure('Name', 'Evaporation Fraction', 'NumberTitle', 'off');
+plot(t, xE(1,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(1,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, FE_O, 'k', 'LineWidth', 1.2);
+title('Evaporation Fraction F_E'); xlabel('Time (hours)'); ylabel('F_E');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on; xlim([0
+200]); ylim([0 0.35]);
+figure('Name', 'Oil Volume', 'NumberTitle', 'off');
+plot(t, xE(2,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(2,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, V_O, 'k', 'LineWidth', 1.2);
+title('Oil Volume'); xlabel('Time (hours)'); ylabel('Volume (m^3)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+figure('Name', 'Water Content', 'NumberTitle', 'off');
+plot(t, xE(3,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(3,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, Y_O, 'k', 'LineWidth', 1.2);
+title('Water Content'); xlabel('Time (hours)'); ylabel('Y');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on; xlim([0
+4
+200]); ylim([0 0.8]);
+figure('Name', 'Spill Area', 'NumberTitle', 'off');
+plot(t, xE(4,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(4,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, A_O, 'k', 'LineWidth', 1.2);
+title('Spill Area'); xlabel('Time (hours)'); ylabel('Area (m^2)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+figure('Name', 'Viscosity', 'NumberTitle', 'off');
+plot(t, xE(5,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(5,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, MU_O, 'k', 'LineWidth', 1.2);
+title('Dynamic Viscosity'); xlabel('Time (hours)'); ylabel('\mu (Pa\cdot
+s)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+end
+% ERROR ANALYSIS (ODE45 AS REFERENCE)
+err_FE_Euler = abs(xE(1,:) - FE_O);
+err_V_Euler = abs(xE(2,:) - V_O);
+err_Y_Euler = abs(xE(3,:) - Y_O);
+err_A_Euler = abs(xE(4,:) - A_O);
+err_MU_Euler = abs(xE(5,:) - MU_O);
+err_FE_RK4 = abs(xR(1,:) - FE_O);
+err_V_RK4 = abs(xR(2,:) - V_O);
+err_Y_RK4 = abs(xR(3,:) - Y_O);
+err_A_RK4 = abs(xR(4,:) - A_O);
+err_MU_RK4 = abs(xR(5,:) - MU_O);
+% ERROR ANALYSIS PLOTS
+if RUN_STATIC_PLOTS
+figure('Name', 'Numerical Method Absolute Error Comparison',
+'NumberTitle', 'off', ...
+'Color', 'w', 'Position', [100 100 900 650]);
+% 1. Evaporation Fraction Error
+subplot(3, 2, 1);
+plot(t, err_FE_Euler, 'r-', 'LineWidth', 2); hold on;
+plot(t, err_FE_RK4, 'b-', 'LineWidth', 2);
+title('Evaporation Fraction Error', 'FontWeight', 'bold');
+xlabel('Time (h)'); ylabel('Absolute Error');
+legend('Euler', 'RK4', 'Location', 'northeast'); grid on; xlim([0 200]);
+% 2. Oil Volume Error
+subplot(3, 2, 2);
+plot(t, err_V_Euler, 'r-', 'LineWidth', 2); hold on;
+plot(t, err_V_RK4, 'b-', 'LineWidth', 2);
+title('Oil Volume Error', 'FontWeight', 'bold');
+xlabel('Time (h)'); ylabel('Absolute Error');
+5
+legend('Euler', 'RK4', 'Location', 'northeast'); grid on; xlim([0 200]);
+% 3. Water Content Error
+subplot(3, 2, 3);
+plot(t, err_Y_Euler, 'r-', 'LineWidth', 2); hold on;
+plot(t, err_Y_RK4, 'b-', 'LineWidth', 2);
+title('Water Content Error', 'FontWeight', 'bold');
+xlabel('Time (h)'); ylabel('Absolute Error');
+legend('Euler', 'RK4', 'Location', 'northeast'); grid on; xlim([0 200]);
+% 4. Spill Area Error
+subplot(3, 2, 4);
+plot(t, err_A_Euler, 'r-', 'LineWidth', 2); hold on;
+plot(t, err_A_RK4, 'b-', 'LineWidth', 2);
+title('Spill Area Error', 'FontWeight', 'bold');
+xlabel('Time (h)'); ylabel('Absolute Error');
+legend('Euler', 'RK4', 'Location', 'northeast'); grid on; xlim([0 200]);
+% 5. Viscosity Error
+subplot(3, 2, 5);
+plot(t, err_MU_Euler, 'r-', 'LineWidth', 2); hold on;
+plot(t, err_MU_RK4, 'b-', 'LineWidth', 2);
+title('Viscosity Error', 'FontWeight', 'bold');
+xlabel('Time (h)'); ylabel('Absolute Error');
+legend('Euler', 'RK4', 'Location', 'northeast'); grid on; xlim([0 200]);
+end
+% STABILITY ANALYSIS: Euler vs RK4 vs ode45
+lambda = -5;
+t0 = 0;
+tf = 5;
+h = 3; % step size test
+t_stab = t0:h:tf;
+N = length(t_stab);
+y_euler = zeros(1,N);
+y_rk4 = zeros(1,N);
+y_euler(1) = 1;
+y_rk4(1) = 1;
+for n = 1:N-1
+% Euler
+y_euler(n+1) = y_euler(n) + h*lambda*y_euler(n);
+% RK4
+k1 = lambda*y_rk4(n);
+k2 = lambda*(y_rk4(n) + 0.5*h*k1);
+k3 = lambda*(y_rk4(n) + 0.5*h*k2);
+k4 = lambda*(y_rk4(n) + h*k3);
+6
+y_rk4(n+1) = y_rk4(n) + (h/6)*(k1 + 2*k2 + 2*k3 + k4);
+end
+f_stab = @(t,y) lambda*y;
+[t_ode, y_ode] = ode45(f_stab, [t0 tf], 1);
+y_exact = exp(lambda*linspace(t0, tf, 1000));
+figure('Name','Stability Analysis');
+plot(t_stab,y_euler,'ro-','LineWidth',2)
+hold on
+plot(t_stab,y_rk4,'bx-','LineWidth',2)
+plot(linspace(t0,tf,1000),y_exact,'k','LineWidth',2)
+xlabel('Time')
+ylabel('y')
+title('Euler vs RK4 Stability Test')
+legend('Euler','RK4','Exact')
+grid on
+% PHASE PORTRAITS (ODE45 REFERENCE)
+FE = FE_O;
+V = V_O;
+Y = Y_O;
+A = A_O;
+mu = MU_O;
+if RUN_STATIC_PLOTS
+% 4. Solver Comparison & Analytical Plots
+C3 = 0.7;
+alpha = 2e-6 * 3600 * (W + 1)^2;
+Y_analytical = C3 * (1 - exp(-(alpha / C3) * t));
+figure('Name', 'Analytical vs Numerical Emulsification', 'NumberTitle',
+'off');
+plot(t, Y_analytical, 'k', 'LineWidth', 2); hold on
+plot(t, xE(3,:), '--r', 'LineWidth', 2);
+plot(t, xR(3,:), '--b', 'LineWidth', 2);
+plot(t, Y_O, 'g', 'LineWidth', 1.2);
+title('Analytical vs Numerical Emulsification')
+xlabel('Time (hours)'); ylabel('Water Content, Y')
+legend('Analytical', 'Euler', 'RK4', 'ODE45', 'Location', 'best')
+grid on; xlim([0 160]); ylim([0 0.8])
+figure('Name', 'Evaporation Fraction', 'NumberTitle', 'off');
+plot(t, xE(1,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(1,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, FE_O, 'k', 'LineWidth', 1.2);
+title('Evaporation Fraction F_E'); xlabel('Time (hours)'); ylabel('F_E');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on; xlim([0
+200]); ylim([0 0.35]);
+7
+figure('Name', 'Oil Volume', 'NumberTitle', 'off');
+plot(t, xE(2,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(2,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, V_O, 'k', 'LineWidth', 1.2);
+title('Oil Volume'); xlabel('Time (hours)'); ylabel('Volume (m^3)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+figure('Name', 'Water Content', 'NumberTitle', 'off');
+plot(t, xE(3,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(3,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, Y_O, 'k', 'LineWidth', 1.2);
+title('Water Content'); xlabel('Time (hours)'); ylabel('Y');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on; xlim([0
+200]); ylim([0 0.8]);
+figure('Name', 'Spill Area', 'NumberTitle', 'off');
+plot(t, xE(4,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(4,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, A_O, 'k', 'LineWidth', 1.2);
+title('Spill Area'); xlabel('Time (hours)'); ylabel('Area (m^2)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+figure('Name', 'Viscosity', 'NumberTitle', 'off');
+plot(t, xE(5,:), '--ro', 'LineWidth', 0.5, 'MarkerSize', 4); hold on
+plot(t, xR(5,:), '-bx', 'LineWidth', 0.5, 'MarkerSize', 6);
+plot(t, MU_O, 'k', 'LineWidth', 1.2);
+title('Dynamic Viscosity'); xlabel('Time (hours)'); ylabel('\mu (Pa\cdot
+s)');
+legend('Euler', 'RK4', 'ODE45', 'Location', 'best'); grid on;
+% Phase Portrait Plots
+figure('Name', 'Phase Portrait: Volume vs Water Content');
+plot(V, Y, 'b', 'LineWidth', 2);
+xlabel('Oil Volume V (m^3)');
+ylabel('Water Content Y');
+title('Phase Portrait: Oil Volume vs Water Content');
+grid on;
+figure('Name', 'Phase Portrait: Volume vs Evaporation');
+plot(V, FE, 'r', 'LineWidth', 2);
+xlabel('Oil Volume V (m^3)');
+ylabel('Evaporation Fraction F_E');
+title('Phase Portrait: Oil Volume vs Evaporation');
+grid on;
+figure('Name', 'Phase Portrait: Water Content vs Evaporation');
+plot(Y, FE, 'k', 'LineWidth', 2);
+xlabel('Water Content Y');
+ylabel('Evaporation Fraction F_E');
+title('Phase Portrait: Water Content vs Evaporation');
+grid on;
+figure('Name', 'Phase Portrait: Volume vs Spreading Area');
+plot(V, A, 'm', 'LineWidth', 2);
+8
+xlabel('Oil Volume V (m^3)');
+ylabel('Spill Area A (m^2)');
+title('Phase Portrait: Volume vs Spreading Area');
+grid on;
+figure('Name', 'Phase Portrait: Viscosity vs Oil Volume');
+plot(mu, V, 'g', 'LineWidth', 2);
+xlabel('Viscosity \mu (Pa\cdot s)');
+ylabel('Oil Volume V (m^3)');
+title('Phase Portrait: Viscosity vs Oil Volume');
+grid on;
+end
+% SECTION 4: PARAMETER SENSITIVITY ANALYSIS
+if RUN_STATIC_PLOTS
+base_W = 5;
+base_T = 288.15;
+base_K1 = 150;
+tspan_sens = [0 200];
+% 1. Wind Speed Variations
+W_variations = [2, 5, 10, 15];
+figure('Name', 'Sensitivity: Wind Speed (W)', 'NumberTitle', 'off');
+subplot(1, 2, 1); hold on;
+for i = 1:length(W_variations)
+W_curr = W_variations(i);
+[ts, xs] = ode45(@(t, x) oilspill_param(t, x, W_curr, base_T,
+base_K1), tspan_sens, x0);
+plot(ts, xs(:,3), 'LineWidth', 1.8, 'DisplayName', sprintf('W = %d
+m/s', W_curr));
+end
+title('Effect of Wind Speed on Emulsification (Y)'); xlabel('Time
+(hours)'); ylabel('Water Fraction (Y)');
+grid on; legend('Location', 'best');
+subplot(1, 2, 2); hold on;
+for i = 1:length(W_variations)
+W_curr = W_variations(i);
+[ts, xs] = ode45(@(t, x) oilspill_param(t, x, W_curr, base_T,
+base_K1), tspan_sens, x0);
+semilogy(ts, xs(:,5), 'LineWidth', 1.8, 'DisplayName', sprintf('W =
+%d m/s', W_curr));
+end
+title('Effect of Wind Speed on Viscosity (\mu)'); xlabel('Time
+(hours)'); ylabel('Viscosity (Pa\cdot s)');
+grid on; legend('Location', 'best');
+% 2. Temperature Variations
+T_variations = [278.15, 288.15, 298.15];
+T_labels = {'5°C (278.15 K)', '15°C (288.15 K)', '25°C (298.15 K)'};
+figure('Name', 'Sensitivity: Temperature (T)', 'NumberTitle', 'off');
+subplot(1, 2, 1); hold on;
+for i = 1:length(T_variations)
+T_curr = T_variations(i);
+9
+[ts, xs] = ode45(@(t, x) oilspill_param(t, x, base_W, T_curr,
+base_K1), tspan_sens, x0);
+plot(ts, xs(:,1) * 100, 'LineWidth', 1.8, 'DisplayName',
+T_labels{i});
+end
+title('Effect of Temperature on Evaporation (F_E)'); xlabel('Time
+(hours)'); ylabel('Evaporated Volume (%)');
+grid on; legend('Location', 'best');
+subplot(1, 2, 2); hold on;
+for i = 1:length(T_variations)
+T_curr = T_variations(i);
+[ts, xs] = ode45(@(t, x) oilspill_param(t, x, base_W, T_curr,
+base_K1), tspan_sens, x0);
+plot(ts, xs(:,2), 'LineWidth', 1.8, 'DisplayName', T_labels{i});
+end
+title('Effect of Temperature on Oil Volume (V)'); xlabel('Time
+(hours)'); ylabel('Volume (m^3)');
+grid on; legend('Location', 'best');
+%3. Spreading Constant Variations
+K1_variations = [50, 150, 300];
+figure('Name', 'Sensitivity: Spreading Constant (K1)', 'NumberTitle',
+'off'); hold on;
+for i = 1:length(K1_variations)
+K1_curr = K1_variations(i);
+[ts, xs] = ode45(@(t, x) oilspill_param(t, x, base_W, base_T,
+K1_curr), tspan_sens, x0);
+plot(ts, xs(:,4), 'LineWidth', 1.8, 'DisplayName', sprintf('K_1 =
+%d', K1_curr));
+end
+title('Effect of Spreading Constant (K_1) on Spill Area'); xlabel('Time
+(hours)'); ylabel('Area (m^2)');
+grid on; legend('Location', 'best');
+end
+% SECTION 5: ANIMATION
+if RUN_ANIMATION
+figAnim = figure('Name','Animated Oil-Spill Variables', ...
+'NumberTitle','off','Color','w','Position',[100 50 1100 800]);
+ax1 = subplot(3,2,1,'Parent',figAnim); xlabel(ax1,'Time (hours)');
+ylabel(ax1,'F_E'); grid(ax1,'on'); hold(ax1,'on');
+ax2 = subplot(3,2,2,'Parent',figAnim); xlabel(ax2,'Time (hours)');
+ylabel(ax2,'Volume (m^3)'); grid(ax2,'on'); hold(ax2,'on');
+ax3 = subplot(3,2,3,'Parent',figAnim); xlabel(ax3,'Time (hours)');
+ylabel(ax3,'Y'); grid(ax3,'on'); hold(ax3,'on');
+ax4 = subplot(3,2,4,'Parent',figAnim); xlabel(ax4,'Time (hours)');
+ylabel(ax4,'Area (m^2)'); grid(ax4,'on'); hold(ax4,'on');
+ax5 = subplot(3,2,5,'Parent',figAnim); xlabel(ax5,'Time (hours)');
+ylabel(ax5,'\mu (Pa.s)'); grid(ax5,'on'); hold(ax5,'on');
+10
+xlim(ax1,[t(1) t(end)]); xlim(ax2,[t(1) t(end)]);
+xlim(ax3,[t(1) t(end)]); xlim(ax4,[t(1) t(end)]); xlim(ax5,[t(1)
+t(end)]);
+ylim(ax1,[min(FE_O) max(FE_O)*1.05+eps]);
+ylim(ax2,[min(V_O) max(V_O)*1.05+eps]);
+ylim(ax3,[min(Y_O) max(Y_O)*1.05+eps]);
+ylim(ax4,[min(A_O) max(A_O)*1.05+eps]);
+ylim(ax5,[min(MU_O) max(MU_O)*1.05+eps]);
+lineFE = animatedline('Parent',ax1,'LineWidth',2);
+lineV = animatedline('Parent',ax2,'LineWidth',2);
+lineY = animatedline('Parent',ax3,'LineWidth',2);
+lineA = animatedline('Parent',ax4,'LineWidth',2);
+lineMu = animatedline('Parent',ax5,'LineWidth',2);
+pointFE =
+plot(ax1,t(1),FE_O(1),'ro','MarkerFaceColor','r','MarkerSize',7);
+pointV =
+plot(ax2,t(1),V_O(1),'ro','MarkerFaceColor','r','MarkerSize',7);
+pointY =
+plot(ax3,t(1),Y_O(1),'ro','MarkerFaceColor','r','MarkerSize',7);
+pointA =
+plot(ax4,t(1),A_O(1),'ro','MarkerFaceColor','r','MarkerSize',7);
+pointMu =
+plot(ax5,t(1),MU_O(1),'ro','MarkerFaceColor','r','MarkerSize',7);
+pauseTime = 0.01;
+for n = 1:length(t)
+if ~isvalid(figAnim); break; end
+addpoints(lineFE,t(n),FE_O(n));
+addpoints(lineV,t(n),V_O(n));
+addpoints(lineY,t(n),Y_O(n));
+addpoints(lineA,t(n),A_O(n));
+addpoints(lineMu,t(n),MU_O(n));
+set(pointFE,'XData',t(n),'YData',FE_O(n));
+set(pointV,'XData',t(n),'YData',V_O(n));
+set(pointY,'XData',t(n),'YData',Y_O(n));
+set(pointA,'XData',t(n),'YData',A_O(n));
+set(pointMu,'XData',t(n),'YData',MU_O(n));
+title(ax1,sprintf('Evaporation Fraction = %.4f',FE_O(n)));
+title(ax2,sprintf('Oil Volume = %.2f m^3',V_O(n)));
+title(ax3,sprintf('Water Content = %.4f',Y_O(n)));
+title(ax4,sprintf('Spill Area = %.2f m^2',A_O(n)));
+title(ax5,sprintf('Dynamic Viscosity = %.5f Pa.s',MU_O(n)));
+progress = 100*n/length(t);
+sgtitle(figAnim,sprintf('Oil-Spill Simulation | Time = %.2f h |
+Progress = %.1f%%', ...
+t(n),progress));
+drawnow; pause(pauseTime);
+11
+end
+end
+% SECTION 6: 3D WATERFALL SENSITIVITY PLOT
+if RUN_WATERFALL
+windValues = linspace(1,15,20);
+timeWaterfall = linspace(0,200,250);
+volumeWaterfall = zeros(length(windValues),length(timeWaterfall));
+for j = 1:length(windValues)
+currentWind = windValues(j);
+[~,solution] = ode45(@(time,state)
+oilspill(time,state,currentWind), ...
+timeWaterfall, x0);
+volumeWaterfall(j,:) = solution(:,2).';
+end
+[TimeGrid,WindGrid] = meshgrid(timeWaterfall,windValues);
+figure('Name','3D Wind-Speed
+Sensitivity','NumberTitle','off','Color','w');
+waterfall(TimeGrid,WindGrid,volumeWaterfall);
+xlabel('Time (hours)');
+ylabel('Wind Speed (m/s)');
+zlabel('Remaining Oil Volume (m^3)');
+title('Effect of Wind Speed on Remaining Oil Volume');
+grid on; view(45,30); colorbar;
+end
+% SECTION 7: INTERACTIVE PARAMETER DASHBOARD
+if OPEN_DASHBOARD
+oilspillParameterDashboard();
+end
+function dx = oilspill(~, x, W)
+% Base 5-State System Equation Model
+FE = max(x(1),0);
+V = max(x(2),0);
+Y = max(x(3),0);
+A = max(x(4),1e-4);
+mu = max(x(5),1e-8);
+T = 283.15;
+VOC = 10000;
+Apar = 2.898;
+B = 10.3;
+T0 = 294;
+TG = 636;
+C3 = 0.7;
+12
+C4 = 0.5;
+K1 = 150;
+K2 = 2.5e-3*(W*3.6)^0.78;
+K = K2/(VOC/max(A,1e-4));
+D = 0.11*(W+1)^2 * (1+50*sqrt(mu)*(V/max(A,1e-4))*20)^(-1);
+dFE = (K*A/Apar)*exp(Apar-(B/T)*(T0+TG*FE));
+dV = -VOC*dFE - D*V;
+dY = 2e-6*3600*(W+1)^2*(1-Y/C3);
+dA = K1*max(A,1e-4)^(-1)*max(V,0)^(4/3);
+denominator = max((1-C3*Y)^2,1e-8);
+dmu = C4*mu*dFE + (2.5*mu/denominator)*dY;
+if V <= 0 && dV < 0
+dV = 0;
+end
+dx = [dFE; dV; dY; dA; dmu];
+end
+function dxdt = oilspill_param(~, x, W, T, K1)
+% Parameter Sensitivity ODE Model
+FE = max(x(1), 0);
+V = max(x(2), eps);
+Y = max(x(3), 0);
+A = max(x(4), eps);
+mu = max(x(5), 1e-8);
+K2 = 0.007; C3 = 0.7; C4 = 5.0;
+T0 = 301; TG = 500; A_const = 6.3; B_const = 10.3;
+if (1 - C3 * Y) <= 0; Y = 0.99 / C3; end
+dxdt = zeros(5,1);
+dxdt(1) = 3600 * (K2 * A / V) * exp(A_const - (B_const / T) * (T0 + TG *
+FE));
+dxdt(2) = -x(2) * dxdt(1);
+dxdt(3) = 3600 * (2.0e-6) * (W + 1)^2 * (1 - Y / C3);
+dxdt(4) = 3600 * K1 * (A^(-1)) * (V^(4/3));
+dxdt(5) = C4 * mu * dxdt(1) + ((2.5 * mu) / ((1 - C3 * Y)^2)) * dxdt(3);
+end
+function dSdt = basic_spill_odes(~, S, V0, T, K1, K2, T0, TG, A_const,
+B_const)
+FE = S(1);
+A = S(2);
+dSdt = zeros(2,1);
+dSdt(1) = (K2 * A / V0) * exp(A_const - (B_const / T) * (T0 + TG * FE));
+dSdt(2) = K1 * (A^(-1)) * (V0^(4/3));
+end
+function dSdt = full_spill_odes(~, S, V0, T, W, K1, K2, C3, C4, T0, TG,
+A_const, B_const)
+FE = S(1);
+13
+V = max(S(2), eps);
+Y = S(3);
+A = max(S(4), eps);
+mu = S(5);
+if (1 - C3 * Y) <= 0; Y = 0.99 / C3; end
+dSdt = zeros(5,1);
+dSdt(1) = (K2 * A / V0) * exp(A_const - (B_const / T) * (T0 + TG * FE));
+dSdt(2) = -V0 * dSdt(1);
+dSdt(3) = 2.0e-6 * (W + 1)^2 * (1 - Y/C3);
+dSdt(4) = K1 * (A^(-1)) * (V^(4/3));
+dSdt(5) = C4 * mu * dSdt(1) + (2.5 * mu) / ((1 - C3 * Y)^2) * dSdt(3);
+end
+function dx = oilspillDashboardModel(~, x, P)
+%Dashboard ODE Model Structure
+FE = max(x(1),0);
+V = max(x(2),0);
+Y = max(x(3),0);
+A = max(x(4),1e-4);
+mu = max(x(5),1e-8);
+Apar = 2.898; B = 10.3; T0 = 294; TG = 636;
+C3 = 0.7; C4 = 0.5; K1 = 150;
+K2 = 2.5e-3*(P.W*3.6)^0.78;
+K = K2/(P.V0/max(A,1e-4));
+D = 0.11*(P.W+1)^2 * (1+50*sqrt(mu)*(V/max(A,1e-4))*20)^(-1);
+dFE = (K*A/Apar)*exp(Apar-(B/P.T)*(T0+TG*FE));
+dV = -P.V0*dFE - D*V;
+dY = 2e-6*3600*(P.W+1)^2*(1-Y/C3);
+dA = K1*max(A,1e-4)^(-1)*max(V,0)^(4/3);
+denominator = max((1-C3*Y)^2,1e-8);
+dmu = C4*mu*dFE + (2.5*mu/denominator)*dY;
+if V <= 0 && dV < 0
+dV = 0;
+end
+dx = [dFE; dV; dY; dA; dmu];
+end
+function oilspillParameterDashboard
+default.W = 5;
+default.T = 283.15;
+default.V0 = 10000;
+default.A0 = 1000;
+default.mu0 = 0.01;
+default.tFinal = 200;
+fig = uifigure('Name','Interactive Oil-Spill Parameter Dashboard', ...
+'Position',[40 40 1450 850]);
+mainGrid = uigridlayout(fig,[1 2]);
+mainGrid.ColumnWidth = {320,'1x'};
+14
+mainGrid.RowHeight = {'1x'};
+mainGrid.Padding = [10 10 10 10];
+mainGrid.ColumnSpacing = 15;
+controlPanel = uipanel(mainGrid,'Title','Adjustable Parameters', ...
+'FontWeight','bold');
+controlGrid = uigridlayout(controlPanel,[17 1]);
+controlGrid.RowHeight =
+{35,25,45,25,45,25,45,25,45,25,45,25,45,40,40,'1x','1x'};
+uilabel(controlGrid,'Text','Move a slider and release it', ...
+'FontWeight','bold','HorizontalAlignment','center');
+windLabel = uilabel(controlGrid,'Text',sprintf('Wind speed = %.1f m/
+s',default.W));
+windSlider = uislider(controlGrid,'Limits',[0.1
+20],'Value',default.W, ...
+'MajorTicks',[0.1 5 10 15 20]);
+temperatureLabel = uilabel(controlGrid,'Text',sprintf('Temperature =
+%.2f K',default.T));
+temperatureSlider = uislider(controlGrid,'Limits',[273.15 313.15], ...
+'Value',default.T,'MajorTicks',[273.15 283.15 293.15 303.15
+313.15], ...
+'MajorTickLabels',{'273','283','293','303','313'});
+volumeLabel = uilabel(controlGrid,'Text',sprintf('Initial volume = %.0f
+m^3',default.V0));
+volumeSlider = uislider(controlGrid,'Limits',[1000
+25000],'Value',default.V0, ...
+'MajorTicks',[1000 5000 10000 15000 20000 25000], ...
+'MajorTickLabels',{'1k','5k','10k','15k','20k','25k'});
+areaLabel = uilabel(controlGrid,'Text',sprintf('Initial area = %.0f
+m^2',default.A0));
+areaSlider = uislider(controlGrid,'Limits',[100
+10000],'Value',default.A0, ...
+'MajorTicks',[100 2000 4000 6000 8000 10000], ...
+'MajorTickLabels',{'100','2k','4k','6k','8k','10k'});
+viscosityLabel = uilabel(controlGrid,'Text',sprintf('Initial viscosity =
+%.4f Pa.s',default.mu0));
+viscositySlider = uislider(controlGrid,'Limits',[0.001 0.10], ...
+'Value',default.mu0,'MajorTicks',[0.001 0.025 0.05 0.075 0.10]);
+timeLabel = uilabel(controlGrid,'Text',sprintf('Simulation time = %.0f
+hours',default.tFinal));
+timeSlider = uislider(controlGrid,'Limits',[10
+300],'Value',default.tFinal, ...
+'MajorTicks',[10 50 100 150 200 250 300]);
+updateButton = uibutton(controlGrid,'Text','Update
+Graphs','FontWeight','bold');
+resetButton = uibutton(controlGrid,'Text','Reset Parameters');
+15
+statusLabel =
+uilabel(controlGrid,'Text','Ready','HorizontalAlignment','center','WordWrap',
+'on');
+graphPanel = uipanel(mainGrid,'Title','ODE45 Oil-Spill
+Results','FontWeight','bold');
+graphGrid = uigridlayout(graphPanel,[3 2]);
+graphGrid.RowHeight = {'1x','1x','1x'};
+graphGrid.ColumnWidth = {'1x','1x'};
+graphGrid.RowSpacing = 12;
+graphGrid.ColumnSpacing = 12;
+graphGrid.Padding = [10 10 10 10];
+axFE = uiaxes(graphGrid); title(axFE,'Evaporation Fraction');
+xlabel(axFE,'Time (hours)'); ylabel(axFE,'F_E'); grid(axFE,'on');
+axV = uiaxes(graphGrid); title(axV,'Oil Volume'); xlabel(axV,'Time
+(hours)'); ylabel(axV,'Volume (m^3)'); grid(axV,'on');
+axY = uiaxes(graphGrid); title(axY,'Water Content'); xlabel(axY,'Time
+(hours)'); ylabel(axY,'Y'); grid(axY,'on');
+axA = uiaxes(graphGrid); title(axA,'Spill Area'); xlabel(axA,'Time
+(hours)'); ylabel(axA,'Area (m^2)'); grid(axA,'on');
+axMu = uiaxes(graphGrid); title(axMu,'Dynamic Viscosity');
+xlabel(axMu,'Time (hours)'); ylabel(axMu,'Viscosity (Pa.s)');
+grid(axMu,'on');
+axCombined = uiaxes(graphGrid); title(axCombined,'Normalized
+Comparison'); xlabel(axCombined,'Time (hours)');
+ylabel(axCombined,'Normalized Value'); grid(axCombined,'on');
+windSlider.ValueChangingFcn = @(~,event)
+set(windLabel,'Text',sprintf('Wind speed = %.2f m/s',event.Value));
+temperatureSlider.ValueChangingFcn = @(~,event)
+set(temperatureLabel,'Text',sprintf('Temperature = %.2f K',event.Value));
+volumeSlider.ValueChangingFcn = @(~,event)
+set(volumeLabel,'Text',sprintf('Initial volume = %.0f m^3',event.Value));
+areaSlider.ValueChangingFcn = @(~,event)
+set(areaLabel,'Text',sprintf('Initial area = %.0f m^2',event.Value));
+viscositySlider.ValueChangingFcn = @(~,event)
+set(viscosityLabel,'Text',sprintf('Initial viscosity = %.4f
+Pa.s',event.Value));
+timeSlider.ValueChangingFcn = @(~,event)
+set(timeLabel,'Text',sprintf('Simulation time = %.0f hours',event.Value));
+windSlider.ValueChangedFcn = @(~,~) updateSimulation();
+temperatureSlider.ValueChangedFcn = @(~,~) updateSimulation();
+volumeSlider.ValueChangedFcn = @(~,~) updateSimulation();
+areaSlider.ValueChangedFcn = @(~,~) updateSimulation();
+viscositySlider.ValueChangedFcn = @(~,~) updateSimulation();
+timeSlider.ValueChangedFcn = @(~,~) updateSimulation();
+updateButton.ButtonPushedFcn = @(~,~) updateSimulation();
+resetButton.ButtonPushedFcn = @(~,~) resetParameters();
+updateSimulation();
+function updateSimulation()
+16
+statusLabel.Text = 'Calculating ODE45 solution...';
+drawnow;
+P.W = windSlider.Value;
+P.T = temperatureSlider.Value;
+P.V0 = volumeSlider.Value;
+P.A0 = areaSlider.Value;
+P.mu0 = viscositySlider.Value;
+P.tFinal = timeSlider.Value;
+xInitial = [0; P.V0; 0; P.A0; P.mu0];
+timeSpan = linspace(0,P.tFinal,600);
+try
+[time,result] = ode45(@(time,state)
+oilspillDashboardModel(time,state,P), timeSpan, xInitial);
+FE = result(:,1);
+V = result(:,2);
+Y = result(:,3);
+A = result(:,4);
+mu = result(:,5);
+plotOutput(axFE,time,FE);
+plotOutput(axV,time,V);
+plotOutput(axY,time,Y);
+plotOutput(axA,time,A);
+plotOutput(axMu,time,mu);
+title(axFE,sprintf('Evaporation Fraction: final =
+%.4f',FE(end)));
+title(axV,sprintf('Oil Volume: final = %.1f m^3',V(end)));
+title(axY,sprintf('Water Content: final = %.4f',Y(end)));
+title(axA,sprintf('Spill Area: final = %.1f m^2',A(end)));
+title(axMu,sprintf('Viscosity: final = %.4f Pa.s',mu(end)));
+FEn = normalizeOutput(FE);
+Vn = normalizeOutput(V);
+Yn = normalizeOutput(Y);
+An = normalizeOutput(A);
+mun = normalizeOutput(mu);
+cla(axCombined);
+plot(axCombined,time,FEn,'LineWidth',1.5); hold(axCombined,'on');
+plot(axCombined,time,Vn,'LineWidth',1.5);
+plot(axCombined,time,Yn,'LineWidth',1.5);
+plot(axCombined,time,An,'LineWidth',1.5);
+plot(axCombined,time,mun,'LineWidth',1.5);
+hold(axCombined,'off');
+legend(axCombined,{'Evaporation','Volume','Water
+Content','Area','Viscosity'}, 'Location','best');
+xlim(axCombined,[0 P.tFinal]);
+ylim(axCombined,[-0.05 1.05]);
+grid(axCombined,'on');
+statusLabel.Text = sprintf('Complete | Wind = %.2f m/s | T =
+17
+%.2f K',P.W,P.T);
+catch errorInformation
+statusLabel.Text = 'Simulation failed';
+uialert(fig,errorInformation.message,'Simulation Error');
+end
+end
+function plotOutput(axisHandle,time,data)
+cla(axisHandle);
+plot(axisHandle,time,data,'LineWidth',2);
+xlim(axisHandle,[time(1) time(end)]);
+grid(axisHandle,'on');
+end
+function normalizedData = normalizeOutput(data)
+minimumValue = min(data);
+maximumValue = max(data);
+rangeValue = maximumValue - minimumValue;
+if rangeValue < eps
+normalizedData = zeros(size(data));
+else
+normalizedData = (data - minimumValue) / rangeValue;
+end
+end
+function resetParameters()
+windSlider.Value = default.W;
+temperatureSlider.Value = default.T;
+volumeSlider.Value = default.V0;
+areaSlider.Value = default.A0;
+viscositySlider.Value = default.mu0;
+timeSlider.Value = default.tFinal;
+updateSimulation();
+end
+end
+a_eq1 =
+-(T_o - C1*exp(T_G*int((K_A*exp(A(t) - B/T))/V_o, t, 'IgnoreSpecialCases',
+true, 'IgnoreAnalyticConstraints', true)))/T_G
+a_eq2 =
+C1*exp(-D*t) + exp(-D*t)*int(-exp(D*t)*exp(-(B - T*A(t))/T)*(K_A*T_o +
+K_A*T_G*F_E(t)), t, 'IgnoreSpecialCases', true, 'IgnoreAnalyticConstraints',
+true)
+a_eq3 =
+C_3 - C1*exp(-(4722366482869645*t*(W + 1)^2)/(2361183241434822606848*C_3))
+18
+a_eq4 =
+-2^(1/2)*(C1 + int(K_1*V(t)^(4/3), t, 'IgnoreSpecialCases', true,
+'IgnoreAnalyticConstraints', true))^(1/2)
+2^(1/2)*(C1 + int(K_1*V(t)^(4/3), t, 'IgnoreSpecialCases', true,
+'IgnoreAnalyticConstraints', true))^(1/2)
+a_eq5 =
+C1*exp(-int((23611832414348225*V_o*Y(t) - 23611832414348225*C_3*V_o
++ 23611832414348225*V_o*W^2*Y(t) - 47223664828696450*C_3*V_o*W
+- 23611832414348225*C_3*V_o*W^2 + 47223664828696450*V_o*W*Y(t))/
+(4722366482869645213696*C_3*V_o - 9444732965739290427392*C_3^2*V_o*Y(t)
++ 4722366482869645213696*C_3^3*V_o*Y(t)^2)
+- (4722366482869645213696*C_3*C_4*K_A*T_o
++ 4722366482869645213696*C_3^3*C_4*K_A*T_o*Y(t)^2
++ 4722366482869645213696*C_3*C_4*K_A*T_G*F_E(t)
+- 9444732965739290427392*C_3^2*C_4*K_A*T_o*Y(t)
+- 9444732965739290427392*C_3^2*C_4*K_A*T_G*F_E(t)*Y(t)
++ 4722366482869645213696*C_3^3*C_4*K_A*T_G*F_E(t)*Y(t)^2)/
+(4722366482869645213696*C_3*V_o*exp((B - T*A(t))/T) +
+4722366482869645213696*C_3^3*V_o*exp((B - T*A(t))/T)*Y(t)^2 -
+9444732965739290427392*C_3^2*V_o*exp((B - T*A(t))/T)*Y(t)), t,
+'IgnoreSpecialCases', true, 'IgnoreAnalyticConstraints', true))
+eq1_ss(t) =
+(K_A*exp(A(t) - B/T)*(T_o + T_G*F_E(t)))/V_o == 0
+eq2_ss(t) =
+- D*V(t) - K_A*exp(A(t) - B/T)*(T_o + T_G*F_E(t)) == 0
+eq3_ss(t) =
+-(4722366482869645*(Y(t)/C_3 - 1)*(W + 1)^2)/2361183241434822606848 == 0
+eq4_ss(t) =
+(K_1*V(t)^(4/3))/A(t) == 0
+eq5_ss(t) =
+(C_4*K_A*exp(A(t) - B/T)*u(t)*(T_o + T_G*F_E(t)))/V_o
+- (23611832414348225*u(t)*(Y(t)/C_3 - 1)*(W + 1)^2)/
+(4722366482869645213696*(C_3*Y(t) - 1)^2) == 0
+19
+s_eq1(t) =
+diff(F_E(t), t) == (K_A*exp(A(t) - B/T)*(T_o + T_G*F_E(t)))/V_o
+s_eq2(t) =
+diff(V(t), t) == - D*V(t) - K_A*exp(A(t) - B/T)*(T_o + T_G*F_E(t))
+s_eq3(t) =
+diff(Y(t), t) == -(4722366482869645*(Y(t)/C_3 - 1)*(W + 1)^2)/
+2361183241434822606848
+s_eq4(t) =
+A(t) ~= 0 & A(t)*diff(A(t), t) == K_1*V(t)^(4/3)
+s_eq5(t) =
+diff(u(t), t) == (C_4*K_A*exp(A(t) - B/T)*u(t)*(T_o +
+T_G*F_E(t)))/V_o - (23611832414348225*u(t)*(Y(t)/C_3 - 1)*(W + 1)^2)/
+(4722366482869645213696*(C_3*Y(t) - 1)^2)
+========== Verification of Equation (3) ==========
+Verification residual:
+0
+Equation (3) VERIFIED: Residual = 0
