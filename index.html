@@ -290,9 +290,9 @@ html, body { width: 100% !important; max-width: 100vw !important; margin: 0 !imp
     <li><a href="#mod-visualizations">3D Visualisations</a></li>
     <li><a href="#error">Error Analysis</a></li>
     <li><a href="#sensitivity">Parameter Sensitivity</a></li>
-    <li><a href="#relevance">Relevance & Engineering</a></li>
     <li><a href="#modifications">Modifications</a></li>
     <li><a href="#mod-videos">Modified Plots</a></li>
+    <li><a href="#relevance">Relevance & Engineering</a></li>
     <li><a href="#literature">Literature</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
@@ -312,9 +312,9 @@ html, body { width: 100% !important; max-width: 100vw !important; margin: 0 !imp
   <a href="#mod-visualizations" class="drawer-link">3D Visualisations</a>
   <a href="#error" class="drawer-link">Error Analysis</a>
   <a href="#sensitivity" class="drawer-link">Parameter Sensitivity</a>
-  <a href="#relevance" class="drawer-link">Relevance & Engineering</a>
   <a href="#modifications" class="drawer-link">Modifications</a>
   <a href="#mod-videos" class="drawer-link">Modified Plots</a>
+  <a href="#relevance" class="drawer-link">Relevance & Engineering</a>
   <a href="#literature" class="drawer-link">Literature</a>
   <a href="#team" class="drawer-link">Team</a>
 </div>
@@ -767,7 +767,31 @@ x0=[FE0;V0;Y0;A0;mu0];
   </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- MODIFIED VISUALIZATIONS -->
+<section id="mod-visualizations" style="background:var(--abyss);">
+  <div class="container">
+    <div class="section-label">Advanced Tools</div>
+    <h2 class="section-title">3D <span class="accent">Visualizations</span></h2>
+    
+   <!-- NO TWO-COL DIV HERE! Just the Waterfall Plot directly -->
+      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
+        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
+        <img src="pics/woterfoll.png" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; border-radius: 6px; border: 1px solid var(--faint); margin-bottom: 1rem;">
+        <p class="section-body" style="font-size: 0.9rem;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
+      </div>
+
+<!-- MATLAB Dashboard -->
+      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 2rem;">
+        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">Interactive MATLAB Dashboard</h3>
+        <p class="section-body" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Use the interactive dashboard below to manually modify important model parameters and immediately observe their effect on the simulation results in real time.</p>
+        
+        <!-- IFRAME EMBED -->
+        <div style="width: 100%; height: 850px; background: var(--abyss); border-radius: 6px; overflow: hidden; border: 1px solid var(--faint);">
+          <iframe src="dashboard.html" width="100%" height="100%" style="border: none;" title="MATLAB Interactive Dashboard"></iframe>
+        </div>
+      </div>
+ 
+</section>
 
 <!-- ERROR ANALYSIS -->
 <section id="error" style="background:var(--abyss);">
@@ -979,51 +1003,7 @@ x0=[FE0;V0;Y0;A0;mu0];
   </div>
 </section>
 
-<!-- RELEVANCE & ENGINEERING INTERPRETATION -->
-<section id="relevance" style="background:var(--navy);">
-  <div class="container">
-    <div class="section-label">Real-World Application</div>
-    <h2 class="section-title">Relevance & <span class="accent">Engineering Interpretation</span></h2>
-    
-    <div class="two-col" style="margin-top: 2.5rem;">
-      <div>
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:.65rem;color:var(--white);">Relevance to Ghana</h3>
-        <p class="section-body">As a country with an active offshore oil and gas industry, Ghana is particularly vulnerable to the environmental and economic effects of oil spills. A spill can threaten our marine ecosystems, fishing communities, coastal livelihoods, and other economic activities that depend on the ocean.</p>
-        <br>
-        <p class="section-body">This project is therefore relevant because it uses mathematical modelling to simulate how an oil spill changes and moves over time through processes such as evaporation, spreading, emulsification, viscosity changes, and transport by wind and ocean currents. By examining still water, current-only, wind-only, and combined current-and-wind conditions, the model helps us understand how different environmental factors can influence the behaviour and location of an oil slick. Such a model can contribute to Ghana’s preparedness and response to potential oil-spill incidents by providing a basis for predicting spill movement, assessing environmental risks, and supporting more effective decision-making and containment strategies.</p>
-      </div>
 
-      <div>
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:.65rem;color:var(--white);">Autonomous Oil Recovery Skimmer</h3>
-        <p class="section-body">Our engineering adaptation focuses on using this oceanic oil spill ODE model to envision a mechanical framework for an Oil Recovery Skimmer that can run autonomously. While the research predicts oil slick behaviour theoretically, our engineering adaptation connects its theory to physical applications, to design the practical physical pumping and containment mechanism of the Mechanical Oil Skimmer, to extract these oil slicks from the ocean’s surface.</p>
-        <br>
-        <p class="section-body">The changing viscosity ($\mu$) and oil volume ($V$) will dictate the physical load limits, required suction force, and material requirements needed to make this Skimmer. To fit into real-world applications, the theoretical model must be adapted to empirical constraints:</p>
-        <ul class="process-list" style="margin-top: 1rem;">
-          <li><span class="process-num">01</span><div><div class="process-name">Confined Area</div><p>The unbounded Oil Slick Area ($A$) must be modified to represent the confined zone that the mechanical skimmer can capture at a time.</p></div></li>
-          <li><span class="process-num">02</span><div><div class="process-name">Empirical Calibration</div><p>Generalised constraints for emulsification and evaporation are replaced with local raw experimental data from a physical wave tank, feeding into the MATLAB script to calibrate the exact viscosity curve.</p></div></li>
-      <li><span class="process-num">03</span><div><div class="process-name">Hardware Design</div><p>Physical load parameters, specifically the peak viscosity ($\mu_{max}$), determine the design of functional parts (e.g., impeller) and the pump motor’s torque required to prevent mechanical failure when processing thick oil mousse.</p></div></li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 3rem;">
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">System Feasibility & Failure Modes</h3>
-        <p class="section-body">This Mechanical Skimmer must also be evaluated for feasibility and considered for possible failures:</p>
-        <div class="two-col" style="margin-top: 1.5rem; gap: 2rem;">
-            <div>
-                <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Computational Power</h4>
-                <p class="section-body" style="font-size: 0.9rem;">The RK4 solver constantly recalculates the fluid’s changing viscosity, which requires onboard computational power. At the same time, the processing speed of the skimmer’s internal controller and mechanical response time of the dynamic pump also need computational power. There would be a trade-off in processing power to accommodate them all, which must be considered when selecting computational capacity for the mechanical skimmer.</p>
-            </div>
-            <div>
-                <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Unpredictable Temperatures</h4>
-                <p class="section-body" style="font-size: 0.9rem;">The model assumes the oil remains above the pour point, staying liquid. If utilized in a low-temperature environment, viscosity may spike beyond predictions, potentially stalling the mechanical pump because of the oil’s state. A thermal sensor loop which overrides the predicted parameters when ambient temperature drops too quickly can be incorporated into the design to handle this low-temperature environment problem.</p>
-            </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
 
 <!-- MODEL MODIFICATIONS -->
 <section id="modifications" style="background:var(--deep);">
@@ -1161,61 +1141,49 @@ x0=[FE0;V0;Y0;A0;mu0];
 
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-<!-- MODIFIED VISUALIZATIONS -->
-<section id="mod-visualizations" style="background:var(--abyss);">
+<!-- RELEVANCE & ENGINEERING INTERPRETATION -->
+<section id="relevance" style="background:var(--navy);">
   <div class="container">
-    <div class="section-label">Advanced Tools</div>
-    <h2 class="section-title">3D <span class="accent">Visualizations</span></h2>
+    <div class="section-label">Real-World Application</div>
+    <h2 class="section-title">Relevance & <span class="accent">Engineering Interpretation</span></h2>
     
-   <!-- NO TWO-COL DIV HERE! Just the Waterfall Plot directly -->
-      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
-        <img src="pics/woterfoll.png" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; border-radius: 6px; border: 1px solid var(--faint); margin-bottom: 1rem;">
-        <p class="section-body" style="font-size: 0.9rem;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
+    <div class="two-col" style="margin-top: 2.5rem;">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:.65rem;color:var(--white);">Relevance to Ghana</h3>
+        <p class="section-body">As a country with an active offshore oil and gas industry, Ghana is particularly vulnerable to the environmental and economic effects of oil spills. A spill can threaten our marine ecosystems, fishing communities, coastal livelihoods, and other economic activities that depend on the ocean.</p>
+        <br>
+        <p class="section-body">This project is therefore relevant because it uses mathematical modelling to simulate how an oil spill changes and moves over time through processes such as evaporation, spreading, emulsification, viscosity changes, and transport by wind and ocean currents. By examining still water, current-only, wind-only, and combined current-and-wind conditions, the model helps us understand how different environmental factors can influence the behaviour and location of an oil slick. Such a model can contribute to Ghana’s preparedness and response to potential oil-spill incidents by providing a basis for predicting spill movement, assessing environmental risks, and supporting more effective decision-making and containment strategies.</p>
       </div>
 
-<!-- MATLAB Dashboard -->
-      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 2rem;">
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">Interactive MATLAB Dashboard</h3>
-        <p class="section-body" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Use the interactive dashboard below to manually modify important model parameters and immediately observe their effect on the simulation results in real time.</p>
-        
-        <!-- IFRAME EMBED -->
-        <div style="width: 100%; height: 850px; background: var(--abyss); border-radius: 6px; overflow: hidden; border: 1px solid var(--faint);">
-          <iframe src="dashboard.html" width="100%" height="100%" style="border: none;" title="MATLAB Interactive Dashboard"></iframe>
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:.65rem;color:var(--white);">Autonomous Oil Recovery Skimmer</h3>
+        <p class="section-body">Our engineering adaptation focuses on using this oceanic oil spill ODE model to envision a mechanical framework for an Oil Recovery Skimmer that can run autonomously. While the research predicts oil slick behaviour theoretically, our engineering adaptation connects its theory to physical applications, to design the practical physical pumping and containment mechanism of the Mechanical Oil Skimmer, to extract these oil slicks from the ocean’s surface.</p>
+        <br>
+        <p class="section-body">The changing viscosity ($\mu$) and oil volume ($V$) will dictate the physical load limits, required suction force, and material requirements needed to make this Skimmer. To fit into real-world applications, the theoretical model must be adapted to empirical constraints:</p>
+        <ul class="process-list" style="margin-top: 1rem;">
+          <li><span class="process-num">01</span><div><div class="process-name">Confined Area</div><p>The unbounded Oil Slick Area ($A$) must be modified to represent the confined zone that the mechanical skimmer can capture at a time.</p></div></li>
+          <li><span class="process-num">02</span><div><div class="process-name">Empirical Calibration</div><p>Generalised constraints for emulsification and evaporation are replaced with local raw experimental data from a physical wave tank, feeding into the MATLAB script to calibrate the exact viscosity curve.</p></div></li>
+      <li><span class="process-num">03</span><div><div class="process-name">Hardware Design</div><p>Physical load parameters, specifically the peak viscosity ($\mu_{max}$), determine the design of functional parts (e.g., impeller) and the pump motor’s torque required to prevent mechanical failure when processing thick oil mousse.</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 3rem;">
+        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">System Feasibility & Failure Modes</h3>
+        <p class="section-body">This Mechanical Skimmer must also be evaluated for feasibility and considered for possible failures:</p>
+        <div class="two-col" style="margin-top: 1.5rem; gap: 2rem;">
+            <div>
+                <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Computational Power</h4>
+                <p class="section-body" style="font-size: 0.9rem;">The RK4 solver constantly recalculates the fluid’s changing viscosity, which requires onboard computational power. At the same time, the processing speed of the skimmer’s internal controller and mechanical response time of the dynamic pump also need computational power. There would be a trade-off in processing power to accommodate them all, which must be considered when selecting computational capacity for the mechanical skimmer.</p>
+            </div>
+            <div>
+                <h4 style="color:var(--cyan); font-family:var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase;">Unpredictable Temperatures</h4>
+                <p class="section-body" style="font-size: 0.9rem;">The model assumes the oil remains above the pour point, staying liquid. If utilized in a low-temperature environment, viscosity may spike beyond predictions, potentially stalling the mechanical pump because of the oil’s state. A thermal sensor loop which overrides the predicted parameters when ambient temperature drops too quickly can be incorporated into the design to handle this low-temperature environment problem.</p>
+            </div>
         </div>
-      </div>
- 
-</section>
-
-
-
-<!-- CONCLUSIONS -->
-<section id="conclusions" style="background:var(--navy);">
-  <div class="container">
-    <div class="section-label">Conclusions</div>
-    <h2 class="section-title">What We <span class="accent">Found</span></h2>
-    <p class="section-body">The project demonstrates that a coupled ODE system with four-stage Runge–Kutta integration is an effective approach to simulating oil spill fate.</p>
-    <div class="conclusions-grid">
-      <div class="conclusion-card reveal">
-        <h3>Coupled simulation outperforms isolated models</h3>
-        <p>Treating all five processes simultaneously through a shared ODE system captures interdependencies (e.g., evaporation reducing surface area that then feeds back into the spreading rate) that are missed when each process is computed separately.</p>
-      </div>
-      <div class="conclusion-card reveal">
-        <h3>Analytical solution not achievable for four of five ODEs</h3>
-        <p>MATLAB's dsolve confirmed that only the water-content equation (EQ 03) has a closed-form solution. The remaining four equations cannot be decoupled due to nonlinear coupling, exponential terms, and fractional-power expressions. Numerical methods are essential.</p>
-      </div>
-      <div class="conclusion-card reveal">
-        <h3>RK4 significantly outperforms Euler</h3>
-        <p>In the stiff early-time region (t &lt; 5 h), Euler requires very small step sizes to maintain stability, while RK4 with adaptive stepping maintains accuracy efficiently throughout. So RK4 for the most part is more accurate</p>
-      </div>
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
 
 <!-- LITERATURE -->
 <section id="literature" style="background:var(--deep);">
