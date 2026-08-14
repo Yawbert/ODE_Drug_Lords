@@ -777,7 +777,13 @@ x0=[FE0;V0;Y0;A0;mu0];
       <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
         <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
         <img src="pics/woterfoll.png" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; border-radius: 6px; border: 1px solid var(--faint); margin-bottom: 1rem;">
-        <p class="section-body" style="font-size: 0.9rem;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
+       <div class="vertical-flow">
+          <p class="section-body" style="font-size: 0.95rem;">To understand how wind speed influences the fate of the spilled oil, the model was solved repeatedly across a range of wind speeds, and the resulting oil-volume curves were stacked together in a 3D waterfall plot.</p>
+          <br>
+          <p class="section-body" style="font-size: 0.95rem;">This visualization shows, at a glance, how increasing wind speed accelerates the loss of oil volume over time, since higher wind speeds increase both evaporation and dispersion rates in the model.</p>
+          <br>
+          <p class="section-body" style="font-size: 0.95rem;">Rather than viewing each wind scenario in isolation, the waterfall plot lets us compare all scenarios simultaneously, making it easier to see how sensitive the spill's evolution is to changing environmental conditions.</p>
+        </div>
       </div>
 
 <!-- MATLAB Dashboard -->
