@@ -1183,28 +1183,28 @@ x0=[FE0;V0;Y0;A0;mu0];
     
     <div class="two-col" style="margin-top: 3rem; align-items: start;">
       
-      <!-- Waterfall Plot -->
-      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
-        <img src="pics/woterfoll.png" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; border-radius: 6px; border: 1px solid var(--faint); margin-bottom: 1rem;">
-        <p class="section-body" style="font-size: 0.9rem;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
-      </div>
-
-      <!-- MATLAB Dashboard -->
-      <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); display: flex; flex-direction: column; height: 100%;">
-        <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">Interactive MATLAB Dashboard</h3>
-        <p class="section-body" style="font-size: 0.9rem; margin-bottom: 1rem;">Use the interactive dashboard below to manually modify important model parameters and immediately observe their effect on the simulation results in real time.</p>
-        
-<!-- IFRAME EMBED -->
-        <div style="width: 100%; height: 850px; background: var(--abyss); border-radius: 6px; overflow: hidden; border: 1px solid var(--faint);">
-          <iframe src="dashboard.html" width="100%" height="100%" style="border: none;" title="MATLAB Interactive Dashboard"></iframe>
-        </div>
-      
+      <!-- Waterfall Plot (Full Width) -->
+    <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 3rem; margin-bottom: 3rem;">
+      <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
+      <img src="pics/woterfoll.jpg" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; max-width: 800px; display: block; margin: 0 auto 1.5rem auto; border-radius: 6px; border: 1px solid var(--faint);">
+      <p class="section-body" style="font-size: 0.9rem; text-align: center; margin: 0 auto;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
     </div>
+
+    <!-- MATLAB Dashboard (Full Width) -->
+    <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
+      <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">Interactive MATLAB Dashboard</h3>
+      <p class="section-body" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Use the interactive dashboard below to manually modify important model parameters and immediately observe their effect on the simulation results in real time.</p>
+      
+      <!-- IFRAME EMBED -->
+      <div style="width: 100%; height: 850px; background: var(--abyss); border-radius: 6px; overflow: hidden; border: 1px solid var(--faint);">
+        <iframe src="dashboard.html" width="100%" height="100%" style="border: none;" title="MATLAB Interactive Dashboard"></iframe>
+      </div>
+    </div>
+    
   </div>
 </section>
 
-<div class="section-divider"></div>
+
 
 <!-- CONCLUSIONS -->
 <section id="conclusions" style="background:var(--navy);">
