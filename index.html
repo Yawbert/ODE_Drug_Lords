@@ -848,6 +848,7 @@ x0=[FE0;V0;Y0;A0;mu0];
     <p class="section-body">This section focuses on varying one parameter while the other parameters were kept at or returned to their baseline values. This made it possible to observe the individual influence of each parameter on oil spill behavior.</p>
   </div>
 
+  <!-- 1. WIND SPEED -->
   <div class="container" style="margin-top: 3.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">1. Wind Speed ($W$)</h3>
     <p class="section-body">Wind speed was varied at $W = 3$, $5$, and $8$. The results show that wind has a strong influence on evaporation, oil volume, water content, spill area, and viscosity. The implication is that wind is one of the most important environmental parameters in oil spill modelling, especially for predicting how quickly the oil weathers and spreads.</p>
@@ -897,20 +898,20 @@ x0=[FE0;V0;Y0;A0;mu0];
     </div>
   </div>
 
+  <!-- 2. TEMPERATURE -->
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">2. Temperature ($T$)</h3>
     <p class="section-body">Temperature was varied at $T = 273.15$ K, $283.15$ K, and $303.15$ K. The temperature sensitivity plots focused on evaporation fraction and oil volume. The model shows that higher temperature increases the evaporation rate. This occurs because the evaporation equation contains a temperature-dependent exponential term.</p>
-  </div>
-  <div class="carousel-wrap" style="padding:0 1.25rem;">
-    <div class="carousel-track" id="sensTempTrack">
-      <div class="carousel-slide">
+    
+    <div class="two-col" style="margin-top: 2.5rem;">
+      <div class="carousel-slide" style="width: 100%; max-width: none; flex: auto;">
         <div class="slide-img"><img src="pics/sens_temp_evap.png" alt="Temperature Sensitivity on Evaporation"></div>
         <div class="slide-info">
           <div class="slide-tag">Temperature</div><div class="slide-title">Sensitivity on Evaporation</div>
           <div class="slide-desc">At higher temperatures, lighter oil components evaporate more rapidly, causing the evaporation fraction to rise faster. At lower temperature, evaporation is slower and the oil remains on the water surface for a longer period.</div>
         </div>
       </div>
-      <div class="carousel-slide">
+      <div class="carousel-slide" style="width: 100%; max-width: none; flex: auto;">
         <div class="slide-img"><img src="pics/sens_temp_vol.png" alt="Temperature Sensitivity on Oil Volume"></div>
         <div class="slide-info">
           <div class="slide-tag">Temperature</div><div class="slide-title">Sensitivity on Oil Volume</div>
@@ -918,12 +919,9 @@ x0=[FE0;V0;Y0;A0;mu0];
         </div>
       </div>
     </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="tempPrev">&#8592;</button>
-      <button class="carousel-btn" id="tempNext">&#8594;</button>
-    </div>
   </div>
 
+  <!-- 3. SPREADING COEFFICIENT -->
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">3. Spreading Coefficient ($K_1$)</h3>
     <p class="section-body">The parameter $K_1$ was varied at $100$, $150$, and $200$ to study its effect on spill area. The result shows that increasing $K_1$ increases the rate of spill spreading. This is expected because the area equation is directly proportional to $K_1$.</p>
@@ -940,20 +938,20 @@ x0=[FE0;V0;Y0;A0;mu0];
     </div>
   </div>
 
+  <!-- 4. WATER CONTENT COEFFICIENT -->
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">4. Water Content Coefficient ($C_3$)</h3>
     <p class="section-body">The parameter $C_3$ was varied using values $0.5$, $0.7$, and $0.8$. This parameter controls the limiting behavior of water uptake in the oil. The results show that higher $C_3$ allows greater water content to develop before the emulsification term slows down.</p>
-  </div>
-  <div class="carousel-wrap" style="padding:0 1.25rem;">
-    <div class="carousel-track" id="sensC3Track">
-      <div class="carousel-slide">
+    
+    <div class="two-col" style="margin-top: 2.5rem;">
+      <div class="carousel-slide" style="width: 100%; max-width: none; flex: auto;">
         <div class="slide-img"><img src="pics/sens_c3_water.png" alt="C3 Sensitivity on Water Content"></div>
         <div class="slide-info">
           <div class="slide-tag">Mousse Limit</div><div class="slide-title">Sensitivity on Water Content</div>
           <div class="slide-desc">A larger $C_3$ generally permits more water incorporation, increasing emulsion formation and causing the oil to become more viscous.</div>
         </div>
       </div>
-      <div class="carousel-slide">
+      <div class="carousel-slide" style="width: 100%; max-width: none; flex: auto;">
         <div class="slide-img"><img src="pics/sens_c3_visc.png" alt="C3 Sensitivity on Viscosity"></div>
         <div class="slide-info">
           <div class="slide-tag">Mousse Limit</div><div class="slide-title">Sensitivity on Viscosity</div>
@@ -961,12 +959,9 @@ x0=[FE0;V0;Y0;A0;mu0];
         </div>
       </div>
     </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="c3Prev">&#8592;</button>
-      <button class="carousel-btn" id="c3Next">&#8594;</button>
-    </div>
   </div>
 
+  <!-- 5. VISCOSITY COEFFICIENT -->
   <div class="container" style="margin-top: 4.5rem;">
     <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">5. Viscosity Coefficient ($C_4$)</h3>
     <p class="section-body">The parameter $C_4$ was varied at $0.3$, $0.5$, and $1.0$ to examine its effect on viscosity. The result shows that viscosity is highly sensitive to $C_4$. This is because $C_4$ directly controls the contribution of evaporation to viscosity increase.</p>
@@ -983,12 +978,6 @@ x0=[FE0;V0;Y0;A0;mu0];
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-
-
-<div class="section-divider"></div>
 
 <!-- RELEVANCE & ENGINEERING INTERPRETATION -->
 <section id="relevance" style="background:var(--navy);">
@@ -1181,21 +1170,14 @@ x0=[FE0;V0;Y0;A0;mu0];
     <div class="section-label">Advanced Tools</div>
     <h2 class="section-title">3D <span class="accent">Visualizations</span></h2>
     
-    <div class="two-col" style="margin-top: 3rem; align-items: start;">
-      
-      <!-- Waterfall Plot (Full Width) -->
+   <!-- NO TWO-COL DIV HERE! Just the Waterfall Plot directly -->
     <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint); margin-top: 3rem; margin-bottom: 3rem;">
-      <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">3D Waterfall Visualization</h3>
-      <img src="pics/woterfoll.png" alt="3D Waterfall Plot of Wind Speed vs Volume" style="width: 100%; max-width: 800px; display: block; margin: 0 auto 1.5rem auto; border-radius: 6px; border: 1px solid var(--faint);">
-      <p class="section-body" style="font-size: 0.9rem; text-align: center; margin: 0 auto;">This plot illustrates how changes in wind speed influence the remaining oil volume throughout the simulation period across a 3D plane.</p>
+       ... (waterfall plot stuff) ...
     </div>
 
-    <!-- MATLAB Dashboard (Full Width) -->
+    <!-- And the Dashboard directly below it -->
     <div style="background:var(--deep); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--faint);">
-      <h3 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:1rem;color:var(--white);">Interactive MATLAB Dashboard</h3>
-      <p class="section-body" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Use the interactive dashboard below to manually modify important model parameters and immediately observe their effect on the simulation results in real time.</p>
-      
-      <!-- IFRAME EMBED -->
+      ... (dashboard text) ...
       <div style="width: 100%; height: 850px; background: var(--abyss); border-radius: 6px; overflow: hidden; border: 1px solid var(--faint);">
         <iframe src="dashboard.html" width="100%" height="100%" style="border: none;" title="MATLAB Interactive Dashboard"></iframe>
       </div>
