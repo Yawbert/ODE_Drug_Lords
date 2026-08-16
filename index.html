@@ -293,7 +293,8 @@ html, body { width: 100% !important; max-width: 100vw !important; margin: 0 !imp
     <li><a href="#modifications">Modifications</a></li>
     <li><a href="#mod-videos">Modified Plots</a></li>
     <li><a href="#relevance">Relevance & Future</a></li>
-    <li><a href="#literature">Literature</a></li>
+    <li><a href="#podcast">Podcast</a></li>
+    <li><a href="#literature">References</a></li>
     <li><a href="#team">Team</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Open navigation">
@@ -315,7 +316,8 @@ html, body { width: 100% !important; max-width: 100vw !important; margin: 0 !imp
   <a href="#modifications" class="drawer-link">Modifications</a>
   <a href="#mod-videos" class="drawer-link">Modified Plots</a>
   <a href="#relevance" class="drawer-link">Relevance & Future</a>
-  <a href="#literature" class="drawer-link">Literature</a>
+  <a href="#podcast" class="drawer-link">Podcast</a>
+  <a href="#literature" class="drawer-link">References</a>
   <a href="#team" class="drawer-link">Team</a>
 </div>
 
@@ -1151,7 +1153,7 @@ x0=[FE0;V0;Y0;A0;mu0];
 <section id="relevance" style="background:var(--navy);">
   <div class="container">
     <div class="section-label">Real-World Application & Future Work</div>
-    <h2 class="section-title">Relevance & <span class="accent">Modifications</span></h2>
+    <h2 class="section-title">Relevance & <span class="accent">Future Work</span></h2>
     
     <div class="two-col" style="margin-top: 2.5rem;">
       <!-- Relevance to Ghana -->
@@ -1172,14 +1174,35 @@ x0=[FE0;V0;Y0;A0;mu0];
     </div>
   </div>
 </section>
+  <div class="section-divider"></div>
 
-<!-- LITERATURE -->
+<!-- PODCAST SUMMARY -->
+<section id="podcast" style="background:var(--abyss);">
+  <div class="container">
+    <div class="section-label">Project Summary</div>
+    <h2 class="section-title">Podcast <span class="accent">Edition</span></h2>
+    <p class="section-body">In this two-minute podcast-style discussion, our team breaks down the core of the project—from the environmental impact of oil spills to our ODE formulations, numerical methods, and future real-world applications for coastal communities.</p>
+    
+    <div style="margin-top: 2.5rem; display: flex; justify-content: center;">
+      <video controls playsinline style="width: 100%; max-width: 900px; border-radius: 12px; border: 1px solid var(--faint); box-shadow: 0 10px 30px rgba(0, 212, 184, 0.05);">
+        <!-- Assumes the video is stored in your 'pics' folder -->
+        <source src="pics/finaldiff.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- LITERATURE & RESOURCES -->
 <section id="literature" style="background:var(--deep);">
   <div class="container">
-    <div class="section-label">Literature Review</div>
+    <div class="section-label">Literature Review & Resources</div>
     <h2 class="section-title">Our <span class="accent">References</span></h2>
-    <p class="section-body">This project builds directly on foundational work in oil spill fate modelling. The following reference informed the ODE formulations, numerical approach, and validation strategy.</p>
+    <p class="section-body">This project builds directly on foundational work in oil spill fate modelling. The following reference informed the ODE formulations, numerical approach, and validation strategy, alongside our custom MATLAB implementation.</p>
+    
     <div class="papers-list">
+      
+      <!-- 01: Original Paper -->
       <div class="paper-card reveal">
         <div class="paper-num">01</div>
         <div>
@@ -1190,6 +1213,19 @@ x0=[FE0;V0;Y0;A0;mu0];
           <p class="paper-desc">The primary reference for this project. Presents a complete coupled ODE system for the five key weathering processes, solved using a fourth-order Runge–Kutta method. Validated against CONCAWE (1983) and Buchanan &amp; Hurford (1988) experimental data.</p>
         </div>
       </div>
+
+      <!-- 02: MATLAB Code -->
+      <div class="paper-card reveal">
+        <div class="paper-num">02</div>
+        <div>
+          <div class="paper-authors">Project Team</div>
+          <div class="paper-title">MATLAB Source Code</div>
+          <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);font-size:.82rem;display:inline-block;margin-bottom:.5rem;">Click here to access the MATLAB Code on Google Drive</a>
+          <div class="paper-journal">CE 122 Applied Programming Assignment</div>
+          <p class="paper-desc">The complete computational MATLAB script developed for this project. This file contains the implementation of the coupled ODE system, the numerical solvers (Euler, RK4, and ode45), parameter sensitivity analysis, visualizations, and the mathematical engine for the interactive dashboard.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1208,7 +1244,7 @@ x0=[FE0;V0;Y0;A0;mu0];
         <div class="team-name">Gerald Engmann</div>
       </div>
       <div class="team-card">
-        <img src="pics/yh.jpg" alt="Nana Yaw Akuamoah" class="team-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="pics/newpic.png" alt="Nana Yaw Akuamoah" class="team-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="team-avatar-init">NY</div>
         <div class="team-name">Nana Yaw Akuamoah</div>
       </div>
